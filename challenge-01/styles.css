@@ -5,9 +5,6 @@
   --hero-bg: #F1F3FF;
 }
 
-body {
-  font-family: Helvetica;
-}
 
 
 ul {
@@ -117,7 +114,7 @@ p {
 /* Testimonial */
 
 #testimonial {
-  margin-bottom: 100px;
+  margin-bottom: 156px;
   height: 382px;
   max-width: 832px;
 }
@@ -151,6 +148,30 @@ p {
 
 .rate-comment p {
   margin: 0px;
+}
+
+/* Getting Started Section */
+
+#getting-started {
+  margin-bottom: 100px;
+  height: 326px;
+}
+
+.getting-started-content {
+  background: var(--primary-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  color: white;
+  border-radius: 13px;
+}
+
+.getting-started-content p {
+  max-width: 468px;
+  text-align: center;
+  font-weight: 400;
 }
 
 
