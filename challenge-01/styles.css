@@ -6,9 +6,9 @@
 }
 
 body {
-  max-width: 1440px;
-  margin: auto;
+  font-family: Helvetica;
 }
+
 
 ul {
   list-style-type: none;
@@ -126,8 +126,10 @@ p {
   margin-bottom: 16px;
 }
 
+
 .slider {
   height: 270px;
+  margin-top: 40px;
 }
 
 .content-carousel {
@@ -137,6 +139,18 @@ p {
   justify-content: center;
   gap: 40px;
   border-radius: 8px;
+}
+
+.rate-comment {
+  max-width: 415px;
+  height: 132px;
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+}
+
+.rate-comment p {
+  margin: 0px;
 }
 
 
