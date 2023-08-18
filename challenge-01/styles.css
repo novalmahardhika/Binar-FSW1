@@ -1,0 +1,144 @@
+:root {
+  /* color */
+  --primary-blue: #0D28A6;
+  --btn-prim-color :  #5CB85F;
+  --hero-bg: #F1F3FF;
+}
+
+body {
+  max-width: 1440px;
+  margin: auto;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+  
+}
+
+h2 {
+  font-weight: 700;
+}
+
+p {
+  font-size: 14px;
+}
+
+/* Navbar */
+.logo {
+  background-color: var(--primary-blue); 
+  width: 100px; 
+  height: 34px;
+}
+
+/* Hero */
+#hero {
+  height: 500px;
+  background-color: var(--hero-bg);
+  margin-bottom: 100px;
+  position: relative;
+}
+
+.text-hero h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.text-hero p {
+  width: 70%;
+  margin-bottom: 16px;
+}
+
+.img-hero {
+ width: 704px;
+ height: 407px;
+}
+
+
+/* Services */
+#services {
+  height: 428px;
+  margin-bottom: 100px;
+}
+
+.img-service  {
+  height: 428px;
+  width: 458px;
+}
+
+#services h2 {
+  margin-bottom: 24px;
+}
+
+#services li {
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.icon-checklist {
+  margin-right: 16px;
+}
+
+/* Why Us */
+
+#why-us {
+  height: 308px;
+  margin-bottom: 100px;
+}
+
+#why-us h2 {
+  margin-bottom: 16px;
+}
+
+#why-us p {
+  margin-bottom: 40px;
+}
+
+.why-us-items {
+  height: 196px;
+  gap: 36px;
+}
+
+.item {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.item h6{
+  margin: 0;
+}
+
+/* Testimonial */
+
+#testimonial {
+  margin-bottom: 100px;
+  height: 382px;
+  max-width: 832px;
+}
+
+#testimonial h2 {
+  margin-bottom: 16px;
+}
+
+.slider {
+  height: 270px;
+}
+
+.content-carousel {
+  background: var(--hero-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  border-radius: 8px;
+}
+
+
+
+
