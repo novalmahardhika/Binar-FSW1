@@ -175,5 +175,20 @@ p {
 }
 
 
+/* FAQ Section */
 
+#frequently-asked-question {
+  height: 344px;
+  margin-bottom: 150px;
+}
+
+#frequently-asked-question button  {
+  font-size: 14px;
+}
+
+.group-item-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
