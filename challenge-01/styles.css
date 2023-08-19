@@ -9,8 +9,7 @@
 
 ul {
   list-style-type: none;
-  padding: 0px;
-  
+  padding: 0px;  
 }
 
 h2 {
@@ -22,6 +21,15 @@ p {
 }
 
 /* Navbar */
+
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
 .logo {
   background-color: var(--primary-blue); 
   width: 100px; 
