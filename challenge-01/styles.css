@@ -5,6 +5,9 @@
   --hero-bg: #F1F3FF;
 }
 
+* {
+  font-family: Helvetica;
+}
 
 
 ul {
@@ -103,6 +106,7 @@ p {
 .why-us-items {
   height: 196px;
   gap: 36px;
+ 
 }
 
 .item {
@@ -223,5 +227,4 @@ p {
   font-weight: 500;
   gap: 16px;
 }
-
 
