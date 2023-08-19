@@ -182,6 +182,10 @@ p {
   margin-bottom: 150px;
 }
 
+#frequently-asked-question h2 {
+  margin-bottom: 16px;
+}
+
 #frequently-asked-question button  {
   font-size: 14px;
 }
