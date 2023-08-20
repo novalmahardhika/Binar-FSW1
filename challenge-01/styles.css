@@ -5,8 +5,10 @@
   --hero-bg: #F1F3FF;
 }
 
-* {
+body {
   font-family: Helvetica;
+  max-width: 1440px;
+  margin: auto;
 }
 
 
@@ -47,10 +49,15 @@ p {
   position: relative;
 }
 
+.text-hero {
+  padding-left: 60px;
+}
+
 .text-hero h1 {
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 16px;
+  
 }
 
 .text-hero p {
@@ -207,6 +214,7 @@ p {
   flex-direction: column;
   gap: 16px;
 }
+
 
 /* Footer */
 #footer {
