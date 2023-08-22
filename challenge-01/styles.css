@@ -65,15 +65,15 @@ p {
   margin-bottom: 16px;
 }
 
-.container-image {
+.container-image-hero {
   padding: 0px;
 }
 
 
 /* Services */
 #services {
-  height: 428px;
-  margin-bottom: 100px;
+  max-width: 1027px;
+  margin: 0px auto 100px auto;
 }
 
 #services h2 {
@@ -84,6 +84,25 @@ p {
   margin-bottom: 16px;
   font-size: 14px;
 }
+
+.container-services {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 100px;
+}
+
+.container-image-services {
+  padding: 0;
+}
+
+.container-text-services {
+  max-width: 468px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+} 
+
 
 .icon-checklist {
   margin-right: 16px;
@@ -233,19 +252,35 @@ p {
 /* responsive 425px */
 
 @media (max-width:425px) {
+  
   /* hero section */
   #hero {
     margin-bottom: 60px;
-    
   }
 
   .text-hero {
-    padding: 24px 12px;
+    padding: 24px 16px;
   }
 
-  .container-image {
-    padding-left: 12px;
+  .container-image-hero {
+    padding-left: 16px;
   }
   
+  /* services */
+
+  #services  {
+   margin-bottom: 60px;
+   padding: 0px 16px;
+  }
+
+  .container-services {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .container-image-services {
+    padding: 0px 54px ;
+  }
   
+
 }
