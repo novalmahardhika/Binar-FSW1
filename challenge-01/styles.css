@@ -43,10 +43,10 @@ p {
 
 /* Hero */
 #hero {
-  height: 500px;
+  /* height: 500px; */
   background-color: var(--hero-bg);
   margin-bottom: 100px;
-  position: relative;
+ 
 }
 
 .text-hero {
@@ -65,9 +65,8 @@ p {
   margin-bottom: 16px;
 }
 
-.img-hero {
- max-width: 704px;
- height: 407px;
+.container-image {
+  padding: 0px;
 }
 
 
@@ -231,3 +230,22 @@ p {
   gap: 16px;
 }
 
+/* responsive 425px */
+
+@media (max-width:425px) {
+  /* hero section */
+  #hero {
+    margin-bottom: 60px;
+    
+  }
+
+  .text-hero {
+    padding: 24px 12px;
+  }
+
+  .container-image {
+    padding-left: 12px;
+  }
+  
+  
+}
