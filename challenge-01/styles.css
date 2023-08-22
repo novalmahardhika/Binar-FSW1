@@ -131,7 +131,7 @@ p {
   margin-top: 40px;
   display: grid;
   gap: 32px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr))
 }
 
 .card-item {
@@ -156,40 +156,63 @@ p {
 
 #testimonial {
   margin-bottom: 156px;
-  height: 382px;
   max-width: 832px;
+
 }
 
-#testimonial h2 {
+.container-testimonial {
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-testimonial h2 {
   margin-bottom: 16px;
 }
 
-
-.slider {
-  height: 270px;
-  margin-top: 40px;
+.container-testimonial > p {
+  margin-bottom: 40px;
 }
 
 .content-carousel {
   background: var(--hero-bg);
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 40px;
   border-radius: 8px;
+  padding: 70px 0px;
 }
 
-.rate-comment {
+.img-photo {
+  max-width: 70px;
+  height: 80px;
+}
+
+.icon-rate {
+  max-width: 80px;
+  height: 16px;
+}
+
+.testimonial-comment {
   max-width: 415px;
-  height: 132px;
- display: flex;
- flex-direction: column;
- gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 16px;
 }
 
-.rate-comment p {
-  margin: 0px;
+.button-arrow {
+  bottom: 0;
 }
+
+.ic-arrow {
+  width: 56px;
+  height: 68px;
+}
+
+
 
 /* Getting Started Section */
 
@@ -296,7 +319,7 @@ p {
     padding: 0px 54px ;
   }
   
-  /* why us */
+  /* why us section*/
 
   #why-us {
     margin-bottom: 60px;
@@ -314,4 +337,37 @@ p {
   .card-container {
     margin-top: 24px;
   } 
+
+  /* Testimonial Section */
+  #testimonial {
+    margin-bottom: 88px;
+  }
+
+  .container-testimonial {
+    padding: 16px;
+  }
+
+  .container-testimonial > p {
+    margin-bottom: 16px;
+  }
+
+  .content-carousel {
+    flex-direction: column;
+    padding: 40px 32px;
+  }
+
+  .testimonial-comment {
+    align-items: center;
+  }
+
+  .button-arrow {
+    bottom: 240px;
+  }
+
+  .ic-arrow {
+    width: 23px;
+    height: 48px;
+  }
+
+
 }
