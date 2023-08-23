@@ -243,7 +243,6 @@ p {
 /* FAQ Section */
 
 #frequently-asked-question {
-  height: 344px;
   margin-bottom: 150px;
 }
 
@@ -255,10 +254,22 @@ p {
   font-size: 14px;
 }
 
+.container-faq {
+  padding: 12px;
+}
+
 .group-item-accordion {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.btn-accordion {
+  padding: 14px 24px 0px 24px;
+}
+.dropdown-accordion {
+  margin: 0;
+  padding: 0px 24px 14px 24px;
 }
 
 
@@ -378,5 +389,28 @@ p {
   .getting-started-content {
     text-align: center;
   }
+
+  /* Frequently Asked Question Section */ 
+  #frequently-asked-question {
+    margin-bottom: 60px;
+  }
+
+  #frequently-asked-question h2 {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  #frequently-asked-question p {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .container-faq {
+    padding: 0px 16px;
+  }
+
+  
+
+  
 
 }
