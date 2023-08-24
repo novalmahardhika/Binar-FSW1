@@ -280,10 +280,9 @@ p {
 }
 
 .container-footer {
-  display: flex;
-  gap: 120px;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
 }
 
 .contact-footer {
@@ -333,6 +332,10 @@ p {
 
   .text-hero {
     padding: 24px 16px;
+  }
+
+  .text-hero p {
+    width: 100%;
   }
 
   .container-image-hero {
