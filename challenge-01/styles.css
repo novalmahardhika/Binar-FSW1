@@ -62,6 +62,7 @@ p {
  
 }
 
+
 .container-hero {
 max-width:1440px ;
 
@@ -282,6 +283,10 @@ max-width:1440px ;
   gap: 16px;
 }
 
+.accordion-button {
+  gap: 5px;
+  }
+
 .accordion-button:not(.collapsed) {
 background-color: white;
 }
@@ -291,8 +296,8 @@ background-color: white;
 
 .btn-accordion {
   padding: 14px 24px 0px 24px;
-  background-color: white;
 }
+
 .dropdown-accordion {
   margin: 0;
   padding: 0px 24px 14px 24px;
@@ -345,6 +350,40 @@ background-color: white;
 
 
 
+
+/* responsive 1024px desktop */
+@media (max-width:1024px) {
+
+  /* hero section */
+  .text-hero {
+    padding: 0px 0px 32px 32px
+  }
+
+}
+
+/* responsive 764px tablet */
+@media (max-width:768px) {
+
+  /* hero section */
+  .text-hero {
+    padding: 0px 0px 24px 24px
+  }
+
+  .container-image-hero {
+    padding-left: 24px;
+  }
+
+  /* services section */
+  .container-services {
+    flex-direction: column;
+  }
+
+  .container-image-services {
+    max-width: 400px;
+    margin: auto;
+  }
+
+}
 
 
 /* responsive 425px mobile large*/
@@ -467,33 +506,37 @@ background-color: white;
   }
 
   /* footer */
+
+  #footer {
+    margin-bottom: 50px; 
+  }
+
   .container-footer {
     gap: 16px;
     padding: 0px 16px;
   }
+  
 }
 
+/* responsive mobile s */
+@media (max-width:320px) {
 
-/* responsive 764px tablet */
-@media (max-width:768px) {
-
-  /* hero section */
-  .text-hero {
-    padding: 0px 0px 24px 24px
+  p,span {
+    font-size: 12px;
   }
 
-  .container-image-hero {
-    padding-left: 24px;
+  /* bootsrap className */
+  .btn {
+    font-size: 14px;
+  }
+  .nav-link {
+    font-size: 14px;
   }
 
-  /* services section */
-  .container-services {
-    flex-direction: column;
+  /* faq section */
+  #frequently-asked-question button  {
+    font-size: 12px;
   }
 
-  .container-image-services {
-    max-width: 400px;
-    margin: auto;
-  }
 
 }
