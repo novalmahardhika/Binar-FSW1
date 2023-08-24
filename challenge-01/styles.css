@@ -281,8 +281,16 @@ max-width:1440px ;
   gap: 16px;
 }
 
+.accordion-button:not(.collapsed) {
+background-color: white;
+}
+.accordion-button:focus {
+  box-shadow: none;
+}
+
 .btn-accordion {
   padding: 14px 24px 0px 24px;
+  background-color: white;
 }
 .dropdown-accordion {
   margin: 0;
