@@ -360,7 +360,11 @@ background-color: white;
 
   /* hero section */
   .text-hero {
-    padding: 0px 0px 32px 32px
+    padding: 0px 0px 0px 32px;
+  }
+
+  .text-hero p {
+    width: 100%;
   }
 
 }
@@ -529,7 +533,7 @@ background-color: white;
     font-size: 12px;
   }
 
-  /* bootsrap className */
+  /* bootstrap className */
   .btn {
     font-size: 14px;
   }
