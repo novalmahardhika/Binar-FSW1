@@ -39,6 +39,16 @@ p {
   background-color: var(--primary-blue); 
   width: 100px; 
   height: 34px;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 5px;
+}
+
+.logo:hover, .logo:active, .logo:visited {
+  color: white;
 }
 
 .btn-success {
@@ -363,8 +373,12 @@ background-color: white;
     padding: 0px 0px 0px 32px;
   }
 
+  .text-hero h1 {
+    font-size: 32px;
+  }
+
   .text-hero p {
-    width: 100%;
+    width: 90%;
   }
 
 }
