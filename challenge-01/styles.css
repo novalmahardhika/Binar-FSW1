@@ -44,7 +44,7 @@ p {
   justify-content: center;
   align-items: center;
   color: white;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 .logo:hover, .logo:active, .logo:visited {
@@ -409,7 +409,7 @@ background-color: white;
 
 
 /* responsive 425px mobile large*/
-@media (max-width:425px) {
+@media (max-width:576px) {
 
   /* navbar */
   .container-nav {
