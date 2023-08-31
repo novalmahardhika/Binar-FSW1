@@ -98,9 +98,34 @@ max-width:1440px ;
   padding: 0px;
 }
 
-/* .container-image-hero {
-  padding: 0px 0px;
-} */
+/* form */
+.container-input {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 100%;
+  bottom: -60px;
+  left: 0;
+  right: 0;
+  background: white;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.input-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+label, ::placeholder {
+  font-size: 12px;
+  padding: 0px 4px;
+}
+
+
 
 
 /* footer */
