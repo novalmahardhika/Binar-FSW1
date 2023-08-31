@@ -120,9 +120,14 @@ max-width:1440px ;
   gap: 4px;
 }
 
-label, ::placeholder {
+label, ::placeholder, select,option,input {
   font-size: 12px;
   padding: 0px 4px;
+  color: #5b5b5b;
+}
+
+select,option,input {
+  padding: 10px;
 }
 
 

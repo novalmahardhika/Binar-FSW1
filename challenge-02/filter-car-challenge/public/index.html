@@ -67,27 +67,54 @@
       </section>
 
       <!-- form input -->
-      <form class="container container-input shadow-lg">
+      <form class="container container-input shadow-lg" >
+
+        <!-- input Test drive -->
         <div class="input-item" >
-          <label>Test Driver</label>
-          <input class="border">
+          <label for="inputTest">Test Driver</label>
+          <select id="inputTest" class="border" >
+            <option value="" disabled disabled selected>Pilih Tipe Driver</option>
+            <option value="">Dengan Sopir</option>
+            <option value="">Tanpa Sopir (Lepas Kunci)</option>
+          </select>
         </div>
 
+        <!-- Input Date -->
         <div class="input-item">
-          <label>Tanggal</label>
-          <input class="border">
+          <label for="inputDate">Tanggal</label>
+          <input id="inputDate" type="text" class="border" placeholder="Pilih Tanggal" onfocus="(this.type = 'date')">
         </div>
 
+        <!-- Input Time -->
         <div class="input-item">
-          <label>Waktu Jemput/Ambil</label>
-          <input class="border">
+          <label for="inputTime">Waktu Jemput/Ambil</label>
+          <select class="border">
+            <option value="" disabled disabled selected>Pilih Waktu</option>
+            <option value="">
+              08.00
+            </option>
+            <option value="">
+              09.00
+            </option>
+            <option value="">
+              10.00
+            </option>
+            <option value="">
+              11.00
+            </option>
+            <option value="">
+              12.00
+            </option>
+          </select>
         </div>
         
+        <!-- input capacity -->
         <div class="input-item ">
-          <label>Jumlah Penumpang (Optional)</label>
-          <input class="border" placeholder="Jumlah Penumpang">
+          <label for="inputCapacity">Jumlah Penumpang (Optional)</label>
+          <input id="inputCapacity" type="number" min="0" class="border" placeholder="Jumlah Penumpang">
         </div>
 
+        <!-- button submit -->
         <div style="display: flex; justify-content: end; align-items: end;">
         <button class="btn btn-success">Cari Mobil</button>
        </div>
