@@ -15,7 +15,7 @@
       <!-- Navbar -->
       <header class="navbar nav navbar-expand-lg ">
         <nav class="container container-nav">
-          <a class="navbar-brand logo" href="#">BCR</a>
+          <a class="navbar-brand logo" href="./landingPage.html">BCR</a>
   
           <!-- Hamburger Button-->
           <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -67,16 +67,16 @@
           </div>
         </div>
       </section>
+
       <!-- form input -->
       <form class="container container-input shadow-lg ">
-
         <!-- input Test drive -->
         <div class="input-item" >
-          <label for="inputTest">Test Driver</label>
-          <select id="inputTest" class="border" >
+          <label for="inputType">Tipe Driver</label>
+          <select id="inputType" class="border" >
             <option value="" disabled disabled selected>Pilih Tipe Driver</option>
-            <option value="">Dengan Sopir</option>
-            <option value="">Tanpa Sopir (Lepas Kunci)</option>
+            <option value="automatic">Dengan Sopir</option>
+            <option value="manual">Tanpa Sopir (Lepas Kunci)</option>
           </select>
         </div>
 
@@ -89,21 +89,21 @@
         <!-- Input Time -->
         <div class="input-item">
           <label for="inputTime">Waktu Jemput/Ambil</label>
-          <select type="" class="border">
+          <select id="inputTime" class="border">
             <option value="" disabled disabled selected>Pilih Waktu</option>
-            <option value="">
+            <option value="08.00"">
               08.00
             </option>
-            <option value="">
+            <option value="09.00">
               09.00
             </option>
-            <option value="">
+            <option value="10.00">
               10.00
             </option>
-            <option value="">
+            <option value="11.00">
               11.00
             </option>
-            <option value="">
+            <option value="12.00">
               12.00
             </option>
           </select>
@@ -112,7 +112,7 @@
         <!-- input capacity -->
         <div class="input-item ">
           <label for="inputCapacity">Jumlah Penumpang (Optional)</label>
-          <input id="inputCapacity" type="number" min="0" class="border" placeholder="Jumlah Penumpang">
+          <input id="inputCapacity" type="number" min="0" max="6" class="border" placeholder="Jumlah Penumpang">
         </div>
 
         <!-- button submit -->
@@ -161,8 +161,8 @@
 
 
     <!-- package -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  <script src="scripts/modal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> -->
+  <script src="scripts/formInput.js"></script>
 
   <!-- <script src="scripts/app.example.js"></script>
   <script src="scripts/car.example.js"></script>
