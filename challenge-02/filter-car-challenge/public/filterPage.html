@@ -73,7 +73,7 @@
         <!-- input Test drive -->
         <div class="input-item" >
           <label for="inputType">Tipe Driver</label>
-          <select id="inputType" class="border" >
+          <select id="inputType" class="border w-100" required>
             <option value="" disabled disabled selected>Pilih Tipe Driver</option>
             <option value="automatic">Dengan Sopir</option>
             <option value="manual">Tanpa Sopir (Lepas Kunci)</option>
@@ -84,7 +84,7 @@
         <div class="input-item">
           <label for="inputDate">Tanggal</label>
           <div class="wrapper-input border">
-            <input id="inputDate" type="text" class="border-0 w-100" placeholder="Pilih Tanggal" onfocus="(this.type = 'date')">
+            <input id="inputDate" type="text" class="border-0 w-100" placeholder="Pilih Tanggal" onfocus="(this.type = 'date')" required>
             <img src="./assets/fi_calendar.svg">
           </div>
         </div>
@@ -93,7 +93,7 @@
         <div class="input-item">
           <label for="inputTime">Waktu Jemput/Ambil</label>
           <div class="wrapper-input border">
-          <select id="inputTime" class="border-0 w-100">
+          <select id="inputTime" class="border-0 w-100" required>
             <option value="" disabled disabled selected>Pilih Waktu</option>
             <option value="08.00">
               08.00
@@ -132,7 +132,6 @@
       </form>
 
       <!-- Outputst -->
-
 
       <!-- cars section -->
     </main>
