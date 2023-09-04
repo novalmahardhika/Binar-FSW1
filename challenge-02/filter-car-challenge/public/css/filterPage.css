@@ -130,6 +130,32 @@ max-width:1440px ;
   gap: 4px;
 }
 
+.wrapper-input {
+  position: relative;
+}
+
+.wrapper-input img{
+  position: absolute;
+  right: 5px;
+  top: 9px;
+}
+
+.wrapper-input select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator{
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+
 label, ::placeholder, select,option,input {
   font-size: 12px;
   padding: 0px 4px;
