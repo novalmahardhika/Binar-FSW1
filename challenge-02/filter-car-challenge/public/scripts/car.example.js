@@ -44,13 +44,15 @@ class Car {
 
   render() {
     return `
-    <div class="card-cars">      
-      <div>
+    <div class="card-cars shadow-lg">      
+      <div >
         <img src="${this.image}" alt="${this.manufacture}" class="img-fluid" >
-        <p>${this.manufacture}/${this.model}</p>
-        <h6>${this.rentPerDay}</h6>
+        <p class="fw-bold mt-3">${this.manufacture}/${this.model}</p>
+        <h6 class="fw-bold">${this.rentPerDay}</h6>
         <p>${this.description}</p>
-      
+      </div>
+
+    <div class="card-icons">
       <div>
         <img src="./assets/fi_users.svg" style="width:20px; height:20px">
         <span>${this.capacity} Orang</span>
@@ -63,10 +65,9 @@ class Car {
 
       <div>
         <img src="./assets/fi_calendar.svg" style="width:20px; height:20px">
-        <span>${this.year}</span>
+        <span>Tahun ${this.year}</span>
       </div>
-
-      </div>
+    </div>
 
       <button class="btn btn-success">Pilih Mobil</button>
     </div>
