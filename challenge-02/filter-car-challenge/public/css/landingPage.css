@@ -54,8 +54,6 @@ p {
 .btn-success {
   --bs-btn-bg : var(--btn-prim-color);
   --bs-btn-border-color: var(--btn-prim-color);
-  --bs-btn-hover-bg:var(--btn-prim-color);
-  --bs-btn-hover-border-color:var(--btn-prim-color);
   --bs-btn-active-bg:var(--btn-prim-color);
   --bs-btn-active-border-color:var(--btn-prim-color);
   --bs-btn-disabled-bg:var(--btn-prim-color);

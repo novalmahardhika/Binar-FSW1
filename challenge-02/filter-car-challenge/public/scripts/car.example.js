@@ -3,8 +3,16 @@ class Car {
 
   static init(cars) {
     this.list = cars.map((i) => new this(i))
-  }
 
+    // this.list = this.list.filter((x) =>
+    //   x.capacity === 6 && x.transmission.toLowerCase() === 'automatic'
+    //     ? new this(x)
+    //     : ''
+    // )
+
+    // console.log(this.list.map((x) => x.capacity === 6 ))
+    // console.log(this.list)
+  }
   constructor({
     id,
     plate,
@@ -74,9 +82,3 @@ class Car {
     `
   }
 }
-
-// <p>id: <b>${this.id}</b></p>
-//       <p>plate: <b>${this.plate}</b></p>
-//       <p>manufacture: <b>${this.manufacture}</b></p>
-//       <p>model: <b>${this.model}</b></p>
-//       <p>available at: <b>${this.availableAt}</b></p>

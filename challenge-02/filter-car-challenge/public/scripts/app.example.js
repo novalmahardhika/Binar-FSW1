@@ -3,6 +3,9 @@ class App {
     this.clearButton = document.getElementById('clear-btn')
     this.loadButton = document.getElementById('load-btn')
     this.carContainerElement = document.getElementById('cars-container')
+    this.form = document.querySelector('.container-input')
+    this.capacityInput = document.querySelector('#inputCapacity')
+    this.value = 0
   }
 
   async init() {
@@ -11,7 +14,14 @@ class App {
     // Register click listener
     // this.clearButton.onclick = this.clear;
     // this.loadButton.onclick = this.run;
+    // this.form.onsubmit = this.submit
   }
+
+  // submit = (e) => {
+  //   e.preventDefault()
+
+  //   this.value = +this.capacityInput.value
+  // }
 
   run = () => {
     Car.list.forEach((car) => {
