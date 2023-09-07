@@ -7,13 +7,20 @@ function sortCarByYearDescendingly(cars) {
   const result = cars
 
   // Tulis code-mu disini
+  let stop = false
   for (let i = 0; i < cars.length; i++) {
+    stop = false
     for (let j = 0; j < cars.length - i - 1; j++) {
       if (cars[j].year < cars[j + 1].year) {
         let pos = cars[j]
         cars[j] = cars[j + 1]
         cars[j + 1] = pos
+        stop = true
       }
+    }
+
+    if (!stop) {
+      break
     }
   }
 
