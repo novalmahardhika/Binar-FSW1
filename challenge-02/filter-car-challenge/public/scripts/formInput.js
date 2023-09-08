@@ -8,15 +8,15 @@ const timeInput = document.querySelector('#inputTime')
 const capacityInput = document.querySelector('#inputCapacity')
 
 // Modal
-form.addEventListener('click', () => {
-  modal.style.display = 'block'
-})
+// form.addEventListener('click', () => {
+//   modal.style.display = 'block'
+// })
 
-window.addEventListener('click', (e) => {
-  if (e.target == modal) {
-    modal.style.display = 'none'
-  }
-})
+// window.addEventListener('click', (e) => {
+//   if (e.target == modal) {
+//     modal.style.display = 'none'
+//   }
+// })
 
 // form submit
 // form.addEventListener('submit', (e) => {

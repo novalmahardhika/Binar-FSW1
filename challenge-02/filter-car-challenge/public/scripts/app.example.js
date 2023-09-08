@@ -4,7 +4,7 @@ class App {
     this.loadButton = document.getElementById('load-btn')
     this.carContainerElement = document.getElementById('cars-container')
 
-    this.buttonForm = document.querySelector('#btn-form')
+    this.buttonForm = document.getElementById('btn-form')
     this.typeDriver = document.querySelector('#inputType')
     this.capacityInput = document.querySelector('#inputCapacity')
     this.dateInput = document.querySelector('#inputDate')
@@ -35,6 +35,7 @@ class App {
       data.available &&
       data.capacity >= +capacity &&
       new Date(data.availableAt).getTime() >= newDate
+
     const cars = await Binar.listCars(filtered)
     Car.init(cars)
 
