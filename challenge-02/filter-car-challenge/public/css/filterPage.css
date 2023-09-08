@@ -169,6 +169,12 @@ select,option,input {
   padding: 10px;
 }
 
+.container-btn {
+  display: flex;
+  align-items: end;
+}
+
+
 /* cars section */
 .container-cars {
   display: grid;
