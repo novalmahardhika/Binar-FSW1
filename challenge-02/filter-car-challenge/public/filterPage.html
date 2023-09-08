@@ -78,8 +78,8 @@
           <label for="inputType">Tipe Driver</label>
           <select id="inputType" class="border w-100" required>
             <option value="" disabled disabled selected>Pilih Tipe Driver</option>
-            <option value="automatic">Dengan Sopir</option>
-            <option value="manual">Tanpa Sopir (Lepas Kunci)</option>
+            <option value="none">Dengan Sopir</option>
+            <option value="none">Tanpa Sopir (Lepas Kunci)</option>
           </select>
         </div>
 
@@ -98,19 +98,19 @@
           <div class="wrapper-input border">
           <select id="inputTime" class="border-0 w-100" required>
             <option value="" disabled disabled selected>Pilih Waktu</option>
-            <option value="08.00">
+            <option value="08:00">
               08.00
             </option>
-            <option value="09.00">
+            <option value="09:00">
               09.00
             </option>
-            <option value="10.00">
+            <option value="10:00">
               10.00
             </option>
-            <option value="11.00">
+            <option value="11:00">
               11.00
             </option>
-            <option value="12.00">
+            <option value="12:00">
               12.00
             </option>
           </select>
@@ -123,14 +123,14 @@
         <div class="input-item ">
           <label for="inputCapacity">Jumlah Penumpang (Optional)</label>
           <div class="wrapper-input border">
-          <input id="inputCapacity" type="number" min="0" max="6" class="border-0 w-100" placeholder="Jumlah Penumpang">
+          <input id="inputCapacity" type="number" min="0" max="6" class="border-0 w-100" placeholder="Jumlah Penumpang" value="0">
           <img src="./assets/fi_users.svg" >
         </div>
         </div>
 
         <!-- button submit -->
         <div class="container-btn">
-        <button class="btn btn-success">Cari Mobil</button>
+        <button id="btn-form" class="btn btn-success">Cari Mobil</button>
        </div>
       </form>
       </div>

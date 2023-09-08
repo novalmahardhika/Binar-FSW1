@@ -3,9 +3,12 @@ class App {
     this.clearButton = document.getElementById('clear-btn')
     this.loadButton = document.getElementById('load-btn')
     this.carContainerElement = document.getElementById('cars-container')
-    this.form = document.querySelector('.container-input')
+
+    this.buttonForm = document.querySelector('#btn-form')
+    this.typeDriver = document.querySelector('#inputType')
     this.capacityInput = document.querySelector('#inputCapacity')
-    this.value = 0
+    this.dateInput = document.querySelector('#inputDate')
+    this.timeInput = document.querySelector('#inputTime')
   }
 
   async init() {
@@ -13,17 +16,28 @@ class App {
 
     // Register click listener
     // this.clearButton.onclick = this.clear;
-    // this.loadButton.onclick = this.run;
-    // this.form.onsubmit = this.submit
+    this.buttonForm.onclick = this.run
   }
 
-  // submit = (e) => {
-  //   e.preventDefault()
+  run = async () => {
+    this.clear()
+    const typeDriver = this.typeDriver.value
+    const capacity = this.capacityInput.value
+    const date = this.dateInput.value
+    const time = this.timeInput.value
+    const newDate = new Date(`${date} ${time}`)
 
-  //   this.value = +this.capacityInput.value
-  // }
+    if (typeDriver.length === 0) {
+      return
+    }
 
-  run = () => {
+    const filtered = (data) =>
+      data.available &&
+      data.capacity >= +capacity &&
+      new Date(data.availableAt).getTime() >= newDate
+    const cars = await Binar.listCars(filtered)
+    Car.init(cars)
+
     Car.list.forEach((car) => {
       const node = document.createElement('div')
       node.innerHTML = car.render()
@@ -33,6 +47,7 @@ class App {
 
   async load() {
     const cars = await Binar.listCars()
+
     Car.init(cars)
   }
 

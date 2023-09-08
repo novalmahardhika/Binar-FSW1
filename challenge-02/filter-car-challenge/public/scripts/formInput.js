@@ -19,22 +19,22 @@ window.addEventListener('click', (e) => {
 })
 
 // form submit
-form.addEventListener('submit', (e) => {
-  e.preventDefault()
-  modal.style.display = 'none'
+// form.addEventListener('submit', (e) => {
+//   e.preventDefault()
+//   modal.style.display = 'none'
 
-  // if (
-  //   typeDriver.value === '' ||
-  //   dateInput.value === '' ||
-  //   timeInput.value === ''
-  // ) {
-  //   console.log('fuck')
-  // }
+//   // if (
+//   //   typeDriver.value === '' ||
+//   //   dateInput.value === '' ||
+//   //   timeInput.value === ''
+//   // ) {
+//   //   console.log('fuck')
+//   // }
 
-  console.log(
-    typeDriver.value,
-    dateInput.value,
-    timeInput.value,
-    capacityInput.value
-  )
-})
+//   console.log(
+//     typeDriver.value,
+//     dateInput.value,
+//     timeInput.value,
+//     capacityInput.value
+//   )
+// })
