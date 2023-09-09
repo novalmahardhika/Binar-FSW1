@@ -39,6 +39,21 @@ class App {
     const cars = await Binar.listCars(filtered)
     Car.init(cars)
 
+    // validation cars length
+    if (cars.length === 0) {
+      this.carContainerElement.classList.remove('container-cars')
+      const node = document.createElement('div')
+      const h1 = document.createElement('h1')
+      node.appendChild(h1)
+      node.classList.add('empty-car')
+      h1.innerHTML = 'No Suitable Car'
+
+      this.carContainerElement.appendChild(node)
+    } else {
+      this.clear()
+      this.carContainerElement.classList.add('container-cars')
+    }
+
     Car.list.forEach((car) => {
       const node = document.createElement('div')
       node.innerHTML = car.render()

@@ -3,6 +3,7 @@
   --primary-blue: #0D28A6;
   --btn-prim-color :  #5CB85F;
   --hero-bg: #F1F3FF;
+  --error : #ff6c6c;
 }
 
 body {
@@ -176,6 +177,18 @@ select,option,input {
 
 
 /* cars section */
+.empty-car {
+  background: var(--error) ;
+  padding: 12px;
+  margin-bottom: 40px;
+  border-radius: 4px;
+}
+
+.empty-car h1 {
+  text-align: center;
+  color: white;
+}
+
 .container-cars {
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(333px,1fr));
