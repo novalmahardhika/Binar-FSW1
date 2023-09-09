@@ -21,25 +21,28 @@ class App {
 
   run = async () => {
     this.clear()
+    // const modal = this.modal
     const typeDriver = this.typeDriver.value
     const capacity = this.capacityInput.value
     const date = this.dateInput.value
     const time = this.timeInput.value
     const newDate = new Date(`${date} ${time}`)
 
-    if (typeDriver.length === 0) {
+    // empty input checker
+    if (typeDriver.length === 0 || date.length === 0 || time.length === 0) {
       return
     }
 
+    // filter data car
     const filtered = (data) =>
       data.available &&
       data.capacity >= +capacity &&
-      new Date(data.availableAt).getTime() >= newDate
+      new Date(data.availableAt).getTime() <= newDate
 
     const cars = await Binar.listCars(filtered)
     Car.init(cars)
 
-    // validation cars length
+    // check if car is not matching
     if (cars.length === 0) {
       this.carContainerElement.classList.remove('container-cars')
       const node = document.createElement('div')
