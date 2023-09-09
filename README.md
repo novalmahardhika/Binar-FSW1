@@ -25,34 +25,28 @@ this folder contains challenges according to each chapter. starting from chapter
 
 1. clone my repo
 
-   > git clone https://github.com/novalmahardhika/Binar-FSW1.git
+   `git clone https://github.com/novalmahardhika/Binar-FSW1.git`
 
 2. go to folder
 
-   > cd Binar-FSW1.
+   `cd Binar-FSW1`
 
-   > note: if u turn on live server in this folder, layout in this web will be random and not responsive. you should go to folder challenge
+   > note:
+
+   > if u turn on live server in this folder, layout in this web will be random and not responsive. you should go to folder challenge
 
 3. go to folder challenge
 
-   > Example : cd chapter-1
+   > Example : `cd chapter-1`
 
 4. open code editor
 
-   > vsCode : code .
+   > vsCode : `code .`
 
-   > note: if u using vs Code, u can open IDE like command above
+   > note:
+
+   > if u using vs Code, u can open IDE like command above
 
 5. turn on ur live server extentions
 
-   > Name: Live Server
-
-   > Id: ritwickdey.LiveServer
-
-   > Description: Launch a development local Server with live reload feature for static & dynamic pages
-
-   > Version: 5.7.9
-
-   > Publisher: Ritwick Dey
-
-   > VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+   > [`Live Server`](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
