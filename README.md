@@ -21,6 +21,16 @@ this folder contains challenges according to each chapter. starting from chapter
 
   > JavaScript is a scripting language for creating dynamic web page content. It creates elements for improving site visitors' interaction with web pages, such as dropdown menus, animated graphics, and dynamic background colors.
 
+## Tools
+
+- [`vsCode (Code Editor)`](https://code.visualstudio.com/)
+
+> Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications.
+
+- [`GIT (Version Control)`](https://git-scm.com/)
+
+> Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+
 ## How to run this code ?
 
 1. clone my repo
