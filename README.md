@@ -32,7 +32,6 @@ this folder contains challenges according to each chapter. starting from chapter
    `cd Binar-FSW1`
 
    > note:
-
    > if u turn on live server in this folder, layout in this web will be random and not responsive. you should go to folder challenge
 
 3. go to folder challenge
@@ -44,7 +43,6 @@ this folder contains challenges according to each chapter. starting from chapter
    > vsCode : `code .`
 
    > note:
-
    > if u using vs Code, u can open IDE like command above
 
 5. turn on ur live server extentions
