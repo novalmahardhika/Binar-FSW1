@@ -29,7 +29,8 @@ this folder contains challenges according to each chapter. starting from chapter
 
 2. go to folder
 
-   > cd Binar-FSW1.\_\_
+   > cd Binar-FSW1.
+
    > note: if u turn on live server in this folder, layout in this web will be random and not responsive. you should go to folder challenge
 
 3. go to folder challenge
@@ -38,14 +39,20 @@ this folder contains challenges according to each chapter. starting from chapter
 
 4. open code editor
 
-   > vsCode : code .\_\_
+   > vsCode : code .
+
    > note: if u using vs Code, u can open IDE like command above
 
 5. turn on ur live server extentions
 
-   > Name: Live Server**
-   > Id: ritwickdey.LiveServer**
-   > Description: Launch a development local Server with live reload feature for static & dynamic pages**
-   > Version: 5.7.9**
-   > Publisher: Ritwick Dey**
-   > VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer**
+   > Name: Live Server
+
+   > Id: ritwickdey.LiveServer
+
+   > Description: Launch a development local Server with live reload feature for static & dynamic pages
+
+   > Version: 5.7.9
+
+   > Publisher: Ritwick Dey
+
+   > VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
