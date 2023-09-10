@@ -21,12 +21,16 @@ class App {
 
   run = async () => {
     this.clear()
-    // const modal = this.modal
+  
     const typeDriver = this.typeDriver.value
     const capacity = this.capacityInput.value
     const date = this.dateInput.value
     const time = this.timeInput.value
     const newDate = new Date(`${date} ${time}`)
+
+    console.log(date)
+    console.log(time)
+    console.log(newDate)
 
     // empty input checker
     if (typeDriver.length === 0 || date.length === 0 || time.length === 0) {
