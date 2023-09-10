@@ -47,7 +47,7 @@ class Car {
       <div >
         <img src="${this.image}" alt="${this.manufacture}" class="img-fluid" >
         <p class="fw-bold mt-3">${this.manufacture}/${this.model}</p>
-        <h6 class="fw-bold">${this.rentPerDay}</h6>
+        <h6 class="fw-bold">${this.rentPerDay}/Hari</h6>
         <p>${this.description}</p>
       </div>
 
