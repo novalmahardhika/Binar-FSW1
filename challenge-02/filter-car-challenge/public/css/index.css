@@ -381,6 +381,56 @@ background-color: white;
 
 }
 
+@media (max-width:988px) {
+
+  /* hero section */
+  .text-hero {
+    padding: 0 10% 5% 10%;
+  }
+
+  .text-hero h1 {
+    font-size: 32px;
+  }
+
+  .text-hero p {
+    width: 90%;
+  }
+
+  .container-image-hero {
+    padding-left: 10%;
+  }
+}
+
+
+
+@media (max-width:790px) {
+
+  /* hero section */
+  .text-hero {
+    padding: 0px 0px 5% 5%
+  }
+
+  .container-image-hero {
+    padding-left: 24px;
+  }
+
+  /* services section */
+  .container-services {
+    flex-direction: column;
+  }
+
+  .container-image-services {
+    max-width: 400px;
+    margin: auto;
+  }
+
+  .container-services {
+    flex-direction: column;
+  }
+
+}
+
+
 /* responsive 764px tablet */
 @media (max-width:768px) {
 
@@ -405,6 +455,58 @@ background-color: white;
 
 }
 
+@media (max-width:764px) {
+
+  /* hero section */
+  .text-hero {
+    padding: 0px 15% 0% 15%
+  }
+
+  .container-image-hero {
+    padding-left: 15%;
+  }
+
+}
+
+@media (max-width:740px) {
+
+  /* hero section */
+  .text-hero {
+    padding: 0px 10% 0px 15%
+  }
+
+  .container-image-hero {
+    padding-left: 15%;
+  }
+
+}
+
+@media (max-width:688px) {
+
+  /* hero section */
+  .text-hero {
+    padding: 0 10% 0 10%
+  }
+
+  .container-image-hero {
+    padding-left: 5%;
+  }
+
+}
+
+
+@media (max-width:680px) {
+
+  /* hero section */
+  .text-hero {
+    padding: 0 5% 0 5%
+  }
+
+  .container-image-hero {
+    padding-left: 5%;
+  }
+
+}
 
 /* responsive 425px mobile large*/
 @media (max-width:576px) {
