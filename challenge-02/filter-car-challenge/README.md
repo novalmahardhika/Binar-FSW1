@@ -2,7 +2,7 @@
 
 Welcome to my Binar Challenge chapter 2 about filtering car.
 
-## Teck stack
+## Tech stack
 
 - [`HTML5 (Hyper Text Markup Language)`](https://www.w3schools.com/html/)
 
