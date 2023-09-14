@@ -1,13 +1,16 @@
 const express = require('express')
-const car = require('../src/routes/carRouter')
 const chalk = require('chalk')
+
+const car = require('../src/routes/carRouter')
+const root = require('./routes/rootRouter')
 
 const app = express()
 const port = 3000
 
 app.use(express.json())
-// endpoint
 
+// root endpint
+app.use('/', root)
 // cars endpoint
 app.use('/cars', car)
 
