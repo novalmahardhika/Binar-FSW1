@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": "https://github.com/novalmahardhika/Binar-FSW1/tree/master/challenge-03",
   "scripts": {
     "dev": "nodemon src/index.js"
   },
