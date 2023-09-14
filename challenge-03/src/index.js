@@ -1,23 +1,27 @@
 const express = require('express')
 const chalk = require('chalk')
 
-const car = require('../src/routes/carRouter')
-const root = require('./routes/rootRouter')
+const car = require('./routes/car')
+const root = require('./routes/root')
+const notFound = require('./routes/notFound')
 
 const app = express()
-const port = 3000
+const PORT = 3000
 
+// middleware
 app.use(express.json())
 
-// root endpint
-app.use('/', root)
-// cars endpoint
-app.use('/cars', car)
+//endpoint
+app.use('/', root) // Root endpoint
+
+app.use('/cars', car) // Car endpoints
+
+app.use('/', notFound) // 404 endpoint
 
 // running server
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(
     `Server Running on`,
-    chalk.yellowBright.underline(`http://localhost:${port}`)
+    chalk.cyanBright.underline(`http://localhost:${PORT}`)
   )
 })
