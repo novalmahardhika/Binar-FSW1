@@ -1,8 +1,10 @@
 const express = require('express')
 const car = require('../src/routes/carRouter')
+
 const app = express()
 const port = 3000
 
+app.use(express.json())
 // endpoint
 app.use('/cars', car)
 
