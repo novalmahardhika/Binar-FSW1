@@ -13,10 +13,8 @@ app.use(express.json())
 
 //endpoint
 app.use('/', root) // Root endpoint
-
 app.use('/cars', car) // Car endpoints
-
-app.use('/', notFound) // 404 endpoint
+app.use(notFound) // 404 endpoint
 
 // running server
 app.listen(PORT, () => {

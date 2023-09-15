@@ -9,14 +9,14 @@ const {
 
 const router = express.Router()
 
+// create car
+router.post('/', createCar)
+
 // get all cars
 router.get('/', getAllCars)
 
 // get car by id
 router.get('/:id', getCar)
-
-// create car
-router.post('/', createCar)
 
 // update car
 router.put('/:id', updateCar)
