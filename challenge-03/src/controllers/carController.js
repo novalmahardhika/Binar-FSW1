@@ -26,8 +26,18 @@ const getCar = (req, res) => {
 
 // create car
 const createCar = (req, res) => {
-  const newCar = req.body
   const cars = JSON.parse(readFileSync(path))
+  const { image, model, capacity, rentPerDay, availableAt, description } =
+    req.body
+  const newCar = {
+    id: Date.now().toString(),
+    image,
+    model,
+    capacity,
+    rentPerDay,
+    availableAt,
+    description,
+  }
 
   cars.push(newCar)
 
