@@ -35,14 +35,15 @@ const createCar = (req, res) => {
 
   res.status(201).json({
     message: 'Create success',
-    data: cars,
+    data: newCar,
   })
 }
 
 // update car
 const updateCar = (req, res) => {
   const _id = req.params.id
-  const { name } = req.body
+  const { image, model, capacity, rentPerDay, availableAt, description } =
+    req.body
   const cars = JSON.parse(readFileSync(path))
   const car = cars.find((x) => x.id === _id)
 
@@ -50,7 +51,13 @@ const updateCar = (req, res) => {
     res.status(404).json({ error: 404, message: 'Car is Not Found' })
   }
 
-  car.name = name
+  car.image = image
+  car.model = model
+  car.capacity = capacity
+  car.rentPerDay = rentPerDay
+  car.description = description
+  car.availableAt = availableAt
+
   writeFileSync(path, JSON.stringify(cars))
 
   res.status(200).json({
@@ -70,7 +77,7 @@ const deleteCar = (req, res) => {
 
   res.status(200).json({
     message: 'car is deleted',
-    data: cars,
+    data: cars[carIndex],
   })
 }
 
