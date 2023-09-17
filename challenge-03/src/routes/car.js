@@ -1,11 +1,12 @@
-const express = require('express')
-const {
+// const express = require('express')
+import express from 'express'
+import {
   getAllCars,
   getCar,
   createCar,
   updateCar,
   deleteCar,
-} = require('../controllers/carController')
+} from '../controllers/carController.js'
 
 const router = express.Router()
 
@@ -24,4 +25,4 @@ router.put('/:id', updateCar)
 // delete car
 router.delete('/:id', deleteCar)
 
-module.exports = router
+export default router

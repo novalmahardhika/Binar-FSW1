@@ -1,9 +1,13 @@
-const express = require('express')
-const chalk = require('chalk')
+import express from 'express'
+// const chalk = require('chalk')
 
-const car = require('./routes/car')
-const root = require('./routes/root')
-const notFound = require('./routes/notFound')
+// const car = require('./routes/car')
+// const root = require('./routes/root')
+// const notFound = require('./routes/notFound')
+
+import root from './routes/root.js'
+import car from './routes/car.js'
+import notFound from './routes/notFound.js'
 
 const app = express()
 const PORT = 3000
@@ -18,8 +22,5 @@ app.use(notFound) // 404 endpoint
 
 // running server
 app.listen(PORT, () => {
-  console.log(
-    `Server Running on`,
-    chalk.cyanBright.underline(`http://localhost:${PORT}`)
-  )
+  console.log(`Server Running on`, `http://localhost:${PORT}`)
 })

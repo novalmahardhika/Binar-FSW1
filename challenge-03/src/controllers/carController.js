@@ -1,16 +1,19 @@
-const { readFileSync, writeFileSync } = require('fs')
-const { v4: uuidv4 } = require('uuid')
+// const { readFileSync, writeFileSync } = require('fs')
+// const { v4: uuidv4 } = require('uuid')
+
+import { readFileSync, writeFileSync } from 'fs'
+import { v4 as uuidv4 } from 'uuid'
 const path = './src/data/cars.json'
 
 // get all cars
-const getAllCars = (req, res) => {
+export const getAllCars = (req, res) => {
   const cars = JSON.parse(readFileSync(path))
 
   res.status(200).send(cars)
 }
 
 // get car by id
-const getCar = (req, res) => {
+export const getCar = (req, res) => {
   const _id = req.params.id
   const cars = JSON.parse(readFileSync(path))
   const car = cars.find((x) => x.id === _id)
@@ -26,7 +29,7 @@ const getCar = (req, res) => {
 }
 
 // create car
-const createCar = (req, res) => {
+export const createCar = (req, res) => {
   const cars = JSON.parse(readFileSync(path))
   const { image, model, capacity, rentPerDay, availableAt, description } =
     req.body
@@ -61,7 +64,7 @@ const createCar = (req, res) => {
 }
 
 // update car
-const updateCar = (req, res) => {
+export const updateCar = (req, res) => {
   const _id = req.params.id
   const newData = req.body
   let cars = JSON.parse(readFileSync(path))
@@ -85,7 +88,7 @@ const updateCar = (req, res) => {
 }
 
 // delete car
-const deleteCar = (req, res) => {
+export const deleteCar = (req, res) => {
   const _id = req.params.id
   const cars = JSON.parse(readFileSync(path))
   const car = cars.filter((x) => x.id !== _id)
@@ -97,4 +100,4 @@ const deleteCar = (req, res) => {
   })
 }
 
-module.exports = { getAllCars, getCar, createCar, updateCar, deleteCar }
+// module.exports = { getAllCars, getCar, createCar, updateCar, deleteCar }
