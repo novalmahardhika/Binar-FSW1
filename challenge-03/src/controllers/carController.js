@@ -1,4 +1,5 @@
 const { readFileSync, writeFileSync } = require('fs')
+const { v4: uuidv4 } = require('uuid')
 const path = './src/data/cars.json'
 
 // get all cars
@@ -30,13 +31,23 @@ const createCar = (req, res) => {
   const { image, model, capacity, rentPerDay, availableAt, description } =
     req.body
   const newCar = {
-    id: Date.now().toString(),
-    image,
+    id: uuidv4(),
     model,
-    capacity,
+    image,
     rentPerDay,
-    availableAt,
+    capacity,
     description,
+    availableAt,
+  }
+
+  if (Object.keys(req.body).length < 6) {
+    res.status(424).json({
+      message:
+        'Create Failed, Please make sure the contents of your req is correct',
+      data: req.body,
+    })
+
+    return
   }
 
   cars.push(newCar)
@@ -52,27 +63,24 @@ const createCar = (req, res) => {
 // update car
 const updateCar = (req, res) => {
   const _id = req.params.id
-  const { image, model, capacity, rentPerDay, availableAt, description } =
-    req.body
-  const cars = JSON.parse(readFileSync(path))
-  const car = cars.find((x) => x.id === _id)
+  const newData = req.body
+  let cars = JSON.parse(readFileSync(path))
+  let car = cars.findIndex((x) => x.id === _id)
 
   if (!car) {
     res.status(404).json({ error: 404, message: 'Car is Not Found' })
   }
 
-  car.image = image
-  car.model = model
-  car.capacity = capacity
-  car.rentPerDay = rentPerDay
-  car.description = description
-  car.availableAt = availableAt
+  cars[car] = {
+    ...cars[car],
+    ...newData,
+  }
 
   writeFileSync(path, JSON.stringify(cars))
 
   res.status(200).json({
     message: 'Car Updated !',
-    data: car,
+    data: cars[car],
   })
 }
 
@@ -80,14 +88,12 @@ const updateCar = (req, res) => {
 const deleteCar = (req, res) => {
   const _id = req.params.id
   const cars = JSON.parse(readFileSync(path))
-  const carIndex = cars.findIndex((x) => x.id === _id)
+  const car = cars.filter((x) => x.id !== _id)
 
-  cars.splice(carIndex, 1)
-  writeFileSync(path, JSON.stringify(cars))
+  writeFileSync(path, JSON.stringify(car))
 
   res.status(200).json({
     message: 'car is deleted',
-    data: cars[carIndex],
   })
 }
 
