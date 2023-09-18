@@ -1,13 +1,9 @@
 import express from 'express'
-// const chalk = require('chalk')
 
-// const car = require('./routes/car')
-// const root = require('./routes/root')
-// const notFound = require('./routes/notFound')
-
+// routes
 import root from './routes/root.js'
 import car from './routes/car.js'
-import notFound from './routes/notFound.js'
+import notFound from './routes/404.js'
 
 const app = express()
 const PORT = 3000

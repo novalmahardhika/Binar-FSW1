@@ -1,4 +1,3 @@
-// const express = require('express')
 import express from 'express'
 import {
   getAllCars,
@@ -8,21 +7,23 @@ import {
   deleteCar,
 } from '../controllers/carController.js'
 
+import { checkIdCar, checkPropCar } from '../middlewares/validationCar.js'
+
 const router = express.Router()
 
 // create car
-router.post('/', createCar)
+router.post('/', checkPropCar, createCar)
 
 // get all cars
 router.get('/', getAllCars)
 
 // get car by id
-router.get('/:id', getCar)
+router.get('/:id', checkIdCar, getCar)
 
 // update car
-router.put('/:id', updateCar)
+router.put('/:id', checkIdCar, updateCar)
 
 // delete car
-router.delete('/:id', deleteCar)
+router.delete('/:id', checkIdCar, deleteCar)
 
 export default router
