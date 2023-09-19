@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs'
+
 const path = './src/data/cars.json'
 
 export const checkIdCar = (req, res, next) => {
@@ -14,9 +15,9 @@ export const checkIdCar = (req, res, next) => {
 }
 
 export const checkPropCar = (req, res, next) => {
-  const data = req.body
+  const reqBody = req.body
 
-  const prop = [
+  const propKey = [
     'model',
     'image',
     'capacity',
@@ -25,10 +26,13 @@ export const checkPropCar = (req, res, next) => {
     'description',
   ]
 
-  const check = prop.every((x) => data.hasOwnProperty(x))
-
-  if (!check) {
-    res.status(200).json({ message: 'please check ur request body' })
+  // check property if exist
+  for (const prop of propKey) {
+    const check = prop in reqBody
+    if (!check) {
+      res.status(424).json({ message: `Missing Property ${prop}` })
+      return
+    }
   }
 
   next()
