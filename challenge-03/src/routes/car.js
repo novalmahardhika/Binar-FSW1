@@ -10,13 +10,13 @@ import {
 import {
   checkIdCar,
   checkPropCar,
-  checkUnkownProp,
+  checkUnkwnProp,
 } from '../middlewares/validationCar.js'
 
 const router = express.Router()
 
 // create car
-router.post('/', checkPropCar, checkUnkownProp, createCar)
+router.post('/', checkPropCar, checkUnkwnProp, createCar)
 
 // get all cars
 router.get('/', getAllCars)
@@ -25,7 +25,7 @@ router.get('/', getAllCars)
 router.get('/:id', checkIdCar, getCar)
 
 // update car
-router.put('/:id', checkIdCar, updateCar)
+router.put('/:id', checkIdCar, checkUnkwnProp, updateCar)
 
 // delete car
 router.delete('/:id', checkIdCar, deleteCar)

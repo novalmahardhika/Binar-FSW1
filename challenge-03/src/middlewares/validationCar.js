@@ -11,6 +11,7 @@ const propKey = [
   'description',
 ]
 
+// check find id
 export const checkIdCar = (req, res, next) => {
   const _id = req.params.id
   const cars = JSON.parse(readFileSync(path))
@@ -23,14 +24,14 @@ export const checkIdCar = (req, res, next) => {
   next()
 }
 
+// check property if not exist
 export const checkPropCar = (req, res, next) => {
   const reqBody = req.body
 
-  // check property if exist
   for (const prop of propKey) {
     const check = prop in reqBody
     if (!check) {
-      res.status(424).json({ message: `Missing Property ${prop}` })
+      res.status(400).json({ message: `Missing Property ${prop}` })
       return
     }
   }
@@ -38,20 +39,17 @@ export const checkPropCar = (req, res, next) => {
   next()
 }
 
-export const checkUnkownProp = (req, res, next) => {
-  const reqBody = req.body
-
+// check  if property req.body !== model or  check unkown property exist or > 1
+export const checkUnkwnProp = (req, res, next) => {
   //convert obj to array and sort
-  const body = Object.keys(reqBody).sort()
+  const reqBody = Object.keys(req.body).sort()
   const validation = propKey.sort()
-  // convert array to string and compare
-  const compare = body.toString() === validation.toString()
-  // get unknown property
-  const validate = body.filter((x) => !validation.includes(x))
 
-  // condition if req.body !== model/parameter
-  if (!compare) {
-    res.status(424).json({ message: `Unknown Property ${validate}` })
+  // get unknown property
+  const validate = reqBody.filter((x) => !validation.includes(x))
+
+  if (validate.length > 0) {
+    res.status(400).json({ message: `Unknown Property ${validate}` })
     return
   }
 
