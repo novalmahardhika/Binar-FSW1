@@ -204,14 +204,5 @@
     "capacity": 6,
     "description": " 200mm front axle. Roof mounted antenna. Cargo compartment cover. Rear bench seat -inc: (3) adjustable headrests.",
     "availableAt": "2022-03-23T15:49:05.563Z"
-  },
-  {
-    "id": "74b48a21-599b-4860-b842-9a68a17d0209",
-    "model": "Ferrari",
-    "image": "../../image",
-    "rentPerDay": 9000000,
-    "capacity": 2,
-    "description": "This is exotic car from italy ",
-    "availableAt": "2022-03-23T15:49:05.563Z"
   }
 ]

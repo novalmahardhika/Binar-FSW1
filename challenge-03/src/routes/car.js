@@ -7,12 +7,16 @@ import {
   deleteCar,
 } from '../controllers/carController.js'
 
-import { checkIdCar, checkPropCar } from '../middlewares/validationCar.js'
+import {
+  checkIdCar,
+  checkPropCar,
+  checkUnkownProp,
+} from '../middlewares/validationCar.js'
 
 const router = express.Router()
 
 // create car
-router.post('/', checkPropCar, createCar)
+router.post('/', checkPropCar, checkUnkownProp, createCar)
 
 // get all cars
 router.get('/', getAllCars)

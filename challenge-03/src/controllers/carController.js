@@ -36,9 +36,9 @@ export const createCar = (req, res) => {
     availableAt,
   }
 
-  // cars.push(newCar)
+  cars.push(newCar)
 
-  // writeFileSync(path, JSON.stringify(cars))
+  writeFileSync(path, JSON.stringify(cars))
 
   res.status(201).json({
     message: 'Create success',
