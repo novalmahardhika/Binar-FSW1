@@ -11,7 +11,7 @@ const propKey = [
   'description',
 ]
 
-// check find id
+// ---check find id---
 export const checkIdCar = (req, res, next) => {
   const _id = req.params.id
   const cars = JSON.parse(readFileSync(path))
@@ -24,7 +24,7 @@ export const checkIdCar = (req, res, next) => {
   next()
 }
 
-// check property if not exist
+//---check property if not exist---
 export const checkPropCar = (req, res, next) => {
   const reqBody = req.body
 
@@ -39,8 +39,8 @@ export const checkPropCar = (req, res, next) => {
   next()
 }
 
-// check  if property req.body !== model or  check unkown property exist or > 1
-export const checkUnkwnProp = (req, res, next) => {
+// ---check  if property req.body !== model, or check unknown property exist or not exist.---
+export const checkUnknownProp = (req, res, next) => {
   //convert obj to array and sort
   const reqBody = Object.keys(req.body).sort()
   const validation = propKey.sort()
@@ -49,8 +49,43 @@ export const checkUnkwnProp = (req, res, next) => {
   const validate = reqBody.filter((x) => !validation.includes(x))
 
   if (validate.length > 0) {
-    res.status(400).json({ message: `Unknown Property ${validate}` })
+    res.status(400).json({ message: `Unknown Property ('${validate}')` })
     return
+  }
+
+  next()
+}
+
+// check type value property
+export const checkType = (req, res, next) => {
+  const reqBody = req.body
+  const typeStr = ['model', 'image', 'availableAt', 'description']
+  const typNum = ['capacity', 'rentPerDay']
+
+  // check type string
+  for (const prop of typeStr) {
+    const checkProp = reqBody.hasOwnProperty(prop)
+    const checkTypeVal = typeof reqBody[prop] !== 'string'
+
+    if (checkProp && checkTypeVal) {
+      res.status(400).json({
+        message: `value property ('${prop} : ${reqBody[prop]}') should be string`,
+      })
+      return
+    }
+  }
+
+  // check type number
+  for (const prop of typNum) {
+    const checkProp = reqBody.hasOwnProperty(prop)
+    const checkTypeVal = typeof reqBody[prop] !== 'number'
+
+    if (checkProp && checkTypeVal) {
+      res.status(400).json({
+        message: `value property ('${prop} : ${reqBody[prop]}') should be number`,
+      })
+      return
+    }
   }
 
   next()
