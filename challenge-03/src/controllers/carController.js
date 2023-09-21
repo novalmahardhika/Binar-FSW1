@@ -24,16 +24,10 @@ export const getCar = (req, res) => {
 // ---create car---
 export const createCar = (req, res) => {
   const cars = JSON.parse(readFileSync(path))
-  const { image, model, capacity, rentPerDay, availableAt, description } =
-    req.body
+  const body = req.body
   const newCar = {
     id: uuidv4(),
-    model,
-    image,
-    rentPerDay,
-    capacity,
-    description,
-    availableAt,
+    ...body,
   }
 
   cars.push(newCar)

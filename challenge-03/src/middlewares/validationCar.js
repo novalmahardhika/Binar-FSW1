@@ -49,7 +49,7 @@ export const checkUnknownProp = (req, res, next) => {
   const validate = reqBody.filter((x) => !validation.includes(x))
 
   if (validate.length > 0) {
-    res.status(400).json({ message: `Unknown Property ('${validate}')` })
+    res.status(400).json({ message: `Unknown '${validate}' Property` })
     return
   }
 
@@ -69,7 +69,7 @@ export const checkType = (req, res, next) => {
 
     if (checkProp && checkTypeVal) {
       res.status(400).json({
-        message: `value property ('${prop} : ${reqBody[prop]}') should be string`,
+        message: `property value '${prop} : ${reqBody[prop]}' should be string`,
       })
       return
     }
@@ -82,7 +82,7 @@ export const checkType = (req, res, next) => {
 
     if (checkProp && checkTypeVal) {
       res.status(400).json({
-        message: `value property ('${prop} : ${reqBody[prop]}') should be number`,
+        message: `property value '${prop} : ${reqBody[prop]}' should be number`,
       })
       return
     }
