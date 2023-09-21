@@ -21,40 +21,50 @@ this folder contains challenges according to each chapter. starting from chapter
 
   > JavaScript is a scripting language for creating dynamic web page content. It creates elements for improving site visitors' interaction with web pages, such as dropdown menus, animated graphics, and dynamic background colors.
 
+- [`Node Js (v18.17.1)`](https://nodejs.org/en)
+
+  > As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications. In the following "hello world" example, many connections can be handled concurrently. Upon each connection, the callback is fired, but if there is no work to be done, Node.js will sleep.
+
+- [`Express Js (Web Server)`](https://expressjs.com/)
+
+  > Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+
+- [`Nodemon`](https://www.npmjs.com/package/nodemon)
+
+  > nodemon is a tool that helps develop Node.js based applications by automatically restarting the node application when file changes in the directory are detected.
+
 ## Tools
 
 - [`vsCode (Code Editor)`](https://code.visualstudio.com/)
 
-> Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications.
+  > Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications.
 
 - [`GIT (Version Control)`](https://git-scm.com/)
 
-> Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+  > Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+
+- [`Postman `](https://www.postman.com/)
+
+  > Postman is an API platform for building and using APIs. Postman simplifies each step of the API lifecycle and streamlines collaboration so you can create better APIs—faster.
 
 ## How to run this code ?
 
-1. clone my repo
+### 1. Clone my Repo
 
-   `git clone https://github.com/novalmahardhika/Binar-FSW1.git`
+`git clone https://github.com/novalmahardhika/Binar-FSW1.git`
 
-2. go to folder
+### 2. Go to Folder
 
-   `cd Binar-FSW1`
+`cd Binar-FSW1`
 
-   > note:
-   > if u turn on live server in this folder, layout in this web will be random and not responsive. you should go to folder challenge
+### 3. Go to Folder Challenge
 
-3. go to folder challenge
+Example : `cd challenge-01`
 
-   > Example : `cd chapter-1`
+### 4. Next step check readme in challenge what u want, in every challenge have instruction
 
-4. open code editor
+-[`challenge-01`](https://github.com/novalmahardhika/Binar-FSW1/tree/master/challenge-01)
 
-   > vsCode : `code .`
+-[`challenge-02`](https://github.com/novalmahardhika/Binar-FSW1/tree/master/challenge-02)
 
-   > note:
-   > if u using vs Code, u can open IDE like command above
-
-5. turn on ur live server extentions
-
-   > [`Live Server`](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+-[`challenge-03`](https://github.com/novalmahardhika/Binar-FSW1/tree/master/challenge-03)
