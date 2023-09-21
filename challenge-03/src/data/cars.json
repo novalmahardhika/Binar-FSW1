@@ -222,5 +222,14 @@
     "rentPerDay": 9000000,
     "availableAt": "2022-03-23T15:49:05.563Z",
     "description": "This is exotic car from italy"
+  },
+  {
+    "id": "114c4a21-a8f8-426c-8459-e8b8a0263e47",
+    "model": "Ferrari",
+    "image": "../../image.jpg",
+    "capacity": 2,
+    "rentPerDay": 9000000,
+    "availableAt": "2022-03-23T15:49:05.563Z",
+    "description": "This is exotic car from italy"
   }
 ]
