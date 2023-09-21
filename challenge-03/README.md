@@ -39,7 +39,7 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 > - Open Postman
 > - Add Request
 > - Choose Method 'GET'
-> - Enter URL `http://localhost:3000/cars`
+> - Enter URL `http://localhost:8888/cars`
 > - Send Req
 
 ### Detail Car
@@ -49,7 +49,7 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 > - Open Postman
 > - Add Request
 > - Choose Method 'GET'
-> - Enter URL `http://localhost:3000/cars/:id` example `http://localhost:3000/cars/8262f0e3-04ea-4494-8cee-b7daa086b031`
+> - Enter URL `http://localhost:8888/cars/:id` example `http://localhost:8888/cars/8262f0e3-04ea-4494-8cee-b7daa086b031`
 > - Send Req
 
 ### Create Car
@@ -59,7 +59,7 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 > - Open Postman
 > - Add Request
 > - Choose Method 'POST'
-> - Enter URL `http://localhost:3000/cars`
+> - Enter URL `http://localhost:8888/cars`
 > - Enter menu `Body` > `raw` & change dropdown `Text` to `JSON`
 > - Write Object and should include properties like Code Below :
 
@@ -85,7 +85,7 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 > - Open Postman
 > - Add Request
 > - Choose Method 'GET'
-> - Enter URL `http://localhost:3000/cars/:id` example `http://localhost:3000/cars/8262f0e3-04ea-4494-8cee-b7daa086b031`
+> - Enter URL `http://localhost:8888/cars/:id` example `http://localhost:8888/cars/8262f0e3-04ea-4494-8cee-b7daa086b031`
 > - Enter menu `Body` > `raw` & change dropdown `Text` to `JSON`
 > - Write Properties what u want update and should include properties like Code Below :
 
@@ -113,7 +113,7 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 > - Open Postman
 > - Add Request
 > - Choose Method 'DELETE'
-> - Enter URL `http://localhost:3000/cars/:id` example `http://localhost:3000/cars/8262f0e3-04ea-4494-8cee-b7daa086b031`
+> - Enter URL `http://localhost:8888/cars/:id` example `http://localhost:8888/cars/8262f0e3-04ea-4494-8cee-b7daa086b031`
 > - Send Req
 
 ## How To Start ?
