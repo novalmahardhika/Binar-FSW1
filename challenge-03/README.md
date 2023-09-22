@@ -123,6 +123,7 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 - cd Binar-FSW1
 - cd challenge-03
 - code .
+- open terminal and write 'npm i or install'
 - open terminal and write 'npm run dev'
 - next u can hit endpoint using postman with 'features' above
 ```
