@@ -21,6 +21,8 @@ export const checkIdCar = (req, res, next) => {
     res.status(404).json({ error: 404, message: 'Car is Not Found' })
   }
 
+  req.car = car
+
   next()
 }
 

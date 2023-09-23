@@ -6,16 +6,18 @@ const path = './src/data/cars.json'
 export const getAllCars = (req, res) => {
   const cars = JSON.parse(readFileSync(path))
 
-  res.status(200).send(cars)
+  res.status(200).send({
+    status: 200,
+    message: cars,
+  })
 }
 
 // ---get car by id---
 export const getCar = (req, res) => {
-  const _id = req.params.id
-  const cars = JSON.parse(readFileSync(path))
-  const car = cars.find((x) => x.id === _id)
+  const car = req.car
 
   res.status(200).json({
+    status: 200,
     message: 'success',
     data: car,
   })
@@ -35,6 +37,7 @@ export const createCar = (req, res) => {
   writeFileSync(path, JSON.stringify(cars))
 
   res.status(201).json({
+    status: 201,
     message: 'Create success',
     data: newCar,
   })
@@ -54,7 +57,8 @@ export const updateCar = (req, res) => {
 
   writeFileSync(path, JSON.stringify(cars))
 
-  res.status(200).json({
+  res.status(202).json({
+    status: 202,
     message: 'Car Updated !',
     data: cars[car],
   })
@@ -62,13 +66,14 @@ export const updateCar = (req, res) => {
 
 // ---delete car---
 export const deleteCar = (req, res) => {
-  const _id = req.params.id
+  const _id = req.car.id
   const cars = JSON.parse(readFileSync(path))
   const car = cars.filter((x) => x.id !== _id)
 
   writeFileSync(path, JSON.stringify(car))
 
-  res.status(200).json({
+  res.status(202).json({
+    status: 202,
     message: 'car is deleted',
   })
 }
