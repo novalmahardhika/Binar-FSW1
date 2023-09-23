@@ -32,6 +32,21 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 
 ## Feature
 
+### Tes Ping
+
+> - Open Postman
+> - Add Request
+> - Choose Method 'GET'
+> - Enter URL `http://localhost:8888/`
+> - Send Req
+> - Result
+
+```JSON
+{
+    "message": "Ping Successfully"
+}
+```
+
 ### Get all Cars
 
 > this features is to get all data cars via API. How to get that data ?
