@@ -41,6 +41,32 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 > - Choose Method 'GET'
 > - Enter URL `http://localhost:8888/cars`
 > - Send Req
+> - Result
+
+```JSON
+{
+    "status": 200,
+    "message": [
+        {
+            "id": "432d9ed1-e330-4953-ac33-f51a60a5799b",
+            "model": "Camry",
+            "image": "./images/car23.min.jpg",
+            "rentPerDay": 200000,
+            "capacity": 6,
+            "description": " Intermittent rear wiper w/washer. Energy absorbing front/rear bumpers. Engine mounts -inc: (2) solid, (1) liquid-filled."
+        },
+        {
+            "id": "32e7e56f-1a00-455f-bf4b-dbd2c8c4daaf",
+            "model": "Pathfiner",
+            "image": "./images/car24.min.jpg",
+            "rentPerDay": 600000,
+            "capacity": 6,
+            "description": " 200mm front axle. Roof mounted antenna. Cargo compartment cover. Rear bench seat -inc: (3) adjustable headrests.",
+            "availableAt": "2022-03-23T15:49:05.563Z"
+        }
+    ]
+}
+```
 
 ### Detail Car
 
@@ -49,8 +75,25 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 > - Open Postman
 > - Add Request
 > - Choose Method 'GET'
-> - Enter URL `http://localhost:8888/cars/:id` example `http://localhost:8888/cars/8262f0e3-04ea-4494-8cee-b7daa086b031`
+> - Enter URL `http://localhost:8888/cars/:id` example `http://localhost:8888/cars/3d5e4097-3511-41a3-8c2a-0b4c6ae463d9`
 > - Send Req
+> - Result
+
+```JSON
+{
+    "status": 200,
+    "message": "success",
+    "data": {
+        "id": "3d5e4097-3511-41a3-8c2a-0b4c6ae463d9",
+        "model": "Mclaren P1",
+        "image": "./images/car203.jpg",
+        "capacity": 2,
+        "rentPerDay": 9000000,
+        "availableAt": "2022-03-23T15:49:05.563Z",
+        "description": "This is exotic car from England"
+    }
+}
+```
 
 ### Create Car
 
@@ -63,11 +106,11 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 > - Enter menu `Body` > `raw` & change dropdown `Text` to `JSON`
 > - Write Object and should include properties like Code Below :
 
-```Json
+```JSON
 
-  {
+{
     "model"  : "Ferrari",
-    "image" : "../../image.jpg",
+    "image" : "../images/car003.jpg",
     "capacity" : 2,
     "rentPerDay" : 9000000,
     "availableAt" : "2022-03-23T15:49:05.563Z",
@@ -77,6 +120,23 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 ```
 
 > - Send Req
+> - Result
+
+```JSON
+{
+    "status": 201,
+    "message": "Create success",
+    "data": {
+        "id": "645628b0-66be-4489-90e5-3097656c8979",
+        "model": "Ferrari",
+        "image": "../images/car003.jpg",
+        "capacity": 2,
+        "rentPerDay": 9000000,
+        "availableAt": "2022-03-23T15:49:05.563Z",
+        "description": "This is exotic car from italy"
+    }
+}
+```
 
 ### Update Car
 
@@ -85,26 +145,50 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 > - Open Postman
 > - Add Request
 > - Choose Method 'GET'
-> - Enter URL `http://localhost:8888/cars/:id` example `http://localhost:8888/cars/8262f0e3-04ea-4494-8cee-b7daa086b031`
+> - Enter URL `http://localhost:8888/cars/:id` example `http://localhost:8888/cars/645628b0-66be-4489-90e5-3097656c8979`
 > - Enter menu `Body` > `raw` & change dropdown `Text` to `JSON`
 > - Write Properties what u want update and should include properties like Code Below :
 
-```Json
+```JSON
 
-// You don't need to write the whole thing, just select the properties what you want to update
+ You don't need to write the whole thing, just select the properties what you want to update
 
   {
     "model"  : "Ferrari",
-    "image" : "../../image.jpg",
+    "image": "../images/car003.jpg",
     "capacity" : 2,
     "rentPerDay" : 9000000,
     "availableAt" : "2022-03-23T15:49:05.563Z",
     "description" : "This is exotic car from italy"
 }
 
+example, i wanna update model and description :
+
+{
+    "model" : "Aston Martin",
+    "description" : "this is exotic car from England"
+}
+
 ```
 
 > - Send Req
+> - Result
+
+```JSON
+{
+    "status": 202,
+    "message": "Car Updated !",
+    "data": {
+        "id": "645628b0-66be-4489-90e5-3097656c8979",
+        "model": "Aston Martin",
+        "image": "../images/car003.jpg",
+        "capacity": 2,
+        "rentPerDay": 9000000,
+        "availableAt": "2022-03-23T15:49:05.563Z",
+        "description": "this is exotic car from England"
+    }
+}
+```
 
 ### Delete Car
 
@@ -113,17 +197,26 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 > - Open Postman
 > - Add Request
 > - Choose Method 'DELETE'
-> - Enter URL `http://localhost:8888/cars/:id` example `http://localhost:8888/cars/8262f0e3-04ea-4494-8cee-b7daa086b031`
+> - Enter URL `http://localhost:8888/cars/:id` example `http://localhost:8888/cars/3d5e4097-3511-41a3-8c2a-0b4c6ae463d9`
 > - Send Req
+> - Result
+
+```JSON
+{
+    "status": 202,
+    "message": "car is deleted"
+}
+```
 
 ## How To Start ?
 
 ```
+- Open terminal
 - Clone https://github.com/novalmahardhika/Binar-FSW1.git
 - cd Binar-FSW1
 - cd challenge-03
 - code .
-- open terminal and write 'npm i or install'
-- open terminal and write 'npm run dev'
+- open terminal vsCode and write 'npm i or npm install'
+- open terminal vsCode and write 'npm run dev'
 - next u can hit endpoint using postman with 'features' above
 ```

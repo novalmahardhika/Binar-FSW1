@@ -49,7 +49,7 @@ this folder contains challenges according to each chapter. starting from chapter
 
 ## How to run this code ?
 
-### 1. Clone my Repo
+#### 1. Clone my Repo
 
 `git clone https://github.com/novalmahardhika/Binar-FSW1.git`
 
