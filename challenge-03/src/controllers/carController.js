@@ -57,8 +57,8 @@ export const updateCar = (req, res) => {
 
   writeFileSync(path, JSON.stringify(cars))
 
-  res.status(202).json({
-    status: 202,
+  res.status(200).json({
+    status: 200,
     message: 'Car Updated !',
     data: cars[car],
   })
@@ -72,8 +72,8 @@ export const deleteCar = (req, res) => {
 
   writeFileSync(path, JSON.stringify(car))
 
-  res.status(202).json({
-    status: 202,
+  res.status(200).json({
+    status: 200,
     message: 'car is deleted',
   })
 }
