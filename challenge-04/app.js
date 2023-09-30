@@ -2,7 +2,7 @@ import express from 'express'
 import rootRoutes from './routes/root.routes.js'
 import carRoutes from './routes/car.routes.js'
 import notFoundRoutes from './routes/404.routes.js'
-import serverRun from './server.js'
+// import serverRun from './server.js'
 
 const app = express()
 const PORT = 8001
@@ -18,3 +18,8 @@ app.use(notFoundRoutes)
 
 // server
 app.listen(PORT, serverRun(PORT))
+
+// hoisting func
+function serverRun(port) {
+  console.log(`Server Running on http://localhost:${port}`)
+}
