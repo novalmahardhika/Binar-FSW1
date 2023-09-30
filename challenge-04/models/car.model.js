@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 import { sequelize } from '../config/db.js'
 
 const Car = sequelize.define('cars', {
@@ -45,11 +45,11 @@ const Car = sequelize.define('cars', {
   },
 })
 
-sequelize
-  .sync()
-  .then(() => {
-    console.log('Car table created successfully!')
-  })
-  .catch((error) => {
-    console.error('Unable to create table : ', error)
-  })
+try {
+  await sequelize.sync()
+  console.log('created table cars')
+} catch (error) {
+  console.log(`created table car is fail : ${error}`)
+}
+
+export default Car

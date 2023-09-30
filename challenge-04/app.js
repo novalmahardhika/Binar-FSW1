@@ -1,12 +1,20 @@
 import express from 'express'
+import rootRoutes from './routes/root.routes.js'
+import carRoutes from './routes/car.routes.js'
+import notFoundRoutes from './routes/404.routes.js'
+import serverRun from './server.js'
 
 const app = express()
 const PORT = 8001
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
+// middleware
+app.use(express.json()) //parsing payload JSON
+app.use(express.urlencoded({ extended: false })) //parsing payload URL encoded
 
-app.listen(PORT, () => {
-  console.log(`Server Running on http://localhost:${PORT}`)
-})
+// endpoint
+app.use(rootRoutes)
+app.use(carRoutes)
+app.use(notFoundRoutes)
+
+// server
+app.listen(PORT, serverRun(PORT))
