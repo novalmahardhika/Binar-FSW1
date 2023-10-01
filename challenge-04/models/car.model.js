@@ -11,38 +11,55 @@ export const CarModel = (sequelize, Sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
     },
 
-    // type: {
-    //   type: DataTypes.ENUM('small', 'medium', 'large'),
-    //   defaultValue: 'small',
-    //   // allowNull: false,
-    // },
+    type: {
+      type: DataTypes.ENUM('small', 'medium', 'large'),
+      defaultValue: 'small',
+      validate: {
+        isIn: [['small', 'medium', 'large']],
+      },
+    },
 
-    // image: {
-    //   type: DataTypes.STRING,
-    //   // allowNull: false,
-    // },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
 
-    // capacity: {
-    //   type: DataTypes.INTEGER,
-    //   // allowNull: false,
-    // },
+    capacity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isNumeric: true,
+      },
+    },
 
-    // rentPerDay: {
-    //   type: DataTypes.INTEGER,
-    //   // allowNull: false,
-    // },
+    rentPerDay: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isNumeric: true,
+      },
+    },
 
-    // description: {
-    //   type: DataTypes.STRING,
-    //   // allowNull: false,
-    // },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
 
-    // availableAt: {
-    //   type: DataTypes.DATE,
-    //   // allowNull: false,
-    // },
+    availableAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        isDate: true,
+      },
+    },
   })
 
   return Car
