@@ -5,15 +5,16 @@ const Car = db.cars
 export const createCar = async (req, res) => {
   const body = req.body
   const date = new Date(body.availableAt)
-
-  if (!body) {
-    res.status(422).json({ message: 'created fail' })
-  }
+  const file = req.file.path
+  // const image = file
 
   const newData = await Car.create({
     ...body,
     ...date,
+    // ...image,
   })
+
+  // console.log(image)
 
   res.status(201).json({ data: newData })
 }

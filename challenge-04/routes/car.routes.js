@@ -1,4 +1,5 @@
 import express from 'express'
+import upload from '../config/multer.js'
 import {
   createCar,
   getAllCars,
@@ -10,7 +11,7 @@ import {
 const router = express.Router()
 
 // Create Car
-router.post('/cars', createCar)
+router.post('/cars', upload.single('file'), createCar)
 
 // Get all Cars
 router.get('/cars', getAllCars)

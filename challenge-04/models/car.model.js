@@ -10,7 +10,7 @@ export const CarModel = (sequelize, Sequelize) => {
 
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         notEmpty: true,
       },
@@ -26,12 +26,12 @@ export const CarModel = (sequelize, Sequelize) => {
 
     image: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
 
     capacity: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         isNumeric: true,
       },
@@ -39,7 +39,7 @@ export const CarModel = (sequelize, Sequelize) => {
 
     rentPerDay: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         isNumeric: true,
       },
@@ -47,7 +47,7 @@ export const CarModel = (sequelize, Sequelize) => {
 
     description: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         notEmpty: true,
       },
@@ -55,7 +55,7 @@ export const CarModel = (sequelize, Sequelize) => {
 
     availableAt: {
       type: DataTypes.DATE,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         isDate: true,
       },
