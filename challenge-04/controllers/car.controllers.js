@@ -45,10 +45,12 @@ export const updateCar = async (req, res) => {
   const _id = req.params.id
   const body = req.body
   const car = await Car.findByPk(_id)
+  const file = { image: req.file.path }
 
   car.set({
     ...car,
     ...body,
+    ...file,
   })
 
   await car.save()

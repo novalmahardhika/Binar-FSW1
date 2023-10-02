@@ -21,7 +21,7 @@ router.get('/cars', getAllCars)
 router.get('/cars/:id', getCarById)
 
 // Update Car
-router.put('/cars/:id', updateCar)
+router.put('/cars/:id', uploadPhoto, updateCar)
 
 // Delete Car
 router.delete('/cars/:id', deleteCar)
