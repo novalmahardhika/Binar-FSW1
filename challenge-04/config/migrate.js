@@ -1,4 +1,4 @@
-import { sequelize } from './config/db.js'
+import { sequelize } from './db.js'
 
 // migrate database
 try {
