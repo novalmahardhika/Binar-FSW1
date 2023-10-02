@@ -9,9 +9,10 @@ import {
 } from '../controllers/car.controllers.js'
 
 const router = express.Router()
+const uploadPhoto = upload.single('file')
 
 // Create Car
-router.post('/cars', upload.single('file'), createCar)
+router.post('/cars', uploadPhoto, createCar)
 
 // Get all Cars
 router.get('/cars', getAllCars)

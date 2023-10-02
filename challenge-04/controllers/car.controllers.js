@@ -5,16 +5,22 @@ const Car = db.cars
 export const createCar = async (req, res) => {
   const body = req.body
   const date = new Date(body.availableAt)
-  const file = req.file.path
-  // const image = file
+  const file = { image: req.file.path }
 
   const newData = await Car.create({
     ...body,
+    ...file,
     ...date,
-    // ...image,
+    // name: name,
+    // type: type,
+    // image: file,
+    // capacity: capacity,
+    // rentPerDay: rentPerDay,
+    // description: description,
+    // availableAt: date,
   })
 
-  // console.log(image)
+  // console.log(date)
 
   res.status(201).json({ data: newData })
 }
