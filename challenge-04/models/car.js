@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       type: DataTypes.STRING,
       image: DataTypes.STRING,
-      capacity: DataTypes.INTEGER,
+      capacity: DataTypes.ENUM('small', 'medium', 'large'),
       rentPerDay: DataTypes.INTEGER,
       description: DataTypes.STRING,
       availableAt: DataTypes.STRING,

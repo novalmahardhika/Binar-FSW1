@@ -1,7 +1,7 @@
-const Car = ''
+const { Car } = require('../models')
 
 // --- create car ---
-export const createCar = async (req, res) => {
+const createCar = async (req, res) => {
   const body = req.body
   const date = new Date(body.availableAt)
   const file = { image: req.file.path }
@@ -25,14 +25,14 @@ export const createCar = async (req, res) => {
 }
 
 // --- get all cars ---
-export const getAllCars = async (req, res) => {
+const getAllCars = async (req, res) => {
   const cars = await Car.findAll()
 
   res.status(200).json({ data: cars })
 }
 
 // --- get car by id ---
-export const getCarById = async (req, res) => {
+const getCarById = async (req, res) => {
   const _id = req.params.id
   const car = await Car.findByPk(_id)
 
@@ -40,7 +40,7 @@ export const getCarById = async (req, res) => {
 }
 
 // --- update car ---
-export const updateCar = async (req, res) => {
+const updateCar = async (req, res) => {
   const _id = req.params.id
   const body = req.body
   const car = await Car.findByPk(_id)
@@ -58,7 +58,7 @@ export const updateCar = async (req, res) => {
 }
 
 // --- delete car ---
-export const deleteCar = async (req, res) => {
+const deleteCar = async (req, res) => {
   const _id = req.params.id
   const car = await Car.findByPk(_id)
 
@@ -66,3 +66,5 @@ export const deleteCar = async (req, res) => {
 
   res.status(200).json({ message: 'Delete Successfully' })
 }
+
+module.exports = { createCar, getAllCars, getCarById, updateCar, deleteCar }

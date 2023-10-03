@@ -1,4 +1,4 @@
-import express from 'express'
+const express = require('express')
 
 const router = express.Router()
 
@@ -6,5 +6,4 @@ const router = express.Router()
 router.get('/', (req, res) => {
   res.send('Ping Successfully')
 })
-
-export default router
+module.exports = router

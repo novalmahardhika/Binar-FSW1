@@ -1,9 +1,8 @@
-import express from 'express'
-import rootRoutes from './routes/root.routes.js'
-import carRoutes from './routes/car.routes.js'
-import notFoundRoutes from './routes/404.routes.js'
+const express = require('express')
 
-// const express = require('express')
+const rootRoutes = require('./routes/root.routes')
+const carRoutes = require('./routes/car.routes')
+const notFoundRoutes = require('./routes/404.routes')
 
 const app = express()
 const PORT = 8001 || 8000

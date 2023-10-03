@@ -1,12 +1,13 @@
-import express from 'express'
-import upload from '../config/multer.js'
-import {
+const express = require('express')
+const upload = require('../config/multer')
+
+const {
   createCar,
   getAllCars,
   getCarById,
   updateCar,
   deleteCar,
-} from '../controllers/car.controllers.js'
+} = require('../controllers/car.controllers')
 
 const router = express.Router()
 const uploadPhoto = upload.single('file')
@@ -26,4 +27,4 @@ router.put('/cars/:id', uploadPhoto, updateCar)
 // Delete Car
 router.delete('/cars/:id', deleteCar)
 
-export default router
+module.exports = router
