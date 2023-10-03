@@ -3,6 +3,8 @@ import rootRoutes from './routes/root.routes.js'
 import carRoutes from './routes/car.routes.js'
 import notFoundRoutes from './routes/404.routes.js'
 
+// const express = require('express')
+
 const app = express()
 const PORT = 8001 || 8000
 

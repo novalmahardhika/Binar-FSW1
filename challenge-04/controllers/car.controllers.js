@@ -1,5 +1,4 @@
-import db from '../config/db.js'
-const Car = db.cars
+const Car = ''
 
 // --- create car ---
 export const createCar = async (req, res) => {
