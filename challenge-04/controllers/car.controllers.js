@@ -1,14 +1,14 @@
-const { Car } = require('../models')
+const { Car, Sequelize } = require('../models')
 
 // --- create car ---
 const createCar = async (req, res) => {
   const body = req.body
   const date = new Date(body.availableAt)
-  // const file = { image: req.file.path }
+  const file = { image: req.file ? req.file.path : null }
 
   const newData = await Car.create({
     ...body,
-    // ...file,
+    ...file,
     ...date,
     // name: name,
     // type: type,
@@ -18,6 +18,8 @@ const createCar = async (req, res) => {
     // description: description,
     // availableAt: date,
   })
+
+  console.log(file)
 
   res.status(201).json({ data: newData })
 }
@@ -34,6 +36,11 @@ const getCarById = async (req, res) => {
   const _id = req.params.id
   const car = await Car.findByPk(_id)
 
+  if (!car) {
+    res.status(400).json({ message: 'Not Found' })
+    return
+  }
+
   res.status(200).json({ data: car })
 }
 
@@ -42,12 +49,17 @@ const updateCar = async (req, res) => {
   const _id = req.params.id
   const body = req.body
   const car = await Car.findByPk(_id)
-  // const file = { image: req.file.path }
+  const file = { image: req.file.path }
+
+  if (!car) {
+    res.status(400).json({ message: 'Not Found' })
+    return
+  }
 
   car.set({
     ...car,
     ...body,
-    // ...file,
+    ...file,
   })
 
   await car.save()
@@ -59,6 +71,11 @@ const updateCar = async (req, res) => {
 const deleteCar = async (req, res) => {
   const _id = req.params.id
   const car = await Car.findByPk(_id)
+
+  if (!car) {
+    res.status(400).json({ message: 'Not Found' })
+    return
+  }
 
   car.destroy()
 

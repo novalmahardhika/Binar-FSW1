@@ -13,7 +13,6 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    // let uuid = crypto.randomUUID as UUIDV4()
 
     await queryInterface.bulkInsert(
       'Cars',
