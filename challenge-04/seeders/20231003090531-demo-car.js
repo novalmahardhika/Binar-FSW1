@@ -1,4 +1,5 @@
 'use strict'
+const { randomUUID: UUIDV4 } = require('crypto')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -12,12 +13,13 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
+    // let uuid = crypto.randomUUID as UUIDV4()
 
     await queryInterface.bulkInsert(
       'Cars',
       [
         {
-          id: '1b0e4be7-2288-436f-a555-cd02c11ad944',
+          id: UUIDV4(),
           name: 'Ferrari',
           type: 'medium',
           image: '../../../image.png',
@@ -29,7 +31,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: '7657f068-c323-4eca-914d-e0ba08bb369f',
+          id: UUIDV4(),
           name: 'Lamborghini',
           type: 'medium',
           image: '../../../image.png',

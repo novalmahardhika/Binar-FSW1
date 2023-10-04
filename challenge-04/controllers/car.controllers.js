@@ -4,11 +4,11 @@ const { Car } = require('../models')
 const createCar = async (req, res) => {
   const body = req.body
   const date = new Date(body.availableAt)
-  const file = { image: req.file.path }
+  // const file = { image: req.file.path }
 
   const newData = await Car.create({
     ...body,
-    ...file,
+    // ...file,
     ...date,
     // name: name,
     // type: type,
@@ -18,8 +18,6 @@ const createCar = async (req, res) => {
     // description: description,
     // availableAt: date,
   })
-
-  // console.log(date)
 
   res.status(201).json({ data: newData })
 }
@@ -44,12 +42,12 @@ const updateCar = async (req, res) => {
   const _id = req.params.id
   const body = req.body
   const car = await Car.findByPk(_id)
-  const file = { image: req.file.path }
+  // const file = { image: req.file.path }
 
   car.set({
     ...car,
     ...body,
-    ...file,
+    // ...file,
   })
 
   await car.save()
