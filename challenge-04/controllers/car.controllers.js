@@ -1,4 +1,4 @@
-const { Car, Sequelize } = require('../models')
+const { Car } = require('../models')
 
 // --- create car ---
 const createCar = async (req, res) => {
@@ -33,33 +33,21 @@ const getAllCars = async (req, res) => {
 
 // --- get car by id ---
 const getCarById = async (req, res) => {
-  const _id = req.params.id
-  const car = await Car.findByPk(_id)
-
-  if (!car) {
-    res.status(400).json({ message: 'Not Found' })
-    return
-  }
+  const car = await req.car
 
   res.status(200).json({ data: car })
 }
 
 // --- update car ---
 const updateCar = async (req, res) => {
-  const _id = req.params.id
   const body = req.body
-  const car = await Car.findByPk(_id)
-  const file = { image: req.file.path }
-
-  if (!car) {
-    res.status(400).json({ message: 'Not Found' })
-    return
-  }
+  const car = await req.car
+  // const file = { image: req.file.path }
 
   car.set({
     ...car,
     ...body,
-    ...file,
+    // ...file,
   })
 
   await car.save()
@@ -69,13 +57,7 @@ const updateCar = async (req, res) => {
 
 // --- delete car ---
 const deleteCar = async (req, res) => {
-  const _id = req.params.id
-  const car = await Car.findByPk(_id)
-
-  if (!car) {
-    res.status(400).json({ message: 'Not Found' })
-    return
-  }
+  const car = await req.car
 
   car.destroy()
 

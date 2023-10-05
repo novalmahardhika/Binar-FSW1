@@ -9,7 +9,10 @@ const {
   deleteCar,
 } = require('../controllers/car.controllers')
 
+const { checkIdCar } = require('../middlewares/carValidation')
+
 const router = express.Router()
+
 const uploadPhoto = upload.single('file')
 
 // Create Car
@@ -19,12 +22,12 @@ router.post('/cars', uploadPhoto, createCar)
 router.get('/cars', getAllCars)
 
 // Get Car by Id
-router.get('/cars/:id', getCarById)
+router.get('/cars/:id', checkIdCar, getCarById)
 
 // Update Car
-router.put('/cars/:id', uploadPhoto, updateCar)
+router.put('/cars/:id', checkIdCar, uploadPhoto, updateCar)
 
 // Delete Car
-router.delete('/cars/:id', deleteCar)
+router.delete('/cars/:id', checkIdCar, deleteCar)
 
 module.exports = router
