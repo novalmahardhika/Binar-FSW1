@@ -1,6 +1,6 @@
 'use strict'
 const { Model } = require('sequelize')
-// const { v4: uuidv4 } = require('uuid')
+const { randomUUID: UUIDV4 } = require('crypto')
 
 module.exports = (sequelize, DataTypes) => {
   class Car extends Model {
@@ -15,15 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Car.init(
     {
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
-      },
       name: DataTypes.STRING,
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('small', 'medium', 'large'),
       image: DataTypes.STRING,
-      capacity: DataTypes.ENUM('small', 'medium', 'large'),
+      capacity: DataTypes.INTEGER,
       rentPerDay: DataTypes.INTEGER,
       description: DataTypes.STRING,
       availableAt: DataTypes.STRING,
@@ -33,5 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Car',
     }
   )
+  Car.beforeCreate((x) => (x.id = UUIDV4()))
   return Car
 }
