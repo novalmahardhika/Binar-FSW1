@@ -4,6 +4,8 @@ const router = express.Router()
 
 // Get all Cars
 router.get('/', (req, res) => {
-  res.send('Ping Successfully')
+  res.json({
+    message: 'Ping Successfully',
+  })
 })
 module.exports = router
