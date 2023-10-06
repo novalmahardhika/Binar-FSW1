@@ -140,6 +140,24 @@ const checkEnum = async (req, res, next) => {
   next()
 }
 
+const checkQueryParams = async (req, res, next) => {
+  try {
+    const queryParams = req.query
+
+    console.log(queryParams)
+
+    if (queryParams) {
+      const data = await Car.findAll({ where: queryParams })
+      res.status(200).json({ status: 200, data: data })
+      return
+    }
+
+    next()
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error.message })
+  }
+}
+
 module.exports = {
   checkIdCar,
   checkPropsNotExist,
@@ -147,4 +165,5 @@ module.exports = {
   checkTypeVal,
   checkPhoto,
   checkEnum,
+  checkQueryParams,
 }

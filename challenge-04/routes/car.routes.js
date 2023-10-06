@@ -16,27 +16,28 @@ const {
   checkPhoto,
   checkTypeVal,
   checkEnum,
+  checkQueryParams,
 } = require('../middlewares/carValidation')
 
 const router = express.Router()
 
 // const uploadPhoto = upload.single('file')
 
+// Get all Cars
+router.get('/cars', checkQueryParams, getAllCars)
+
+// Get Car by Id
+router.get('/cars/:id', checkIdCar, getCarById)
+
 // Create Car
 router.post(
   '/cars',
   checkPropsNotExist,
-  checkPropsNotExist,
+  checkPropsNull,
   checkTypeVal,
   checkEnum,
   createCar
 )
-
-// Get all Cars
-router.get('/cars', getAllCars)
-
-// Get Car by Id
-router.get('/cars/:id', checkIdCar, getCarById)
 
 // Update Car
 router.put(
