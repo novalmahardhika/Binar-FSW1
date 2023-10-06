@@ -90,12 +90,16 @@ const checkPropsNull = async (req, res, next) => {
 }
 
 const checkTypeVal = async (req, res, next) => {
-  const car = await req.car
+  const car = await req.body
   const arrStr = ['name', 'type', 'image', 'description', 'availableAt']
   const arrInt = ['capacity', 'rentPerDay']
 
+  // check value !string
   for (let prop of arrStr) {
-    if (typeof car[prop] !== 'string') {
+    const checkProp = car.hasOwnProperty(prop)
+    const checkVal = typeof car[prop] !== 'string'
+
+    if (checkProp && checkVal) {
       res.status(400).json({
         status: 400,
         error: 'incorect type data',
@@ -106,8 +110,12 @@ const checkTypeVal = async (req, res, next) => {
     }
   }
 
+  // check value !number
   for (let prop of arrInt) {
-    if (typeof car[prop] !== 'number') {
+    const checkProp = car.hasOwnProperty(prop)
+    const checkVal = typeof car[prop] !== 'number'
+
+    if (checkProp && checkVal) {
       res.status(400).json({
         status: 400,
         error: 'incorect type data',
@@ -125,6 +133,7 @@ const checkEnum = async (req, res, next) => {
   const body = await req.body
   const enumType = ['small', 'medium', 'large']
 
+  // check type Enum
   for (const prop in body) {
     if (prop === 'type' && !enumType.includes(body[prop])) {
       res.status(400).json({
@@ -144,8 +153,7 @@ const checkQueryParams = async (req, res, next) => {
   try {
     const queryParams = req.query
 
-    console.log(queryParams)
-
+    // check query params
     if (queryParams) {
       const data = await Car.findAll({ where: queryParams })
       res.status(200).json({ status: 200, data: data })

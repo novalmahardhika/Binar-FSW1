@@ -3,20 +3,12 @@ const { Car } = require('../models')
 // --- create car ---
 const createCar = async (req, res) => {
   const body = req.body
-  // const date = new Date(body.availableAt)
+  const date = new Date(body.availableAt)
   // const file = { image: req.file ? req.file.path : null }
 
   const newData = await Car.create({
     ...body,
-    // ...file,
-    // ...date,
-    // name: name,
-    // type: type,
-    // image: file,
-    // capacity: capacity,
-    // rentPerDay: rentPerDay,
-    // description: description,
-    // availableAt: date,
+    ...date,
   })
 
   res.status(201).json({ data: newData })
@@ -39,18 +31,19 @@ const getCarById = async (req, res) => {
 // --- update car ---
 const updateCar = async (req, res) => {
   const body = req.body
-  const car = await req.car
+  const id = req.car.id
   // const file = { image: req.file.path }
 
-  car.set({
-    ...car,
-    ...body,
-    // ...file,
-  })
+  const target = {
+    where: {
+      id,
+    },
+    returning: true,
+  }
 
-  await car.save()
+  const [_, updatedData] = await Car.update(body, target)
 
-  res.status(200).json({ data: car })
+  res.status(200).json({ data: updatedData })
 }
 
 // --- delete car ---
