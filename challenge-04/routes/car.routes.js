@@ -17,6 +17,7 @@ const {
   checkTypeVal,
   checkEnum,
   checkQueryParams,
+  checkAvailableAt,
 } = require('../middlewares/carValidation')
 
 const router = express.Router()
@@ -36,6 +37,7 @@ router.post(
   checkPropsNull,
   checkTypeVal,
   checkEnum,
+  checkAvailableAt,
   createCar
 )
 
@@ -46,6 +48,7 @@ router.put(
   checkPropsNull,
   checkTypeVal,
   checkEnum,
+  checkAvailableAt,
   updateCar
 )
 

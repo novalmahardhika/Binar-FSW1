@@ -3,12 +3,11 @@ const { Car } = require('../models')
 // --- create car ---
 const createCar = async (req, res) => {
   const body = req.body
-  const date = new Date(body.availableAt)
+
   // const file = { image: req.file ? req.file.path : null }
 
   const newData = await Car.create({
     ...body,
-    ...date,
   })
 
   res.status(201).json({ data: newData })

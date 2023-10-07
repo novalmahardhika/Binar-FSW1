@@ -162,7 +162,37 @@ const checkQueryParams = async (req, res, next) => {
 
     next()
   } catch (error) {
-    res.status(500).json({ status: 500, message: error.message })
+    res.status(500).json({
+      status: 500,
+      error: error.message,
+      message: 'please make sure query params is correct',
+    })
+  }
+}
+
+const checkAvailableAt = async (req, res, next) => {
+  const { availableAt } = req.body
+
+  try {
+    const formatDate = new Date(availableAt)
+
+    if (!formatDate) {
+      res.status(400).json({
+        status: 400,
+        message: 'please make sure format Date YYYY-MM-DD is correct',
+      })
+
+      return
+    }
+
+    req.body.availableAt = formatDate.toISOString()
+    next()
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
+      error: error.message,
+      message: `please make sure this Date '${availableAt}' is correct, and make sure using this format YYYY-MM-DD `,
+    })
   }
 }
 
@@ -174,4 +204,5 @@ module.exports = {
   checkPhoto,
   checkEnum,
   checkQueryParams,
+  checkAvailableAt,
 }
