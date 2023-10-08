@@ -94,6 +94,37 @@ Welcome to my Binar Challenge chapter 3 about create Resful Api Using Express.js
 }
 ```
 
+### Get Cars by query
+
+> this features is to get all data cars via API. How to get that data ?
+>
+> - Open Postman
+> - Add Request
+> - Choose Method 'GET'
+> - Enter URL and add Query`http://localhost:8001/cars?property=value` example `http://localhost:8001/cars?name=Ferrari`
+> - Send Req
+> - Result
+
+```JSON
+{
+    "status": 200,
+    "data": [
+        {
+            "id": "d0928d14-9382-46e4-8ca3-c1467775d591",
+            "name": "Ferrari",
+            "type": "medium",
+            "image": "https://unsplash.com/photos/X16zXcbxU4U",
+            "capacity": 2,
+            "rentPerDay": 900000,
+            "description": "Exotic car from italian",
+            "availableAt": "2023-11-20 00:00:00.000 +00:00",
+            "createdAt": "2023-10-08T16:19:37.342Z",
+            "updatedAt": "2023-10-08T16:19:37.342Z"
+        }
+    ]
+}
+```
+
 ### Detail Car
 
 > this features is to get data cars by id . How to get that data ?
