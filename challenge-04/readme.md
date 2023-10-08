@@ -278,7 +278,7 @@ npm run db:seed:undo
 
 ## ERD ( Entity Relational Diagram )
 
-![erd-1](./erd/erd-1.png)
+![erd-1](./erd/erd-2.png)
 
 ## How To Start ?
 
