@@ -27,7 +27,7 @@ const checkIdCar = async (req, res, next) => {
 }
 
 const checkPhoto = async (req, res, next) => {
-  const photo = await req.file
+  const photo = req.file
 
   console.log(photo === undefined)
 
@@ -44,7 +44,7 @@ const checkPhoto = async (req, res, next) => {
 }
 
 const checkPropsNotExist = async (req, res, next) => {
-  const body = await req.body
+  const body = req.body
   // parse payload to json
   const bodyParse = JSON.parse(JSON.stringify(body))
   // get property model and convert into array
@@ -68,7 +68,7 @@ const checkPropsNotExist = async (req, res, next) => {
 }
 
 const checkPropsNull = async (req, res, next) => {
-  const body = await req.body
+  const body = req.body
   // parse payload to json
   const bodyParse = JSON.parse(JSON.stringify(body))
 
@@ -90,7 +90,7 @@ const checkPropsNull = async (req, res, next) => {
 }
 
 const checkTypeVal = async (req, res, next) => {
-  const car = await req.body
+  const car = req.body
   const arrStr = ['name', 'type', 'image', 'description', 'availableAt']
   const arrInt = ['capacity', 'rentPerDay']
 
@@ -130,7 +130,7 @@ const checkTypeVal = async (req, res, next) => {
 }
 
 const checkEnum = async (req, res, next) => {
-  const body = await req.body
+  const body = req.body
   const enumType = ['small', 'medium', 'large']
 
   // check type Enum
@@ -178,6 +178,7 @@ const checkAvailableAt = async (req, res, next) => {
   if (isNaN(formatDate) && availableAtExist) {
     res.status(400).json({
       status: 400,
+      error: 'Invalid Date',
       message: `please make sure format Date YYYY-MM-DD is correct, availableAt is ${formatDate}`,
     })
     return
@@ -193,6 +194,7 @@ const checkAvailableAt = async (req, res, next) => {
 const checkUnkownProp = async (req, res, next) => {
   const body = Object.keys(req.body).sort()
   const arrModelCar = Object.keys(await Car.getAttributes())
+
     .slice(1, 8)
     .sort()
 
