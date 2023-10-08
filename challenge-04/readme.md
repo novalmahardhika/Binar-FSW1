@@ -244,6 +244,38 @@ example, i wanna update model and description :
 }
 ```
 
+## Command List
+
+### 1. Run server
+
+```terminal
+npm run dev
+```
+
+### 2. Migrate
+
+```terminal
+npm run db:migrate
+```
+
+### 3. Undo Migrate
+
+```terminal
+npm run db:migrate:undo
+```
+
+### 4. Seed
+
+```terminal
+npm run db:seed
+```
+
+### 5. Undo Seed
+
+```terminal
+npm run db:seed:undo
+```
+
 ## ERD ( Entity Relational Diagram )
 
 ![erd-1](./erd/erd-1.png)
