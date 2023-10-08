@@ -172,28 +172,38 @@ const checkQueryParams = async (req, res, next) => {
 
 const checkAvailableAt = async (req, res, next) => {
   const { availableAt } = req.body
+  const formatDate = new Date(availableAt)
+  const availableAtExist = req.body.hasOwnProperty('availableAt')
 
-  try {
-    const formatDate = new Date(availableAt)
-
-    if (!formatDate) {
-      res.status(400).json({
-        status: 400,
-        message: 'please make sure format Date YYYY-MM-DD is correct',
-      })
-
-      return
-    }
-
-    req.body.availableAt = formatDate.toISOString()
-    next()
-  } catch (error) {
-    res.status(500).json({
-      status: 500,
-      error: error.message,
-      message: `please make sure this Date '${availableAt}' is correct, and make sure using this format YYYY-MM-DD `,
+  if (isNaN(formatDate) && availableAtExist) {
+    res.status(400).json({
+      status: 400,
+      message: `please make sure format Date YYYY-MM-DD is correct, availableAt is ${formatDate}`,
     })
+    return
   }
+
+  if (availableAt) {
+    req.body.availableAt = formatDate.toISOString()
+  }
+
+  next()
+}
+
+const checkUnkownProp = async (req, res, next) => {
+  const body = Object.keys(req.body).sort()
+  const arrModelCar = Object.keys(await Car.getAttributes())
+    .slice(1, 8)
+    .sort()
+
+  const validate = body.filter((x) => !arrModelCar.includes(x))
+
+  if (validate.length > 0) {
+    res.status(400).json({ message: `Unknown '${validate}' Property` })
+    return
+  }
+
+  next()
 }
 
 module.exports = {
@@ -205,4 +215,5 @@ module.exports = {
   checkEnum,
   checkQueryParams,
   checkAvailableAt,
+  checkUnkownProp,
 }
