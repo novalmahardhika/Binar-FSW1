@@ -1,47 +1,53 @@
-const { User } = require('../models')
-const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const {
+  createUserService,
+  getUserLogInService,
+} = require('../services/user.service')
 
 // register
 const signUp = async (req, res) => {
-  const body = req.body
+  try {
+    const payload = req.body
+    const newUser = await createUserService(payload)
 
-  const newUser = await User.create({
-    firstName: body.firstName,
-    lastName: body.lastName,
-    email: body.email,
-    password: bcrypt.hashSync(body.password, 10),
-    role: body.role,
-  })
-
-  res.status(201).json({ message: 'registered success', data: newUser })
+    res.status(201).json({
+      status: 'SUCCESS',
+      message: 'registered success',
+      data: newUser,
+    })
+  } catch (error) {
+    res.status(error.statusCode).json({
+      status: 'FAIL',
+      message: error.message,
+    })
+  }
 }
 
 // sigIn
 const signIn = async (req, res) => {
-  const { email, password } = req.body
+  try {
+    const { email, password } = req.body
+    const user = await getUserLogInService(email, password)
 
-  console.log(req.headers)
+    const accessToken = jwt.sign(
+      { id: user.id },
+      process.env.API_SECRET_ACCESS_TOKEN,
+      {
+        expiresIn: 6000,
+      }
+    )
 
-  const user = await User.findOne({ where: { email: email } })
-
-  if (!user) {
-    res.status(404).json({ message: 'email not found' })
+    res.json({
+      status: 'success',
+      message: 'Log in Successfully',
+      data: user,
+      accessToken: accessToken,
+    })
+  } catch (error) {
+    res
+      .status(error.statusCode)
+      .json({ status: 'FAIL', message: error.message })
   }
-
-  const passwordIsValid = bcrypt.compareSync(password, user.password)
-
-  if (!passwordIsValid) {
-    res.status(401).json({ accessToken: null, message: 'Password Invalid' })
-  }
-
-  const token = jwt.sign({ id: user.id }, process.env.API_SECRET_ACCESS_TOKEN, {
-    expiresIn: 60 * 60,
-  })
-
-  res
-    .status(200)
-    .json({ message: 'Login Success', accessToken: token, data: { user } })
 }
 
 module.exports = { signUp, signIn }

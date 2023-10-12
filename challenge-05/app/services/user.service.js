@@ -1,0 +1,43 @@
+const ApplicationError = require('../../config/errors/ApplicationError')
+const bcrypt = require('bcrypt')
+
+const {
+  createUserRepo,
+  getUserLogInRepo,
+} = require('../repositories/user.repository')
+// const
+
+// validation / bisnis logic
+const createUserService = async (payload) => {
+  try {
+    const newData = await createUserRepo(payload)
+
+    return newData
+  } catch (error) {
+    throw new ApplicationError(`created user fail, ${error.message}`, 500)
+  }
+}
+
+const getUserLogInService = async (email, password) => {
+  try {
+    const user = await getUserLogInRepo(email)
+    const passwordIsValid = await bcrypt.compare(password, user.password)
+
+    if (!user) {
+      throw new ApplicationError(`user not found`, 404)
+    }
+
+    if (!passwordIsValid) {
+      throw new ApplicationError(`password is not valid`, 401)
+    }
+
+    return user
+  } catch (error) {
+    throw new ApplicationError(
+      `get user fail, ${error.message}`,
+      error.statusCode || 500
+    )
+  }
+}
+
+module.exports = { createUserService, getUserLogInService }
