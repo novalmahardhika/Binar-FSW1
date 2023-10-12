@@ -4,8 +4,7 @@ const bcrypt = require('bcrypt')
 // repository create user
 const createUserRepo = async (payload) => {
   return User.create({
-    firstName: payload.firstName,
-    lastName: payload.lastName,
+    username: payload.username,
     email: payload.email,
     password: await bcrypt.hash(payload.password, 10),
     role: payload.role,

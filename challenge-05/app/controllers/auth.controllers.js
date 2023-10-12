@@ -34,7 +34,7 @@ const signIn = async (req, res) => {
       { id: user.id },
       process.env.API_SECRET_ACCESS_TOKEN,
       {
-        expiresIn: 120,
+        expiresIn: 60 * 60,
       }
     )
 
@@ -53,9 +53,15 @@ const signIn = async (req, res) => {
 
 // load user
 const loadUser = async (req, res) => {
-  const user = await loadUserLoginService(req.user.id)
+  try {
+    const user = await loadUserLoginService(req.user.id)
 
-  res.json({ data: user })
+    res.json({ status: 'success', data: user })
+  } catch (error) {
+    res
+      .status(error.statusCode)
+      .json({ status: 'FAIL', message: error.message })
+  }
 }
 
 module.exports = { signUp, signIn, loadUser }

@@ -14,6 +14,7 @@ const createUserService = async (payload) => {
 
     return newData
   } catch (error) {
+    gi8
     throw new ApplicationError(`created user fail, ${error.message}`, 500)
   }
 }
