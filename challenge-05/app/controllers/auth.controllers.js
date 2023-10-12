@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const {
   createUserService,
   getUserLogInService,
+  loadUserLoginService,
 } = require('../services/user.service')
 
 // register
@@ -33,7 +34,7 @@ const signIn = async (req, res) => {
       { id: user.id },
       process.env.API_SECRET_ACCESS_TOKEN,
       {
-        expiresIn: 6000,
+        expiresIn: 120,
       }
     )
 
@@ -50,4 +51,11 @@ const signIn = async (req, res) => {
   }
 }
 
-module.exports = { signUp, signIn }
+// load user
+const loadUser = async (req, res) => {
+  const user = await loadUserLoginService(req.user.id)
+
+  res.json({ data: user })
+}
+
+module.exports = { signUp, signIn, loadUser }

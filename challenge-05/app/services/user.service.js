@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const {
   createUserRepo,
   getUserLogInRepo,
+  loadUserLoginRepo,
 } = require('../repositories/user.repository')
 
 // business logic  create user service
@@ -40,4 +41,26 @@ const getUserLogInService = async (email, password) => {
   }
 }
 
-module.exports = { createUserService, getUserLogInService }
+// business load user log in
+const loadUserLoginService = async (id) => {
+  try {
+    const user = await loadUserLoginRepo(id)
+
+    if (!user) {
+      throw new ApplicationError(`user not found`, 404)
+    }
+
+    return user
+  } catch (error) {
+    throw new ApplicationError(
+      `Login Fail, ${error.message}`,
+      error.statusCode || 500
+    )
+  }
+}
+
+module.exports = {
+  createUserService,
+  getUserLogInService,
+  loadUserLoginService,
+}

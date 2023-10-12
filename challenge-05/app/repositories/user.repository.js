@@ -18,4 +18,11 @@ const getUserLogInRepo = (email) => {
   return user
 }
 
-module.exports = { createUserRepo, getUserLogInRepo }
+// load user log in
+const loadUserLoginRepo = async (id) => {
+  const user = User.findOne({ where: { id: id } })
+
+  return user
+}
+
+module.exports = { createUserRepo, getUserLogInRepo, loadUserLoginRepo }
