@@ -5,9 +5,8 @@ const {
   createUserRepo,
   getUserLogInRepo,
 } = require('../repositories/user.repository')
-// const
 
-// validation / bisnis logic
+// business logic  create user service
 const createUserService = async (payload) => {
   try {
     const newData = await createUserRepo(payload)
@@ -18,6 +17,7 @@ const createUserService = async (payload) => {
   }
 }
 
+// business logic  get user log in
 const getUserLogInService = async (email, password) => {
   try {
     const user = await getUserLogInRepo(email)

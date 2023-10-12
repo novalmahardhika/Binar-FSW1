@@ -9,7 +9,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // routes
-app.use(authRoute)
+app.use('/api/v1', authRoute)
 
 // Listen Server
 app.listen(PORT, runServer(PORT))

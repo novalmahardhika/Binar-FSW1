@@ -1,7 +1,7 @@
 const { User } = require('../models')
 const bcrypt = require('bcrypt')
 
-// models
+// repository create user
 const createUserRepo = async (payload) => {
   return User.create({
     firstName: payload.firstName,
@@ -12,6 +12,7 @@ const createUserRepo = async (payload) => {
   })
 }
 
+// repository user log in
 const getUserLogInRepo = (email) => {
   const user = User.findOne({ where: { email: email } })
   return user
