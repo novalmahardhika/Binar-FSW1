@@ -18,15 +18,11 @@ const createUserService = async (payload) => {
   }
 }
 
-// business logic  get user log in
+// business logic get user log in
 const getUserLogInService = async (email, password) => {
   try {
     const user = await getUserLogInRepo(email)
     const passwordIsValid = await bcrypt.compare(password, user.password)
-
-    if (!user) {
-      throw new ApplicationError(`user not found`, 404)
-    }
 
     if (!passwordIsValid) {
       throw new ApplicationError(`password is not valid`, 401)

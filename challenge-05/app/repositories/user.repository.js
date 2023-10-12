@@ -18,7 +18,7 @@ const getUserLogInRepo = (email) => {
 }
 
 // load user log in
-const loadUserLoginRepo = async (id) => {
+const loadUserLoginRepo = (id) => {
   const user = User.findOne({ where: { id: id } })
 
   return user
