@@ -3,7 +3,7 @@ const {
   signUp,
   signIn,
   loadUser,
-} = require('../app/controllers/auth.controllers')
+} = require('../app/controllers/auth.controller')
 const { verifyUser } = require('../middlewares/auth')
 
 const router = express.Router()
