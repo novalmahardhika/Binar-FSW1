@@ -5,6 +5,7 @@ const {
   loadUser,
 } = require('../app/controllers/auth.controllers')
 const { verifyUser } = require('../middlewares/auth')
+
 const router = express.Router()
 
 router.post('/register', signUp)
