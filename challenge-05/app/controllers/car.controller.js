@@ -1,6 +1,10 @@
+const { deleteCarRepo } = require('../repositories/car.repository')
 const {
   createCarService,
   getListCarsService,
+  updateCarService,
+  getCarByIdService,
+  deleteCarService,
 } = require('../services/car.service')
 
 const createCar = async (req, res) => {
@@ -34,4 +38,46 @@ const getListCars = async (req, res) => {
   }
 }
 
-module.exports = { createCar, getListCars }
+const getCarById = async (req, res) => {
+  try {
+    const car = await getCarByIdService(req.params.id)
+
+    res.json({
+      status: 'SUCCESS',
+      message: 'get car success',
+      data: car,
+    })
+  } catch (error) {
+    res.status(500).json({ status: 'FAIL', message: error.message })
+  }
+}
+
+const updateCar = async (req, res) => {
+  try {
+    const [_, car] = await updateCarService(req.body, req.params.id)
+
+    console.log(car)
+    res.json({
+      status: 'SUCCESS',
+      message: 'updated car success',
+      data: car,
+    })
+  } catch (error) {
+    res.status(500).json({ status: 'FAIL', message: error.message })
+  }
+}
+
+const deleteCar = async (req, res) => {
+  try {
+    await deleteCarService(req.params.id)
+
+    res.json({
+      status: 'SUCCESS',
+      message: 'deleted car success',
+    })
+  } catch (error) {
+    res.status(500).json({ status: 'FAIL', message: error.message })
+  }
+}
+
+module.exports = { createCar, getListCars, getCarById, updateCar, deleteCar }
