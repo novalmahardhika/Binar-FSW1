@@ -1,4 +1,3 @@
-const { deleteCarRepo } = require('../repositories/car.repository')
 const {
   createCarService,
   getListCarsService,
@@ -56,7 +55,6 @@ const updateCar = async (req, res) => {
   try {
     const [_, car] = await updateCarService(req.body, req.params.id)
 
-    console.log(car)
     res.json({
       status: 'SUCCESS',
       message: 'updated car success',

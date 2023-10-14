@@ -16,17 +16,38 @@ module.exports = (sequelize, DataTypes) => {
   User.init(
     {
       username: DataTypes.STRING,
+
       email: {
         type: DataTypes.STRING,
+        allowNull: false,
         unique: true,
-        isEmail: true,
+        validate: {
+          isEmail: {
+            msg: 'please make sure ur format email is correct',
+          },
+          notNull: {
+            msg: 'email cannot null or empty',
+          },
+        },
       },
-      password: DataTypes.STRING,
+
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'password cannot null or empty',
+          },
+        },
+      },
+
       phone: DataTypes.STRING,
+
       role: {
         type: DataTypes.ENUM('superAdmin', 'admin', 'member'),
         defaultValue: 'member',
       },
+
       address: DataTypes.STRING,
     },
     {

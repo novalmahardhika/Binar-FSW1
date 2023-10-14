@@ -7,7 +7,9 @@ const createUserRepo = async (payload) => {
     username: payload.username,
     email: payload.email,
     password: await bcrypt.hash(payload.password, 10),
+    phone: payload.phone,
     role: payload.role,
+    address: payload.address,
   })
 }
 
