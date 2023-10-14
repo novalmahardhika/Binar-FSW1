@@ -9,25 +9,38 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
       },
+
       username: {
         type: Sequelize.STRING,
       },
+
       email: {
         type: Sequelize.STRING,
         unique: true,
         isEmail: true,
       },
+
+      password: {
+        type: Sequelize.STRING,
+      },
+      phone: {
+        type: Sequelize.STRING,
+      },
+
       role: {
         type: Sequelize.ENUM('superAdmin', 'admin', 'member'),
         defaultValue: 'member',
       },
-      password: {
+
+      address: {
         type: Sequelize.STRING,
       },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
+
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -21,11 +21,13 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
         isEmail: true,
       },
+      password: DataTypes.STRING,
+      phone: DataTypes.STRING,
       role: {
         type: DataTypes.ENUM('superAdmin', 'admin', 'member'),
         defaultValue: 'member',
       },
-      password: DataTypes.STRING,
+      address: DataTypes.STRING,
     },
     {
       sequelize,
