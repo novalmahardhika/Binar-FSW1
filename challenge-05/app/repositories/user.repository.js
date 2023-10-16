@@ -15,14 +15,13 @@ const createUserRepo = async (payload) => {
 
 // repository user log in
 const getUserLogInRepo = (email) => {
-  const user = User.findOne({ where: { email: email } })
+  const user = User.findOne({ where: { email } })
   return user
 }
 
 // load user log in
 const loadUserLoginRepo = (id) => {
   const user = User.findOne({ where: { id: id } })
-
   return user
 }
 
