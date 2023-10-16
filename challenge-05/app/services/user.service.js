@@ -1,10 +1,10 @@
 const ApplicationError = require('../../config/errors/ApplicationError')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const {
   createUserRepo,
-  getUserLogInRepo,
-  loadUserLoginRepo,
+  getUserLoginRepo,
 } = require('../repositories/user.repository')
 
 // business logic  create user service
@@ -21,42 +21,37 @@ const createUserService = async (payload) => {
 // business logic get user log in
 const getUserLogInService = async (email, password) => {
   try {
-    const user = await getUserLogInRepo(email)
+    if (!email || !password) {
+      throw new ApplicationError(`please check ur email or password`, 400)
+    }
+
+    const user = await getUserLoginRepo(email)
+
+    if (!user) {
+      throw new ApplicationError('user not found', 404)
+    }
+
     const passwordIsValid = await bcrypt.compare(password, user.password)
 
     if (!passwordIsValid) {
-      throw new ApplicationError(`password is not valid`, 401)
+      throw new ApplicationError('password not valid', 401)
     }
+
+    const accessToken = jwt.sign(
+      { id: user.id },
+      process.env.JWT_SECRET_ACCESS_TOKEN,
+      { expiresIn: '5m' }
+    )
+
+    user.setDataValue('token', accessToken)
 
     return user
   } catch (error) {
-    throw new ApplicationError(
-      `get user fail, ${error.message}`,
-      error.statusCode || 500
-    )
-  }
-}
-
-// business load user log in
-const loadUserLoginService = async (id) => {
-  try {
-    const user = await loadUserLoginRepo(id)
-
-    if (!user) {
-      throw new ApplicationError(`user not found`, 404)
-    }
-
-    return user
-  } catch (error) {
-    throw new ApplicationError(
-      `Login Fail, ${error.message}`,
-      error.statusCode || 500
-    )
+    throw new ApplicationError(error.message, error.statusCode || 500)
   }
 }
 
 module.exports = {
   createUserService,
   getUserLogInService,
-  loadUserLoginService,
 }

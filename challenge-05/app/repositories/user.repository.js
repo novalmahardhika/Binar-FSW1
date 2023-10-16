@@ -14,7 +14,7 @@ const createUserRepo = async (payload) => {
 }
 
 // repository user log in
-const getUserLogInRepo = (email) => {
+const getUserLoginRepo = (email) => {
   const user = User.findOne({ where: { email } })
   return user
 }
@@ -25,4 +25,4 @@ const loadUserLoginRepo = (id) => {
   return user
 }
 
-module.exports = { createUserRepo, getUserLogInRepo, loadUserLoginRepo }
+module.exports = { createUserRepo, getUserLoginRepo, loadUserLoginRepo }

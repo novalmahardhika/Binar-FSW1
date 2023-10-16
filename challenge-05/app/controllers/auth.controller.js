@@ -1,8 +1,6 @@
-const jwt = require('jsonwebtoken')
 const {
   createUserService,
   getUserLogInService,
-  loadUserLoginService,
 } = require('../services/user.service')
 
 // register
@@ -30,20 +28,7 @@ const signIn = async (req, res) => {
     const { email, password } = req.body
     const user = await getUserLogInService(email, password)
 
-    const accessToken = jwt.sign(
-      { id: user.id },
-      process.env.API_SECRET_ACCESS_TOKEN,
-      {
-        expiresIn: 60 * 60,
-      }
-    )
-
-    res.json({
-      status: 'success',
-      message: 'Log in Successfully',
-      data: user,
-      accessToken: accessToken,
-    })
+    res.json({ user })
   } catch (error) {
     res
       .status(error.statusCode)
@@ -51,17 +36,4 @@ const signIn = async (req, res) => {
   }
 }
 
-// load user
-const loadUser = async (req, res) => {
-  try {
-    const user = await loadUserLoginService(req.user.id)
-
-    res.json({ status: 'success', data: user })
-  } catch (error) {
-    res
-      .status(error.statusCode)
-      .json({ status: 'FAIL', message: error.message })
-  }
-}
-
-module.exports = { signUp, signIn, loadUser }
+module.exports = { signUp, signIn }
