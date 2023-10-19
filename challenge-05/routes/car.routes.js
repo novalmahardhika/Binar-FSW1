@@ -10,9 +10,9 @@ const { verifyUser, isSuperOrIsAdmin } = require('../middlewares/auth')
 
 const router = express.Router()
 
-router.post('/cars', isSuperOrIsAdmin, createCar)
+router.post('/cars', verifyUser, isSuperOrIsAdmin, createCar)
 router.get('/cars', verifyUser, getListCars)
-router.get('/cars/:id', getCarById)
+router.get('/cars/:id', verifyUser, getCarById)
 router.put('/cars/:id', verifyUser, isSuperOrIsAdmin, updateCar)
 router.delete('/cars/:id', verifyUser, isSuperOrIsAdmin, deleteCar)
 
