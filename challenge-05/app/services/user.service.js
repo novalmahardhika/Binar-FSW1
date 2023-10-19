@@ -8,9 +8,9 @@ const {
 } = require('../repositories/user.repository')
 
 // business logic  create user service
-const createUserService = async (payload) => {
+const createUserService = async (payload, admin) => {
   try {
-    const newData = await createUserRepo(payload)
+    const newData = await createUserRepo(payload, admin)
 
     return newData
   } catch (error) {
