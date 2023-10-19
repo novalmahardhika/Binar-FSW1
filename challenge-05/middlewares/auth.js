@@ -23,10 +23,21 @@ const verifyUser = async (req, res, next) => {
   }
 }
 
-const isSuperOrIsAdmin = (req, res, next) => {
+const isSuperAdmin = (req, res, next) => {
   const { role } = req.user
 
-  console.log(role === 'ADMIN' || role === 'SUPERADMIN')
+  if (role === 'SUPERADMIN') {
+    next()
+  }
+
+  res
+    .status(403)
+    .json({ status: 'ACCESS DENIED', message: 'user cannot access' })
+  return
+}
+
+const isSuperOrIsAdmin = (req, res, next) => {
+  const { role } = req.user
 
   if (role === 'ADMIN' || role === 'SUPERADMIN') {
     next()
@@ -38,4 +49,4 @@ const isSuperOrIsAdmin = (req, res, next) => {
   return
 }
 
-module.exports = { verifyUser, isSuperOrIsAdmin }
+module.exports = { verifyUser, isSuperAdmin, isSuperOrIsAdmin }
