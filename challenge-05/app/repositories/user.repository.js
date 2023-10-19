@@ -20,9 +20,9 @@ const getUserLoginRepo = (email) => {
 }
 
 // load user log in
-const loadUserLoginRepo = (id) => {
-  const user = User.findOne({ where: { id: id } })
+const findUserByPK = (id) => {
+  const user = User.findByPk(id)
   return user
 }
 
-module.exports = { createUserRepo, getUserLoginRepo, loadUserLoginRepo }
+module.exports = { createUserRepo, getUserLoginRepo, findUserByPK }

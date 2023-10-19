@@ -28,8 +28,8 @@ module.exports = {
       },
 
       role: {
-        type: Sequelize.ENUM('superAdmin', 'admin', 'member'),
-        defaultValue: 'member',
+        type: Sequelize.ENUM('MEMBER', 'SUPERADMIN', 'ADMIN'),
+        defaultValue: 'MEMBER',
       },
 
       address: {
@@ -47,7 +47,6 @@ module.exports = {
       },
     })
   },
-
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Users')
   },
