@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Car, { foreignKey: 'userId' })
     }
   }
   User.init(
@@ -20,7 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: {
+          msg: 'email already exist',
+        },
+
         validate: {
           isEmail: {
             msg: 'please make sure ur format email is correct',

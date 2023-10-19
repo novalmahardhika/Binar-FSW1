@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       rentPerDay: DataTypes.INTEGER,
       description: DataTypes.STRING,
       availableAt: DataTypes.STRING,
+      createdBy: DataTypes.STRING,
+      updatedBy: DataTypes.STRING,
+      deletedBy: DataTypes.STRING,
     },
     {
       sequelize,
