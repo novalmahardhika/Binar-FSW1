@@ -28,6 +28,7 @@ module.exports = {
           availableAt: new Date('2023-11-10'),
           createdAt: new Date(),
           updatedAt: new Date(),
+          createdBy: '8682ee67-3f33-48a2-a77d-aec05e90a5e0',
         },
         {
           id: uuidv4(),
@@ -40,6 +41,7 @@ module.exports = {
           availableAt: new Date('2023-12-10'),
           createdAt: new Date(),
           updatedAt: new Date(),
+          createdBy: '8682ee67-3f33-48a2-a77d-aec05e90a5e0',
         },
       ],
       {}
