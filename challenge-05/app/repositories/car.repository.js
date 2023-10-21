@@ -19,10 +19,21 @@ const getListCarsByQueryRepo = (query) => {
 
 const getCarByIdRepo = (id) => {
   const car = Car.findByPk(id, {
-    include: {
-      model: User,
-      as: 'created',
-    },
+    include: [
+      {
+        model: User,
+        as: 'createdCarBy',
+      },
+      {
+        model: User,
+        as: 'updatedCarBy',
+      },
+      {
+        model: User,
+        as: 'deletedCarBy',
+      },
+    ],
+    attributes: { exclude: ['createdBy', 'updatedBy', 'deletedBy'] },
   })
   return car
 }

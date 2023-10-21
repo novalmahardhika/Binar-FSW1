@@ -75,7 +75,7 @@ const deleteCar = async (req, res) => {
   try {
     const _id = req.params.id
     const { id: userId } = req.user
-    const car = await deleteCarService(_id, userId)
+    const [_, car] = await deleteCarService(_id, userId)
 
     res.json({
       status: 'SUCCESS',
