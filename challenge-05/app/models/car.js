@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Car.belongsTo(models.User, { foreignKey: 'createdBy', as: 'created' })
+      Car.belongsTo(models.User, { foreignKey: 'updatedBy', as: 'updated' })
+      Car.belongsTo(models.User, { foreignKey: 'deletedBy', as: 'deleted' })
     }
   }
   Car.init(
@@ -32,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Car',
+      paranoid: true,
     }
   )
   Car.beforeCreate((x) => (x.id = uuidv4()))

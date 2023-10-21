@@ -8,9 +8,9 @@ const {
 } = require('../repositories/user.repository')
 
 // business logic  create user service
-const createUserService = async (payload, admin) => {
+const createUserService = async (payload) => {
   try {
-    const newData = await createUserRepo(payload, admin)
+    const newData = await createUserRepo(payload)
 
     return newData
   } catch (error) {
@@ -40,7 +40,7 @@ const getUserLogInService = async (email, password) => {
     const accessToken = jwt.sign(
       { id: user.id },
       process.env.JWT_SECRET_ACCESS_TOKEN,
-      { expiresIn: '5m' }
+      { expiresIn: '30m' }
     )
 
     user.setDataValue('token', accessToken)

@@ -8,7 +8,9 @@ const {
 
 const createCar = async (req, res) => {
   try {
-    const car = await createCarService(req.body)
+    const payload = req.body
+    const { id: userId } = req.user
+    const car = await createCarService(payload, userId)
 
     res.status(201).json({
       status: 'SUCCESS',
@@ -53,7 +55,11 @@ const getCarById = async (req, res) => {
 
 const updateCar = async (req, res) => {
   try {
-    const [_, car] = await updateCarService(req.body, req.params.id)
+    const payload = req.body
+    const { id: _id } = req.params
+    const { id: userId } = req.user
+
+    const [_, car] = await updateCarService(payload, _id, userId)
 
     res.json({
       status: 'SUCCESS',
@@ -67,11 +73,14 @@ const updateCar = async (req, res) => {
 
 const deleteCar = async (req, res) => {
   try {
-    await deleteCarService(req.params.id)
+    const _id = req.params.id
+    const { id: userId } = req.user
+    const car = await deleteCarService(_id, userId)
 
     res.json({
       status: 'SUCCESS',
       message: 'deleted car success',
+      data: car,
     })
   } catch (error) {
     res.status(500).json({ status: 'FAIL', message: error.message })

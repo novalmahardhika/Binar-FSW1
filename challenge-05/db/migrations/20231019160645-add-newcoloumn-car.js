@@ -10,13 +10,27 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     await queryInterface.addColumn('Cars', 'createdBy', {
-      type: Sequelize.STRING,
+      type: Sequelize.UUID,
+      allowNull: false,
+      defaultValue: 'af44c06a-b249-4328-a600-bb2bca11c06d',
+      references: {
+        model: 'Users',
+        key: 'id',
+      },
     })
     await queryInterface.addColumn('Cars', 'updatedBy', {
-      type: Sequelize.STRING,
+      type: Sequelize.UUID,
+      references: {
+        model: 'Users',
+        key: 'id',
+      },
     })
     await queryInterface.addColumn('Cars', 'deletedBy', {
-      type: Sequelize.STRING,
+      type: Sequelize.UUID,
+      references: {
+        model: 'Users',
+        key: 'id',
+      },
     })
   },
 

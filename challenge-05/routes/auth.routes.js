@@ -11,5 +11,13 @@ const router = express.Router()
 router.post('/admin/register', verifyUser, isSuperAdmin, adminRegister)
 router.post('/register', signUp)
 router.post('/login', signIn)
+router.get('/current-user', verifyUser, (req, res) => {
+  const user = req.user
+
+  res.json({
+    message: 'SUCCESS',
+    data: user,
+  })
+})
 
 module.exports = router

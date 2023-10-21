@@ -8,9 +8,9 @@ const {
   deleteCarRepo,
 } = require('../repositories/car.repository')
 
-const createCarService = async (payload) => {
+const createCarService = async (payload, userId) => {
   try {
-    const car = await createCarRepo(payload)
+    const car = await createCarRepo(payload, userId)
     return car
   } catch (error) {
     throw new ApplicationError(
@@ -48,23 +48,23 @@ const getCarByIdService = async (id) => {
   }
 }
 
-const updateCarService = async (payload, id) => {
+const updateCarService = async (payload, _id, userId) => {
   try {
-    const updateCar = await updateCarRepo(payload, id)
+    const updateCar = await updateCarRepo(payload, _id, userId)
 
     return updateCar
   } catch (error) {
     throw new ApplicationError(
       `Update Fail, ${error.message}`,
-      statusCode || 500
+      error.statusCode || 500
     )
   }
 }
 
-const deleteCarService = async (id) => {
+const deleteCarService = async (_id, userId) => {
   try {
-    const car = deleteCarRepo(id)
-
+    const car = await deleteCarRepo(_id, userId)
+    
     return car
   } catch (error) {
     throw new ApplicationError(`Deleted Fail, ${error.message}`, 500)

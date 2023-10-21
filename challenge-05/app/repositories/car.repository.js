@@ -1,32 +1,48 @@
-const { Car } = require('../models')
+const { Car, User } = require('../models')
 
-const createCarRepo = (payload) => {
-  const car = Car.create(payload)
+const createCarRepo = (payload, userId) => {
+  const car = Car.create({ ...payload, createdBy: userId })
   return car
 }
 
 const getListCarsRepo = () => {
-  const car = Car.findAll()
-  return car
+  const cars = Car.findAll()
+  return cars
 }
 
 const getListCarsByQueryRepo = (query) => {
-  const car = Car.findAll({ where: query })
+  const car = Car.findAll({
+    where: query,
+  })
   return car
 }
 
 const getCarByIdRepo = (id) => {
-  const car = Car.findByPk(id)
+  const car = Car.findByPk(id, {
+    include: {
+      model: User,
+      as: 'created',
+    },
+  })
   return car
 }
 
-const updateCarRepo = (payload, id) => {
-  const updateCar = Car.update(payload, { where: { id: id }, returning: true })
+const updateCarRepo = (payload, _id, userId) => {
+  const updateCar = Car.update(
+    { ...payload, updatedBy: userId },
+    { where: { id: _id }, returning: true }
+  )
+
   return updateCar
 }
 
-const deleteCarRepo = (id) => {
-  const car = Car.destroy({ where: { id: id } })
+const deleteCarRepo = async (_id, userId) => {
+  await Car.destroy({ where: { id: _id } })
+  const car = Car.update(
+    { deletedBy: userId },
+    { where: { id: _id }, paranoid: false, returning: true }
+  )
+
   return car
 }
 
