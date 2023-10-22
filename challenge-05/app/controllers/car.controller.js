@@ -41,7 +41,8 @@ const getListCars = async (req, res) => {
 
 const getCarById = async (req, res) => {
   try {
-    const car = await getCarByIdService(req.params.id)
+    const _id = req.params.id
+    const car = await getCarByIdService(_idcd)
 
     res.json({
       status: 'SUCCESS',

@@ -17,8 +17,8 @@ const getListCarsByQueryRepo = (query) => {
   return car
 }
 
-const getCarByIdRepo = (id) => {
-  const car = Car.findByPk(id, {
+const getCarByIdRepo = (_id) => {
+  const car = Car.findByPk(_id, {
     include: [
       {
         model: User,

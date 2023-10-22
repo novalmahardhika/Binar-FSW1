@@ -31,9 +31,9 @@ const getListCarsService = async (query) => {
   return getListCars
 }
 
-const getCarByIdService = async (id) => {
+const getCarByIdService = async (_id) => {
   try {
-    const car = await getCarByIdRepo(id)
+    const car = await getCarByIdRepo(_id)
 
     if (!car) {
       throw new ApplicationError(`car not found`, 404)
@@ -50,6 +50,12 @@ const getCarByIdService = async (id) => {
 
 const updateCarService = async (payload, _id, userId) => {
   try {
+    const car = await getCarByIdRepo(_id)
+
+    if (!car) {
+      throw new ApplicationError(`car not found`, 404)
+    }
+
     const updateCar = await updateCarRepo(payload, _id, userId)
 
     return updateCar
@@ -63,9 +69,15 @@ const updateCarService = async (payload, _id, userId) => {
 
 const deleteCarService = async (_id, userId) => {
   try {
-    const car = await deleteCarRepo(_id, userId)
-    
-    return car
+    const car = await getCarByIdRepo(_id)
+
+    if (!car) {
+      throw new ApplicationError(`car not found`, 404)
+    }
+
+    const softDeleteCar = await deleteCarRepo(_id, userId)
+
+    return softDeleteCar
   } catch (error) {
     throw new ApplicationError(`Deleted Fail, ${error.message}`, 500)
   }
