@@ -54,4 +54,15 @@ const signIn = async (req, res) => {
   }
 }
 
-module.exports = { adminRegister, signUp, signIn }
+// current user
+const currentUser = async (req, res) => {
+  const user = req.user
+
+  res.json({
+    status: 'SUCCESS',
+    message: 'get current user success',
+    data: user,
+  })
+}
+
+module.exports = { adminRegister, signUp, signIn, currentUser }
