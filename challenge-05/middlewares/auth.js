@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken')
 const { findUserByPK } = require('../app/repositories/user.repository')
 
+const { User } = require('../app/models')
+
 const verifyUser = async (req, res, next) => {
   try {
     const header = req.headers.authorization
@@ -16,7 +18,7 @@ const verifyUser = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET_ACCESS_TOKEN)
     const user = await findUserByPK(decoded.id)
 
-    req.user = user.toJSON()
+    req.user = JSON.parse(JSON.stringify(user))
     next()
   } catch (error) {
     res.status(401).json({ status: 'FAIL', message: error.message })

@@ -2,13 +2,13 @@ const { User } = require('../models')
 const bcrypt = require('bcrypt')
 
 // repository create user
-const createUserRepo = async (payload, admin) => {
+const createUserRepo = async (payload, isAdmin) => {
   return User.create({
     username: payload.username,
     email: payload.email,
     password: await bcrypt.hash(payload.password, 10),
     phone: payload.phone,
-    role: admin ? 'ADMIN' : 'MEMBER',
+    role: isAdmin ? 'ADMIN' : 'MEMBER',
     address: payload.address,
   })
 }
