@@ -10,11 +10,17 @@ const {
 // business logic  create user service
 const createUserService = async (payload, isAdmin) => {
   try {
+    const { email, password } = payload
+
+    if (!email || !password) {
+      throw new ApplicationError(` Email or Password cannot empty`, 400)
+    }
+
     const newData = await createUserRepo(payload, isAdmin)
 
     return newData
   } catch (error) {
-    throw new ApplicationError(`created user fail, ${error.message}`, 500)
+    throw new ApplicationError(`register fail, ${error.message}`, 500)
   }
 }
 
