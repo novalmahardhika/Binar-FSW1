@@ -49,7 +49,7 @@ const getUserLogInService = async (email, password) => {
       // { expiresIn: '30m' }
     )
 
-    user.setDataValue('token', accessToken)
+    user.setDataValue('accessToken', accessToken)
 
     return user
   } catch (error) {
