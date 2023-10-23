@@ -49,6 +49,35 @@ Welcome to my Binar Challenge chapter 5 about create Resful Api Using Express.js
 - [`Swagger`](https://swagger.io/tools/swagger-ui/)
 
   > Swagger UI allows anyone — be it your development team or your end consumers — to visualize and interact with the API’s resources without having any of the implementation logic in place. It’s automatically generated from your OpenAPI (formerly known as Swagger) Specification, with the visual documentation making it easy for back end implementation and client side consumption
-  
 
-  
+  ## Suoer User
+
+  ```json
+  {
+          id: uuidv4(),
+          username: 'Basel',
+          email: 'basel@super.com',
+          password: bcrypt.hashSync('basel123', 10),
+          phone: '082100102009',
+          role: 'SUPERADMIN',
+          address: 'Jalan Sirsak 1',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: uuidv4(),
+          username: 'Mamat',
+          email: 'mamat@super.com',
+          password: bcrypt.hashSync('mamat123', 10),
+          phone: '082100102009',
+          role: 'SUPERADMIN',
+          address: 'Jalan Pepaya 4',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+
+  ```
+
+  ## Documentation API
+
+  LINK: http://localhost:8001/api/v1/api-docs/
