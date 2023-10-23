@@ -12,6 +12,7 @@ const verifyUser = async (req, res, next) => {
         status: 'FAIL',
         message: 'Unauthorized',
       })
+      return
     }
 
     const token = header.split(' ')[1]
@@ -22,6 +23,7 @@ const verifyUser = async (req, res, next) => {
     next()
   } catch (error) {
     res.status(401).json({ status: 'FAIL', message: error.message })
+    return
   }
 }
 
