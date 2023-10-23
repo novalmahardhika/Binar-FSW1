@@ -20,6 +20,18 @@ Welcome to my Binar Challenge chapter 5 about create Resful Api Using Express.js
 
   > Sequelize is a modern TypeScript and Node.js ORM for Oracle, Postgres, MySQL, MariaDB, SQLite and SQL Server, and more. Featuring solid transaction support, relations, eager and lazy loading, read replication and more.
 
+- [`bcrypt`](https://www.npmjs.com/package/bcrypt)
+
+  > bcrypt is a password-hashing function designed by Niels Provos and David Mazières, based on the Blowfish cipher and presented at USENIX in 1999. Besides incorporating a salt to protect against rainbow table attacks, bcrypt is an adaptive function: over time, the iteration count can be increased to make it slower, so it remains resistant to brute-force search attacks even with increasing computation power.
+
+- [`jsonwebtoken`](https://npmjs.com/package/jsonwebtoken)
+
+  > JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA.
+
+- [`dotenv`](https://www.npmjs.com/package/dotenv)
+
+  > Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology.
+
 ## Tools
 
 - [`vsCode (Code Editor)`](https://code.visualstudio.com/)
@@ -33,3 +45,10 @@ Welcome to my Binar Challenge chapter 5 about create Resful Api Using Express.js
 - [`Postman `](https://www.postman.com/)
 
   > Postman is an API platform for building and using APIs. Postman simplifies each step of the API lifecycle and streamlines collaboration so you can create better APIs—faster.
+
+- [`Swagger`](https://swagger.io/tools/swagger-ui/)
+
+  > Swagger UI allows anyone — be it your development team or your end consumers — to visualize and interact with the API’s resources without having any of the implementation logic in place. It’s automatically generated from your OpenAPI (formerly known as Swagger) Specification, with the visual documentation making it easy for back end implementation and client side consumption
+  
+
+  

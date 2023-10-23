@@ -21,14 +21,18 @@ const createCarService = async (payload, userId) => {
 }
 
 const getListCarsService = async (query) => {
-  const getListCars = await getListCarsRepo()
-  const getCarByQuery = await getListCarsByQueryRepo(query)
+  try {
+    const getListCars = await getListCarsRepo()
+    const getCarByQuery = await getListCarsByQueryRepo(query)
 
-  if (getCarByQuery) {
-    return getCarByQuery
+    if (getCarByQuery) {
+      return getCarByQuery
+    }
+
+    return getListCars
+  } catch (error) {
+    throw new ApplicationError(error.message, error.statusCode || 500)
   }
-
-  return getListCars
 }
 
 const getCarByIdService = async (_id) => {

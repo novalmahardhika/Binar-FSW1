@@ -1,18 +1,33 @@
 const { Car, User } = require('../models')
 
 const createCarRepo = (payload, userId) => {
-  const car = Car.create({ ...payload, createdBy: userId })
+  const car = Car.create(
+    {
+      ...payload,
+      createdBy: userId,
+    },
+    {
+      attributes: { exclude: ['updatedBy', 'deletedBy'] },
+    }
+  )
   return car
 }
 
 const getListCarsRepo = () => {
-  const cars = Car.findAll()
+  const cars = Car.findAll({
+    attributes: {
+      exclude: ['createdBy', 'updatedBy', 'deletedBy', 'deletedAt'],
+    },
+  })
   return cars
 }
 
 const getListCarsByQueryRepo = (query) => {
   const car = Car.findAll({
     where: query,
+    attributes: {
+      exclude: ['createdBy', 'updatedBy', 'deletedBy', 'deletedAt'],
+    },
   })
   return car
 }

@@ -1,0 +1,1395 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Binar Challenge 5",
+    "description": "This is an API sample that contains a user table and a car table, where these tables are related to each other. in this API we implemented crud where we can create cars, display cars, display car details, update cars and delete cars. We created this API with the aim of collecting assignments for Binar Academy chapter 5, where we were asked to create API documentation. In this case I chose to use Swagger in creating API documentation.",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.11"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8001/api/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Car",
+      "description": "Everything about your Pets",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "user",
+      "description": "Operations about user"
+    }
+  ],
+  "paths": {
+    "/cars": {
+      "get": {
+        "tags": ["Car"],
+        "summary": "Get All Cars",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "SUCCESS"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "get list cars success"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/resCreateCar"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Fail operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "FAIL"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Get list Car Fail, internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Car"],
+        "summary": "Add a new Car",
+        "description": "Add a new Car",
+        "operationId": "addCar",
+        "parameters": [
+          {
+            "name": "auhtorization",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MDZiMTkzLTRhM2UtNDA2Mi1iMDgxLTJmNjAzZGFmNjQ3MiIsImlhdCI6MTY5Nzk4MzA3M30.7RpDb8HHzQ6mWeuedOxCdsD6BRF3RAIOv6zICqntCMQ"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Create a new data Car",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Car"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Car"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Car"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "SUCCESS"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Created Successfully"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/resCreateCar"
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/resCreateCar"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/forbidden"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cars/{carId}": {
+      "get": {
+        "tags": ["Car"],
+        "summary": "Find pet by ID",
+        "description": "Returns a single pet",
+        "operationId": "getPetById",
+        "parameters": [
+          {
+            "name": "carId",
+            "in": "path",
+            "description": "ID of Car to return",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "c1c40a4e-8866-4f51-a5f4-65c984ec0184"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "SUCCESS"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Get Car Success"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/resGetDetail"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "cannot find Car",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/carNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Car"],
+        "summary": "Update a Car",
+        "description": "update a Car",
+        "operationId": "updateCar",
+        "parameters": [
+          {
+            "name": "auhtorization",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MDZiMTkzLTRhM2UtNDA2Mi1iMDgxLTJmNjAzZGFmNjQ3MiIsImlhdCI6MTY5Nzk4MzA3M30.7RpDb8HHzQ6mWeuedOxCdsD6BRF3RAIOv6zICqntCMQ"
+            }
+          },
+          {
+            "name": "carId",
+            "in": "path",
+            "description": "Car id to delete",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "207716df-7cbe-41f0-8321-7ed021b7c148"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Create a new data Car",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateCar"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "SUCCESS"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "updated Car Success"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/resUpdateCar"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "cannot find Car",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/carNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Car"],
+        "summary": "Deletes a Car",
+        "description": "delete a Car",
+        "operationId": "deleteCar",
+        "parameters": [
+          {
+            "name": "auhtorization",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MDZiMTkzLTRhM2UtNDA2Mi1iMDgxLTJmNjAzZGFmNjQ3MiIsImlhdCI6MTY5Nzk4MzA3M30.7RpDb8HHzQ6mWeuedOxCdsD6BRF3RAIOv6zICqntCMQ"
+            }
+          },
+          {
+            "name": "carId",
+            "in": "path",
+            "description": "Car id to delete",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "207716df-7cbe-41f0-8321-7ed021b7c148"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "SUCCESS"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Deleted car success"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/deletedCar"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "cannot find Car",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/carNotFoundError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Create user member",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "registerUser",
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resRegUser"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorize"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/register": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Creates list of users with given input array",
+        "description": "create user admin",
+        "operationId": "createUserAdmin",
+        "parameters": [
+          {
+            "name": "auhtorization",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MDZiMTkzLTRhM2UtNDA2Mi1iMDgxLTJmNjAzZGFmNjQ3MiIsImlhdCI6MTY5Nzk4MzA3M30.7RpDb8HHzQ6mWeuedOxCdsD6BRF3RAIOv6zICqntCMQ"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Admin"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resRegAdmin"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorize",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorize"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "The user email for login",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "bob123@gmail.com"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "bob123"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/login"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/badRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorize",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorize"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/notFoundUser"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/current-user": {
+      "get": {
+        "tags": ["user"],
+        "summary": "check current user",
+        "description": "",
+        "operationId": "logoutUser",
+        "parameters": [
+          {
+            "name": "auhtorization",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MDZiMTkzLTRhM2UtNDA2Mi1iMDgxLTJmNjAzZGFmNjQ3MiIsImlhdCI6MTY5Nzk4MzA3M30.7RpDb8HHzQ6mWeuedOxCdsD6BRF3RAIOv6zICqntCMQ"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resRegAdmin"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorize",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorize"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "resCreateCar": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "d99451a7-ce0e-41f4-999f-07aa597f6ad3"
+          },
+          "name": {
+            "type": "string",
+            "example": "Aston Martin"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["small", "medium", "large"]
+          },
+          "image": {
+            "type": "string",
+            "example": "https://unsplash.com/photos/black-porsche-911-parked-in-a-parking-lot-suCv48kiXnY"
+          },
+          "capacity": {
+            "type": "integer",
+            "example": 4
+          },
+          "rentPerDay": {
+            "type": "integer",
+            "example": 9000000
+          },
+          "description": {
+            "type": "string",
+            "example": "this is exotic car from england."
+          },
+          "availableAt": {
+            "type": "string",
+            "example": "2023-3-21"
+          },
+          "createdBy": {
+            "type": "string",
+            "format": "uuid",
+            "example": "207716df-7cbe-41f0-8321-7ed021b7c148"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-10-22T23:41:25.671Z"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-10-22T23:41:25.671Z"
+          },
+          "updatedBy": {
+            "example": null
+          },
+          "deletedBy": {
+            "example": null
+          },
+          "deletedAt": {
+            "example": null
+          }
+        }
+      },
+      "Car": {
+        "required": ["name", "photoUrls"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "d99451a7-ce0e-41f4-999f-07aa597f6ad3"
+          },
+          "name": {
+            "type": "string",
+            "example": "Aston Martin"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["small", "medium", "large"]
+          },
+          "image": {
+            "type": "string",
+            "example": "https://unsplash.com/photos/black-porsche-911-parked-in-a-parking-lot-suCv48kiXnY"
+          },
+          "capacity": {
+            "type": "integer",
+            "example": 4
+          },
+          "rentPerDay": {
+            "type": "integer",
+            "example": 9000000
+          },
+          "description": {
+            "type": "string",
+            "example": "this is exotic car from england."
+          },
+          "availableAt": {
+            "type": "string",
+            "example": "2023-3-21"
+          }
+        },
+        "xml": {
+          "name": "Car"
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "##default"
+        }
+      },
+      "dataUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "c6b57794-932c-4951-b852-645a42968768"
+          },
+          "username": {
+            "type": "string",
+            "example": "mamat"
+          },
+          "email": {
+            "type": "string",
+            "example": "mamat@super.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "082100102009"
+          },
+          "role": {
+            "type": "string",
+            "example": "SUPERADMIN"
+          },
+          "address": {
+            "type": "string",
+            "example": "Jalan Pepaya 4"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-22T11:55:55.509Z"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "Admin": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "bob"
+          },
+          "email": {
+            "type": "string",
+            "example": "bob123@mail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "bob123"
+          },
+          "phone": {
+            "type": "string",
+            "example": "082100102009"
+          },
+          "role": {
+            "type": "string",
+            "example": "ADMIN"
+          },
+          "address": {
+            "type": "string",
+            "example": "Jalan Pepaya 4"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "volk"
+          },
+          "email": {
+            "type": "string",
+            "example": "volk123@mail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "volk123"
+          },
+          "phone": {
+            "type": "string",
+            "example": "082100102009"
+          },
+          "role": {
+            "type": "string",
+            "example": "MEMBER"
+          },
+          "address": {
+            "type": "string",
+            "example": "Jalan Pepaya 4"
+          }
+        }
+      },
+      "resRegUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "c6b57794-932c-4951-b852-645a42968768"
+          },
+          "username": {
+            "type": "string",
+            "example": "volk"
+          },
+          "email": {
+            "type": "string",
+            "example": "volk123@mail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "$2b$10$FvfBmeEzq/C.FrEHBfB15.oOCWRlzXdV/TLDxMu8vYGt2z7DhX3EO"
+          },
+          "phone": {
+            "type": "string",
+            "example": "082100102009"
+          },
+          "role": {
+            "type": "string",
+            "example": "MEMBER"
+          },
+          "address": {
+            "type": "string",
+            "example": "Jalan Pepaya 4"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-22T11:55:55.509Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-22T11:55:55.509Z"
+          }
+        }
+      },
+      "resRegAdmin": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "c6b57794-932c-4951-b852-645a42968768"
+          },
+          "username": {
+            "type": "string",
+            "example": "bob"
+          },
+          "email": {
+            "type": "string",
+            "example": "bob123@mail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "$2b$10$FvfBmeEzq/C.FrEHBfB15.oOCWRlzXdV/TLDxMu8vYGt2z7DhX3EO"
+          },
+          "phone": {
+            "type": "string",
+            "example": "082100102009"
+          },
+          "role": {
+            "type": "string",
+            "example": "ADMIN"
+          },
+          "address": {
+            "type": "string",
+            "example": "Jalan Pepaya 4"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-22T11:55:55.509Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-22T11:55:55.509Z"
+          }
+        }
+      },
+      "login": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "c6b57794-932c-4951-b852-645a42968768"
+          },
+          "username": {
+            "type": "string",
+            "example": "bob"
+          },
+          "email": {
+            "type": "string",
+            "example": "bob123@mail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "$2b$10$FvfBmeEzq/C.FrEHBfB15.oOCWRlzXdV/TLDxMu8vYGt2z7DhX3EO"
+          },
+          "phone": {
+            "type": "string",
+            "example": "082100102009"
+          },
+          "role": {
+            "type": "string",
+            "example": "ADMIN"
+          },
+          "address": {
+            "type": "string",
+            "example": "Jalan Pepaya 4"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-22T11:55:55.509Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-22T11:55:55.509Z"
+          },
+          "accessToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2YjU3Nzk0LTkzMmMtNDk1MS1iODUyLTY0NWE0Mjk2ODc2OCIsImlhdCI6MTY5ODA0MzQwOH0.M2HR4xlzco6CRmWPJuwdPDfxnB76ew774l_rxR_vPds"
+          }
+        }
+      },
+      "resGetDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "c1c40a4e-8866-4f51-a5f4-65c984ec0184"
+          },
+          "name": {
+            "type": "string",
+            "example": "Mclaren"
+          },
+          "type": {
+            "type": "string",
+            "example": "small"
+          },
+          "image": {
+            "type": "string",
+            "format": "url",
+            "example": "https://unsplash.com/photos/RzgGMz2kU94"
+          },
+          "capacity": {
+            "type": "integer",
+            "example": 2
+          },
+          "rentPerDay": {
+            "type": "integer",
+            "example": 8500000
+          },
+          "description": {
+            "type": "string",
+            "example": "Exotic car from English"
+          },
+          "availableAt": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-12-21"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-23T06:53:46.096Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-23T06:53:46.096Z"
+          },
+          "deletedAt": {
+            "type": "string",
+            "example": "null"
+          },
+          "createdCarBy": {
+            "$ref": "#/components/schemas/dataUser"
+          },
+          "updatedCarBy": {
+            "$ref": "#/components/schemas/Car"
+          },
+          "deletedCarBy": {
+            "type": "object",
+            "example": null
+          }
+        }
+      },
+      "updateCar": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Aston Martin"
+          },
+          "capacity": {
+            "type": "integer",
+            "example": 8
+          },
+          "description": {
+            "type": "string",
+            "example": "this is an exotic car from England"
+          },
+          "availableAt": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-11-2"
+          }
+        }
+      },
+      "resUpdateCar": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Aston Martin"
+          },
+          "type": {
+            "type": "string",
+            "example": "small"
+          },
+          "image": {
+            "type": "string",
+            "format": "url",
+            "example": "https://unsplash.com/photos/suCv48kiXnY"
+          },
+          "capacity": {
+            "type": "integer",
+            "example": 8
+          },
+          "rentPerDay": {
+            "type": "integer",
+            "example": 9000000
+          },
+          "description": {
+            "type": "string",
+            "example": "this is an exotic car from England"
+          },
+          "availableAt": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-11-2"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "8682ee67-3f33-48a2-a77d-aec05e90a5e0"
+          },
+          "updatedBy": {
+            "type": "string",
+            "example": "c6b57794-932c-4951-b852-645a42968768"
+          },
+          "deletedBy": {
+            "type": "string",
+            "example": "null"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-21T11:33:17.112Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-23T08:50:54.474Z"
+          },
+          "deletedAt": {
+            "type": "string",
+            "example": "null"
+          }
+        }
+      },
+      "deletedCar": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "2dde2171-4e2d-4eb3-b9a1-be41bbe82986"
+          },
+          "name": {
+            "type": "string",
+            "example": "Mclaren"
+          },
+          "type": {
+            "type": "string",
+            "example": "small"
+          },
+          "image": {
+            "type": "string",
+            "format": "url",
+            "example": "https://unsplash.com/photos/RzgGMz2kU94"
+          },
+          "capacity": {
+            "type": "integer",
+            "example": 2
+          },
+          "rentPerDay": {
+            "type": "integer",
+            "example": 8500000
+          },
+          "description": {
+            "type": "string",
+            "example": "Exotic car from English"
+          },
+          "availableAt": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-12-21"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "c6b57794-932c-4951-b852-645a42968768"
+          },
+          "updatedBy": {
+            "type": "string",
+            "example": "null"
+          },
+          "deletedBy": {
+            "type": "string",
+            "example": "c6b57794-932c-4951-b852-645a42968768"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-22T23:37:35.808Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-23T08:25:46.385Z"
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-10-23T08:25:46.377Z"
+          }
+        }
+      },
+      "forbidden": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FORBIDDEN"
+          },
+          "message": {
+            "type": "string",
+            "example": "user cannot access"
+          }
+        }
+      },
+      "Unauthorize": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FAIL"
+          },
+          "message": {
+            "type": "string",
+            "example": "Unauthorize"
+          }
+        }
+      },
+      "notFoundUser": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FAIL"
+          },
+          "message": {
+            "type": "string",
+            "example": "user not found"
+          }
+        }
+      },
+      "internalServerError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FAIL"
+          },
+          "message": {
+            "type": "string",
+            "example": "Internal Server Error"
+          }
+        }
+      },
+      "badRequest": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FAIL"
+          },
+          "message": {
+            "type": "string",
+            "example": "Bad Request"
+          }
+        }
+      },
+      "notNullError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FORBIDDEN"
+          },
+          "message": {
+            "type": "string",
+            "example": "Created Fail, not null Violation"
+          }
+        }
+      },
+      "carNotFoundError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FAIL"
+          },
+          "message": {
+            "type": "string",
+            "example": "Fail, car not found"
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Pet": {
+        "description": "Pet object that needs to be added to the store",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Car"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Car"
+            }
+          }
+        }
+      },
+      "UserArray": {
+        "description": "List of user object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    }
+  }
+}
