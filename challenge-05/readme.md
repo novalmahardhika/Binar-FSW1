@@ -52,7 +52,7 @@ Welcome to my Binar Challenge chapter 5 about create Resful Api Using Express.js
 
   ## Super User
 
-  ```json
+  ```JSON
   {
           id: uuidv4(),
           username: 'Basel',
