@@ -24,5 +24,8 @@ app.listen(PORT, runServer(PORT))
 
 // Hoisting function
 function runServer(port) {
-  console.log(`Server Running on http://localhost:${port}`)
+  console.log(`🟢 Server Running on http://localhost:${port}`)
+  console.log('----------------------------------------------------------')
+  console.log(`👉 open-api: http://localhost:${port}/api/v1/api-docs  `)
+  console.log('----------------------------------------------------------')
 }

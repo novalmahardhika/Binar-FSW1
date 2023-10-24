@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken')
 const { findUserByPK } = require('../app/repositories/user.repository')
 
-const { User } = require('../app/models')
-
 const verifyUser = async (req, res, next) => {
   try {
     const header = req.headers.authorization
