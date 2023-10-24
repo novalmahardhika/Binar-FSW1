@@ -46,7 +46,7 @@ const signIn = async (req, res) => {
     const { email, password } = req.body
     const user = await getUserLogInService(email, password)
 
-    res.json({ user })
+    res.json({ status: 'SUCCESS', message: 'Login Success', data: user })
   } catch (error) {
     res
       .status(error.statusCode)

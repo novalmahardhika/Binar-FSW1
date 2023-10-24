@@ -26,7 +26,3 @@ app.listen(PORT, runServer(PORT))
 function runServer(port) {
   console.log(`Server Running on http://localhost:${port}`)
 }
-
-// deleteBy
-// updateBy
-// createdBy

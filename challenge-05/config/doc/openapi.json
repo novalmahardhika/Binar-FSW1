@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Binar Challenge 5",
-    "description": "This is an API sample that contains a user table and a car table, where these tables are related to each other. in this API we implemented crud where we can create cars, display cars, display car details, update cars and delete cars. We created this API with the aim of collecting assignments for Binar Academy chapter 5, where we were asked to create API documentation. In this case I chose to use Swagger in creating API documentation.",
+    "title": "Swagger Petstore - OpenAPI 3.0",
+    "description": "This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about\nSwagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!\nYou can now help us improve the API whether it's by making changes to the definition itself or to the code.\nThat way, with time, we can improve the API in general, and expose some of the new features in OAS3.\n\n_If you're looking for the Swagger 2.0/OAS 2.0 version of Petstore, then click [here](https://editor.swagger.io/?url=https://petstore.swagger.io/v2/swagger.yaml). Alternatively, you can load via the `Edit > Load Petstore OAS 2.0` menu option!_\n\nSome useful links:\n- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)\n- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
       "email": "apiteam@swagger.io"
@@ -24,165 +24,336 @@
   ],
   "tags": [
     {
-      "name": "Car",
-      "description": "Everything about your Pets",
-      "externalDocs": {
-        "description": "Find out more",
-        "url": "http://swagger.io"
-      }
+      "name": "User",
+      "description": "User endpoint"
     },
     {
-      "name": "user",
-      "description": "Operations about user"
+      "name": "Car",
+      "description": "Car endpoint"
     }
   ],
   "paths": {
-    "/cars": {
+    "/current-user": {
       "get": {
-        "tags": ["Car"],
-        "summary": "Get All Cars",
+        "tags": ["User"],
+        "summary": "endpoint current user",
+        "description": "check current user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+
         "responses": {
           "200": {
-            "description": "Successful operation",
+            "description": "Response Register Admin",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "SUCCESS"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "get list cars success"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/resCreateCar"
-                      }
-                    }
-                  }
+                  "$ref": "#/components/schemas/ResCurrentUser"
                 }
               }
             }
           },
-          "500": {
-            "description": "Fail operation",
+
+          "401": {
+            "description": "Unauthorize",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "FAIL"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Get list Car Fail, internal Server Error"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Unauthorize"
+                }
+              }
+            }
+          },
+
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerErr"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/admin/register": {
+      "post": {
+        "tags": ["User"],
+        "summary": "endpoint register Admin",
+        "description": "create user role Admin",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "create user admin",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterAdmin"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Response Register Admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResUserAdmin"
+                }
+              }
+            }
+          },
+
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Forbidden"
+                }
+              }
+            }
+          },
+
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerErr"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/register": {
+      "post": {
+        "tags": ["User"],
+        "summary": "endpoint register member",
+        "description": "create user role member",
+
+        "requestBody": {
+          "description": "create user member",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterMember"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Response Register User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResUserAdmin"
+                }
+              }
+            }
+          },
+
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerErr"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "endpoint Login",
+        "description": "Login user",
+
+        "requestBody": {
+          "description": "Login User",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Response Login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResLogin"
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Unauthorize",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorize"
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFound"
+                }
+              }
+            }
+          },
+
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerErr"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/cars": {
+      "post": {
+        "tags": ["Car"],
+        "summary": "endpoint create Car ",
+        "description": "getting create Car",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent pet in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCar"
+              }
+            }
+          },
+          "required": true
+        },
+
+        "responses": {
+          "200": {
+            "description": "Response Create Car",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResCreateCar"
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Unauthorize",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorize"
+                }
+              }
+            }
+          },
+
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Forbidden"
+                }
+              }
+            }
+          },
+
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internalServerErr"
                 }
               }
             }
           }
         }
       },
-      "post": {
+
+      "get": {
         "tags": ["Car"],
-        "summary": "Add a new Car",
-        "description": "Add a new Car",
-        "operationId": "addCar",
-        "parameters": [
+        "summary": "endpoint Car",
+        "description": "get list Car",
+        "security": [
           {
-            "name": "auhtorization",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MDZiMTkzLTRhM2UtNDA2Mi1iMDgxLTJmNjAzZGFmNjQ3MiIsImlhdCI6MTY5Nzk4MzA3M30.7RpDb8HHzQ6mWeuedOxCdsD6BRF3RAIOv6zICqntCMQ"
-            }
+            "bearerAuth": []
           }
         ],
-        "requestBody": {
-          "description": "Create a new data Car",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Car"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Car"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Car"
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
-          "201": {
-            "description": "Successful operation",
+          "200": {
+            "description": "Get List cars",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "SUCCESS"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Created Successfully"
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/resCreateCar"
-                    }
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/resCreateCar"
+                  "$ref": "#/components/schemas/ListCars"
                 }
               }
             }
           },
-          "400": {
-            "description": "Forbidden",
+
+          "401": {
+            "description": "Unauthorize",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/badRequest"
+                  "$ref": "#/components/schemas/Unauthorize"
                 }
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/forbidden"
-                }
-              }
-            }
-          },
+
           "500": {
             "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/internalServerError"
+                  "$ref": "#/components/schemas/internalServerErr"
                 }
               }
             }
@@ -190,65 +361,82 @@
         }
       }
     },
+
     "/cars/{carId}": {
-      "get": {
+      "delete": {
         "tags": ["Car"],
-        "summary": "Find pet by ID",
-        "description": "Returns a single pet",
-        "operationId": "getPetById",
+        "summary": "Deleted Car",
+        "description": "getting delete car",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "deleteCar",
         "parameters": [
           {
             "name": "carId",
             "in": "path",
-            "description": "ID of Car to return",
+            "description": "The id that needs to be fetched",
             "required": true,
             "schema": {
               "type": "string",
-              "format": "uuid",
-              "example": "c1c40a4e-8866-4f51-a5f4-65c984ec0184"
+              "format": "uuid"
             }
           }
         ],
+
         "responses": {
           "200": {
-            "description": "Successful operation",
+            "description": "Get deleted car",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "SUCCESS"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Get Car Success"
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/resGetDetail"
-                    }
-                  }
+                  "$ref": "#/components/schemas/ResDeletedCar"
                 }
               }
             }
           },
+
+          "401": {
+            "description": "Unauthorize",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorize"
+                }
+              }
+            }
+          },
+
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Forbidden"
+                }
+              }
+            }
+          },
+
           "404": {
-            "description": "cannot find Car",
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/carNotFoundError"
+                  "$ref": "#/components/schemas/NotFound"
                 }
               }
             }
           },
+
           "500": {
-            "description": "internal Server Error",
+            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/internalServerError"
+                  "$ref": "#/components/schemas/internalServerErr"
                 }
               }
             }
@@ -257,418 +445,140 @@
       },
       "put": {
         "tags": ["Car"],
-        "summary": "Update a Car",
-        "description": "update a Car",
+        "summary": "update Car",
+        "description": "getting update car",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "operationId": "updateCar",
         "parameters": [
           {
-            "name": "auhtorization",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MDZiMTkzLTRhM2UtNDA2Mi1iMDgxLTJmNjAzZGFmNjQ3MiIsImlhdCI6MTY5Nzk4MzA3M30.7RpDb8HHzQ6mWeuedOxCdsD6BRF3RAIOv6zICqntCMQ"
-            }
-          },
-          {
             "name": "carId",
             "in": "path",
-            "description": "Car id to delete",
+            "description": "The id that needs to be fetched",
             "required": true,
             "schema": {
               "type": "string",
-              "format": "uuid",
-              "example": "207716df-7cbe-41f0-8321-7ed021b7c148"
+              "format": "uuid"
             }
           }
         ],
+
         "requestBody": {
-          "description": "Create a new data Car",
+          "description": "Update an existent pet in the store",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/updateCar"
+                "$ref": "#/components/schemas/CreateCar"
               }
             }
           }
         },
+
         "responses": {
           "200": {
-            "description": "Successful operation",
+            "description": "Get Updated car",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "SUCCESS"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "updated Car Success"
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/resUpdateCar"
-                    }
-                  }
+                  "$ref": "#/components/schemas/ResUpdateCar"
                 }
               }
             }
           },
-          "400": {
-            "description": "Bad Request",
+
+          "401": {
+            "description": "Unauthorize",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/badRequest"
+                  "$ref": "#/components/schemas/Unauthorize"
                 }
               }
             }
           },
+
           "403": {
             "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/forbidden"
+                  "$ref": "#/components/schemas/Forbidden"
                 }
               }
             }
           },
+
           "404": {
-            "description": "cannot find Car",
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/carNotFoundError"
+                  "$ref": "#/components/schemas/NotFound"
                 }
               }
             }
           },
+
           "500": {
-            "description": "internal Server Error",
+            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/internalServerError"
+                  "$ref": "#/components/schemas/internalServerErr"
                 }
               }
             }
           }
         }
       },
-      "delete": {
+      "get": {
         "tags": ["Car"],
-        "summary": "Deletes a Car",
-        "description": "delete a Car",
-        "operationId": "deleteCar",
-        "parameters": [
+        "summary": "get car detail",
+        "description": "getting car detail",
+        "security": [
           {
-            "name": "auhtorization",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MDZiMTkzLTRhM2UtNDA2Mi1iMDgxLTJmNjAzZGFmNjQ3MiIsImlhdCI6MTY5Nzk4MzA3M30.7RpDb8HHzQ6mWeuedOxCdsD6BRF3RAIOv6zICqntCMQ"
-            }
-          },
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "getCarDetail",
+        "parameters": [
           {
             "name": "carId",
             "in": "path",
-            "description": "Car id to delete",
+            "description": "The id that needs to be fetched",
             "required": true,
             "schema": {
               "type": "string",
-              "format": "uuid",
-              "example": "207716df-7cbe-41f0-8321-7ed021b7c148"
+              "format": "uuid"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful operation",
+            "description": "get data detail car",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "SUCCESS"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Deleted car success"
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/deletedCar"
-                    }
-                  }
+                  "$ref": "#/components/schemas/DetailCar"
                 }
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/forbidden"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "cannot find Car",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/carNotFoundError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/internalServerError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/register": {
-      "post": {
-        "tags": ["user"],
-        "summary": "Create user member",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "registerUser",
-        "requestBody": {
-          "description": "Created user object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/resRegUser"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Unauthorize"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/internalServerError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/admin/register": {
-      "post": {
-        "tags": ["user"],
-        "summary": "Creates list of users with given input array",
-        "description": "create user admin",
-        "operationId": "createUserAdmin",
-        "parameters": [
-          {
-            "name": "auhtorization",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MDZiMTkzLTRhM2UtNDA2Mi1iMDgxLTJmNjAzZGFmNjQ3MiIsImlhdCI6MTY5Nzk4MzA3M30.7RpDb8HHzQ6mWeuedOxCdsD6BRF3RAIOv6zICqntCMQ"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Admin"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/resRegAdmin"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorize",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Unauthorize"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/internalServerError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/user/login": {
-      "post": {
-        "tags": ["user"],
-        "summary": "Logs user into the system",
-        "description": "",
-        "operationId": "loginUser",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "query",
-            "description": "The user email for login",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "example": "bob123@gmail.com"
-            }
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "The password for login in clear text",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "example": "bob123"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/login"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/badRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorize",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Unauthorize"
-                }
-              }
-            }
-          },
+
           "404": {
             "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/notFoundUser"
+                  "$ref": "#/components/schemas/NotFound"
                 }
               }
             }
           },
-          "500": {
-            "description": "internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/internalServerError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/current-user": {
-      "get": {
-        "tags": ["user"],
-        "summary": "check current user",
-        "description": "",
-        "operationId": "logoutUser",
-        "parameters": [
-          {
-            "name": "auhtorization",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3MDZiMTkzLTRhM2UtNDA2Mi1iMDgxLTJmNjAzZGFmNjQ3MiIsImlhdCI6MTY5Nzk4MzA3M30.7RpDb8HHzQ6mWeuedOxCdsD6BRF3RAIOv6zICqntCMQ"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/resRegAdmin"
-                }
-              }
-            }
-          },
+
           "401": {
             "description": "Unauthorize",
             "content": {
@@ -679,12 +589,13 @@
               }
             }
           },
+
           "500": {
-            "description": "internal Server Error",
+            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/internalServerError"
+                  "$ref": "#/components/schemas/internalServerErr"
                 }
               }
             }
@@ -695,129 +606,128 @@
   },
   "components": {
     "schemas": {
-      "resCreateCar": {
+      "Unauthorize": {
         "type": "object",
         "properties": {
-          "id": {
+          "status": {
             "type": "string",
-            "format": "uuid",
-            "example": "d99451a7-ce0e-41f4-999f-07aa597f6ad3"
-          },
-          "name": {
-            "type": "string",
-            "example": "Aston Martin"
-          },
-          "type": {
-            "type": "string",
-            "enum": ["small", "medium", "large"]
-          },
-          "image": {
-            "type": "string",
-            "example": "https://unsplash.com/photos/black-porsche-911-parked-in-a-parking-lot-suCv48kiXnY"
-          },
-          "capacity": {
-            "type": "integer",
-            "example": 4
-          },
-          "rentPerDay": {
-            "type": "integer",
-            "example": 9000000
-          },
-          "description": {
-            "type": "string",
-            "example": "this is exotic car from england."
-          },
-          "availableAt": {
-            "type": "string",
-            "example": "2023-3-21"
-          },
-          "createdBy": {
-            "type": "string",
-            "format": "uuid",
-            "example": "207716df-7cbe-41f0-8321-7ed021b7c148"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date",
-            "example": "2023-10-22T23:41:25.671Z"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date",
-            "example": "2023-10-22T23:41:25.671Z"
-          },
-          "updatedBy": {
-            "example": null
-          },
-          "deletedBy": {
-            "example": null
-          },
-          "deletedAt": {
-            "example": null
-          }
-        }
-      },
-      "Car": {
-        "required": ["name", "photoUrls"],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "example": "d99451a7-ce0e-41f4-999f-07aa597f6ad3"
-          },
-          "name": {
-            "type": "string",
-            "example": "Aston Martin"
-          },
-          "type": {
-            "type": "string",
-            "enum": ["small", "medium", "large"]
-          },
-          "image": {
-            "type": "string",
-            "example": "https://unsplash.com/photos/black-porsche-911-parked-in-a-parking-lot-suCv48kiXnY"
-          },
-          "capacity": {
-            "type": "integer",
-            "example": 4
-          },
-          "rentPerDay": {
-            "type": "integer",
-            "example": 9000000
-          },
-          "description": {
-            "type": "string",
-            "example": "this is exotic car from england."
-          },
-          "availableAt": {
-            "type": "string",
-            "example": "2023-3-21"
-          }
-        },
-        "xml": {
-          "name": "Car"
-        }
-      },
-      "ApiResponse": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "type": {
-            "type": "string"
+            "example": "FAIL"
           },
           "message": {
-            "type": "string"
+            "type": "string",
+            "example": "Unauthorize"
           }
-        },
-        "xml": {
-          "name": "##default"
         }
       },
-      "dataUser": {
+
+      "NotFound": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FAIL"
+          },
+          "message": {
+            "type": "string",
+            "example": "Data is Not Found"
+          }
+        }
+      },
+
+      "Forbidden": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "Forbidden"
+          },
+          "message": {
+            "type": "string",
+            "example": "user cannot access"
+          }
+        }
+      },
+
+      "BadReq": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FAIL"
+          },
+          "message": {
+            "type": "string",
+            "example": "Bad Request"
+          }
+        }
+      },
+
+      "internalServerErr": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FAIL"
+          },
+          "message": {
+            "type": "string",
+            "example": "Internal Server Error"
+          }
+        }
+      },
+
+      "Login": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "mamat@super.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "mamat123"
+          }
+        }
+      },
+
+      "ResCurrentUser": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "example": "check current Success"
+          },
+          "data": {
+            "$ref": "#/components/schemas/DataUserMember"
+          }
+        }
+      },
+
+      "ResLogin": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "example": "Login Success"
+          },
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/ResDataLogin"
+          }
+        }
+      },
+
+      "ResDataLogin": {
         "type": "object",
         "properties": {
           "id": {
@@ -826,11 +736,15 @@
           },
           "username": {
             "type": "string",
-            "example": "mamat"
+            "example": "Mamat"
           },
           "email": {
             "type": "string",
             "example": "mamat@super.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "$2b$10$U/czqiaR6sIRwuBwZvffQe19dcjFn38dhviVy/Df5jyr2caE16JBa"
           },
           "phone": {
             "type": "string",
@@ -846,24 +760,66 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time",
             "example": "2023-10-22T11:55:55.509Z"
           },
           "updatedAt": {
-            "type": "string"
+            "type": "string",
+            "example": "2023-10-22T11:55:55.509Z"
+          },
+          "accessToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2YjU3Nzk0LTkzMmMtNDk1MS1iODUyLTY0NWE0Mjk2ODc2OCIsImlhdCI6MTY5ODEzNzM2Mn0.60zyldiVnxD0aMSskalpSti3V-65uYELa3vQfFZmmz4"
           }
         }
       },
-      "Admin": {
+
+      "ResUserMember": {
         "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "example": "Registered Success"
+          },
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/DataUserMember"
+          }
+        }
+      },
+
+      "ResUserAdmin": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "example": "Registered Success"
+          },
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/DataUser"
+          }
+        }
+      },
+
+      "RegisterAdmin": {
+        "type": "object",
+        "required": ["username", "email", "password"],
         "properties": {
           "username": {
             "type": "string",
-            "example": "bob"
+            "example": "Bob"
           },
           "email": {
             "type": "string",
-            "example": "bob123@mail.com"
+            "example": "bob@mail.com"
           },
           "password": {
             "type": "string",
@@ -871,28 +827,26 @@
           },
           "phone": {
             "type": "string",
-            "example": "082100102009"
-          },
-          "role": {
-            "type": "string",
-            "example": "ADMIN"
+            "example": "089089631221"
           },
           "address": {
             "type": "string",
-            "example": "Jalan Pepaya 4"
+            "example": "Jalan Bambu Kuning No 80"
           }
         }
       },
-      "User": {
+
+      "RegisterMember": {
         "type": "object",
+        "required": ["username", "email", "password"],
         "properties": {
           "username": {
             "type": "string",
-            "example": "volk"
+            "example": "Volkanovski"
           },
           "email": {
             "type": "string",
-            "example": "volk123@mail.com"
+            "example": "volk30@mail.com"
           },
           "password": {
             "type": "string",
@@ -900,7 +854,37 @@
           },
           "phone": {
             "type": "string",
-            "example": "082100102009"
+            "example": "089089631221"
+          },
+          "address": {
+            "type": "string",
+            "example": "Jalan Bambu Kuning No 80"
+          }
+        }
+      },
+
+      "DataUserMember": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "a60fd7fd-e02d-451a-805f-14bd803f16c9"
+          },
+          "username": {
+            "type": "string",
+            "example": "Volkanovski"
+          },
+          "email": {
+            "type": "string",
+            "example": "volk30@mail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "$2b$10$U/czqiaR6sIRwuBwZvffQe19dcjFn38dhviVy/Df5jyr2caE16JBa"
+          },
+          "phone": {
+            "type": "string",
+            "example": "089089631221"
           },
           "role": {
             "type": "string",
@@ -908,54 +892,20 @@
           },
           "address": {
             "type": "string",
-            "example": "Jalan Pepaya 4"
-          }
-        }
-      },
-      "resRegUser": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "c6b57794-932c-4951-b852-645a42968768"
-          },
-          "username": {
-            "type": "string",
-            "example": "volk"
-          },
-          "email": {
-            "type": "string",
-            "example": "volk123@mail.com"
-          },
-          "password": {
-            "type": "string",
-            "example": "$2b$10$FvfBmeEzq/C.FrEHBfB15.oOCWRlzXdV/TLDxMu8vYGt2z7DhX3EO"
-          },
-          "phone": {
-            "type": "string",
-            "example": "082100102009"
-          },
-          "role": {
-            "type": "string",
-            "example": "MEMBER"
-          },
-          "address": {
-            "type": "string",
-            "example": "Jalan Pepaya 4"
+            "example": "Jalan Bambu Kuning No 80"
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time",
             "example": "2023-10-22T11:55:55.509Z"
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time",
             "example": "2023-10-22T11:55:55.509Z"
           }
         }
       },
-      "resRegAdmin": {
+
+      "DataUser": {
         "type": "object",
         "properties": {
           "id": {
@@ -964,19 +914,19 @@
           },
           "username": {
             "type": "string",
-            "example": "bob"
+            "example": "Bob"
           },
           "email": {
             "type": "string",
-            "example": "bob123@mail.com"
+            "example": "bob@mail.com"
           },
           "password": {
             "type": "string",
-            "example": "$2b$10$FvfBmeEzq/C.FrEHBfB15.oOCWRlzXdV/TLDxMu8vYGt2z7DhX3EO"
+            "example": "$2b$10$U/czqiaR6sIRwuBwZvffQe19dcjFn38dhviVy/Df5jyr2caE16JBa"
           },
           "phone": {
             "type": "string",
-            "example": "082100102009"
+            "example": "089089631221"
           },
           "role": {
             "type": "string",
@@ -984,73 +934,25 @@
           },
           "address": {
             "type": "string",
-            "example": "Jalan Pepaya 4"
+            "example": "Jalan Bambu Kuning No 80"
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time",
             "example": "2023-10-22T11:55:55.509Z"
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time",
             "example": "2023-10-22T11:55:55.509Z"
           }
         }
       },
-      "login": {
+
+      "DeleteCar": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "example": "c6b57794-932c-4951-b852-645a42968768"
-          },
-          "username": {
-            "type": "string",
-            "example": "bob"
-          },
-          "email": {
-            "type": "string",
-            "example": "bob123@mail.com"
-          },
-          "password": {
-            "type": "string",
-            "example": "$2b$10$FvfBmeEzq/C.FrEHBfB15.oOCWRlzXdV/TLDxMu8vYGt2z7DhX3EO"
-          },
-          "phone": {
-            "type": "string",
-            "example": "082100102009"
-          },
-          "role": {
-            "type": "string",
-            "example": "ADMIN"
-          },
-          "address": {
-            "type": "string",
-            "example": "Jalan Pepaya 4"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2023-10-22T11:55:55.509Z"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2023-10-22T11:55:55.509Z"
-          },
-          "accessToken": {
-            "type": "string",
-            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2YjU3Nzk0LTkzMmMtNDk1MS1iODUyLTY0NWE0Mjk2ODc2OCIsImlhdCI6MTY5ODA0MzQwOH0.M2HR4xlzco6CRmWPJuwdPDfxnB76ew774l_rxR_vPds"
-          }
-        }
-      },
-      "resGetDetail": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "c1c40a4e-8866-4f51-a5f4-65c984ec0184"
+            "example": "998b618b-158c-4378-96cc-854b9e66626e"
           },
           "name": {
             "type": "string",
@@ -1062,93 +964,11 @@
           },
           "image": {
             "type": "string",
-            "format": "url",
             "example": "https://unsplash.com/photos/RzgGMz2kU94"
           },
           "capacity": {
             "type": "integer",
             "example": 2
-          },
-          "rentPerDay": {
-            "type": "integer",
-            "example": 8500000
-          },
-          "description": {
-            "type": "string",
-            "example": "Exotic car from English"
-          },
-          "availableAt": {
-            "type": "string",
-            "format": "date",
-            "example": "2023-12-21"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2023-10-23T06:53:46.096Z"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2023-10-23T06:53:46.096Z"
-          },
-          "deletedAt": {
-            "type": "string",
-            "example": "null"
-          },
-          "createdCarBy": {
-            "$ref": "#/components/schemas/dataUser"
-          },
-          "updatedCarBy": {
-            "$ref": "#/components/schemas/Car"
-          },
-          "deletedCarBy": {
-            "type": "object",
-            "example": null
-          }
-        }
-      },
-      "updateCar": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "example": "Aston Martin"
-          },
-          "capacity": {
-            "type": "integer",
-            "example": 8
-          },
-          "description": {
-            "type": "string",
-            "example": "this is an exotic car from England"
-          },
-          "availableAt": {
-            "type": "string",
-            "format": "date",
-            "example": "2024-11-2"
-          }
-        }
-      },
-      "resUpdateCar": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "example": "Aston Martin"
-          },
-          "type": {
-            "type": "string",
-            "example": "small"
-          },
-          "image": {
-            "type": "string",
-            "format": "url",
-            "example": "https://unsplash.com/photos/suCv48kiXnY"
-          },
-          "capacity": {
-            "type": "integer",
-            "example": 8
           },
           "rentPerDay": {
             "type": "integer",
@@ -1156,12 +976,11 @@
           },
           "description": {
             "type": "string",
-            "example": "this is an exotic car from England"
+            "example": "Exotic car from English"
           },
           "availableAt": {
             "type": "string",
-            "format": "date",
-            "example": "2024-11-2"
+            "example": "2023-12-21"
           },
           "createdBy": {
             "type": "string",
@@ -1169,35 +988,159 @@
           },
           "updatedBy": {
             "type": "string",
-            "example": "c6b57794-932c-4951-b852-645a42968768"
+            "example": null
           },
           "deletedBy": {
-            "type": "string",
-            "example": "null"
+            "type": ["string", "null"],
+            "example": "8682ee67-3f33-48a2-a77d-aec05e90a5e0"
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time",
-            "example": "2023-10-21T11:33:17.112Z"
+            "example": "2023-10-23T15:23:13.962Z"
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time",
-            "example": "2023-10-23T08:50:54.474Z"
+            "example": "2023-10-23T15:23:13.962Z"
           },
           "deletedAt": {
             "type": "string",
-            "example": "null"
+            "example": "2023-10-23T15:23:13.962Z"
           }
         }
       },
-      "deletedCar": {
+
+      "ResDeletedCar": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "example": "deleted car success"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteCar"
+            }
+          }
+        }
+      },
+
+      "UpdateCar": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "example": "2dde2171-4e2d-4eb3-b9a1-be41bbe82986"
+            "example": "998b618b-158c-4378-96cc-854b9e66626e"
           },
+          "name": {
+            "type": "string",
+            "example": "Aston Martin"
+          },
+          "type": {
+            "type": "string",
+            "example": "small"
+          },
+          "image": {
+            "type": "string",
+            "example": "https://unsplash.com/photos/RzgGMz2kU94"
+          },
+          "capacity": {
+            "type": "integer",
+            "example": 8
+          },
+          "rentPerDay": {
+            "type": "integer",
+            "example": 8500000
+          },
+          "description": {
+            "type": "string",
+            "example": "Exotic car from English"
+          },
+          "availableAt": {
+            "type": "string",
+            "example": "2023-12-21"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "8682ee67-3f33-48a2-a77d-aec05e90a5e0"
+          },
+          "updatedBy": {
+            "type": "string",
+            "example": "8682ee67-3f33-48a2-a77d-aec05e90a5e0"
+          },
+          "deletedBy": {
+            "type": ["string", "null"],
+            "example": null
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2023-10-23T15:23:13.962Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2023-10-23T15:23:13.962Z"
+          },
+          "deletedAt": {
+            "type": ["string", "null"],
+            "example": null
+          }
+        }
+      },
+
+      "ResUpdateCar": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "example": "updated car success"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateCar"
+            }
+          }
+        }
+      },
+
+      "ResCreateCar": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "SUCCESS"
+          },
+          "message": {
+            "type": "string",
+            "example": "Created Successfully"
+          },
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/DataCarCreate"
+          }
+        }
+      },
+
+      "CreateCar": {
+        "type": "object",
+        "required": [
+          "name",
+          "type",
+          "image",
+          "capacity",
+          "rentPerDay",
+          "description",
+          "availableAt"
+        ],
+        "properties": {
           "name": {
             "type": "string",
             "example": "Mclaren"
@@ -1208,7 +1151,6 @@
           },
           "image": {
             "type": "string",
-            "format": "url",
             "example": "https://unsplash.com/photos/RzgGMz2kU94"
           },
           "capacity": {
@@ -1225,165 +1167,233 @@
           },
           "availableAt": {
             "type": "string",
-            "format": "date",
             "example": "2023-12-21"
-          },
-          "createdBy": {
+          }
+        }
+      },
+
+      "DataCarCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
             "type": "string",
-            "example": "c6b57794-932c-4951-b852-645a42968768"
+            "example": "998b618b-158c-4378-96cc-854b9e66626e"
           },
-          "updatedBy": {
+          "name": {
             "type": "string",
-            "example": "null"
+            "example": "Mclaren"
           },
-          "deletedBy": {
+          "type": {
             "type": "string",
-            "example": "c6b57794-932c-4951-b852-645a42968768"
+            "example": "small"
+          },
+          "image": {
+            "type": "string",
+            "example": "https://unsplash.com/photos/RzgGMz2kU94"
+          },
+          "capacity": {
+            "type": "integer",
+            "example": 2
+          },
+          "rentPerDay": {
+            "type": "integer",
+            "example": 8500000
+          },
+          "description": {
+            "type": "string",
+            "example": "Exotic car from English"
+          },
+          "availableAt": {
+            "type": "string",
+            "example": "2023-12-21"
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time",
-            "example": "2023-10-22T23:37:35.808Z"
+            "example": "2023-10-22T13:44:22.634Z"
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time",
-            "example": "2023-10-23T08:25:46.385Z"
+            "example": "2023-10-22T13:44:22.634Z"
           },
           "deletedAt": {
             "type": "string",
-            "format": "date-time",
-            "example": "2023-10-23T08:25:46.377Z"
+            "example": null
+          },
+          "createdCarBy": {
+            "type": "object",
+            "example": null
+          },
+          "updatedCarBy": {
+            "type": "object",
+            "example": null
+          },
+          "deletedCarBy": {
+            "type": "object",
+            "example": null
           }
         }
       },
-      "forbidden": {
+
+      "DataCarDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "998b618b-158c-4378-96cc-854b9e66626e"
+          },
+          "name": {
+            "type": "string",
+            "example": "Mclaren"
+          },
+          "type": {
+            "type": "string",
+            "example": "small"
+          },
+          "image": {
+            "type": "string",
+            "example": "https://unsplash.com/photos/RzgGMz2kU94"
+          },
+          "capacity": {
+            "type": "integer",
+            "example": 2
+          },
+          "rentPerDay": {
+            "type": "integer",
+            "example": 8500000
+          },
+          "description": {
+            "type": "string",
+            "example": "Exotic car from English"
+          },
+          "availableAt": {
+            "type": "string",
+            "example": "2023-12-21"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2023-10-22T13:44:22.634Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2023-10-22T13:44:22.634Z"
+          },
+          "deletedAt": {
+            "type": "string",
+            "example": null
+          },
+          "createdCarBy": {
+            "type": "object",
+            "$ref": "#/components/schemas/DataUser"
+          },
+          "updatedCarBy": {
+            "type": "object",
+            "$ref": "#/components/schemas/DataUser"
+          },
+          "deletedCarBy": {
+            "type": "object",
+            "$ref": "#/components/schemas/DataUser"
+          }
+        }
+      },
+
+      "DetailCar": {
         "type": "object",
         "properties": {
           "status": {
             "type": "string",
-            "example": "FORBIDDEN"
+            "example": "SUCCESS"
           },
           "message": {
             "type": "string",
-            "example": "user cannot access"
+            "example": "get car success"
+          },
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/DataCarDetail"
           }
         }
       },
-      "Unauthorize": {
+
+      "ListCars": {
         "type": "object",
         "properties": {
           "status": {
             "type": "string",
-            "example": "FAIL"
+            "example": "SUCCESS"
           },
           "message": {
             "type": "string",
-            "example": "Unauthorize"
+            "example": "get list cars success"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/dataCar"
+            }
           }
         }
       },
-      "notFoundUser": {
+
+      "dataCar": {
         "type": "object",
         "properties": {
-          "status": {
+          "id": {
             "type": "string",
-            "example": "FAIL"
+            "example": "207716df-7cbe-41f0-8321-7ed021b7c148"
           },
-          "message": {
+          "name": {
             "type": "string",
-            "example": "user not found"
-          }
-        }
-      },
-      "internalServerError": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "example": "FAIL"
+            "example": "Mclaren"
           },
-          "message": {
+          "type": {
             "type": "string",
-            "example": "Internal Server Error"
-          }
-        }
-      },
-      "badRequest": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "example": "FAIL"
+            "example": "small"
           },
-          "message": {
-            "type": "string",
-            "example": "Bad Request"
-          }
-        }
-      },
-      "notNullError": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "example": "FORBIDDEN"
+          "capacity": {
+            "type": "integer",
+            "example": 2
           },
-          "message": {
-            "type": "string",
-            "example": "Created Fail, not null Violation"
-          }
-        }
-      },
-      "carNotFoundError": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "example": "FAIL"
+          "renPerDay": {
+            "type": "integer",
+            "example": 9000000
           },
-          "message": {
+          "description": {
             "type": "string",
-            "example": "Fail, car not found"
+            "example": "best Car in the world"
+          },
+          "availableAt": {
+            "type": "string",
+            "example": "2023-11-23"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2023-10-21T11:33:17.112Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2023-10-21T11:33:17.112Z"
           }
         }
       }
     },
-    "requestBodies": {
-      "Pet": {
-        "description": "Pet object that needs to be added to the store",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Car"
-            }
-          },
-          "application/xml": {
-            "schema": {
-              "$ref": "#/components/schemas/Car"
-            }
-          }
-        }
-      },
-      "UserArray": {
-        "description": "List of user object",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          }
-        }
-      }
-    },
+
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT"
+      },
+      "petstore_auth": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          }
+        }
       },
       "api_key": {
         "type": "apiKey",
