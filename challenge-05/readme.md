@@ -68,6 +68,6 @@ password: 'mamat123',
 
 ## Documentation API
 
-```JSON
+```
 LINK: http://localhost:8001/api/v1/api-docs/
 ```
