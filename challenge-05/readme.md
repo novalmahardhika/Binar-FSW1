@@ -52,7 +52,7 @@ Welcome to my Binar Challenge chapter 5 about create Resful Api Using Express.js
 
 ## SUPERADMIN
 
-```JSON
+```
 email: 'basel@super.com'
 password: basel123
 
