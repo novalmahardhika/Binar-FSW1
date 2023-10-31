@@ -26,9 +26,11 @@ const itemNav: { href: string; text: string }[] = [
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  isOpen
-    ? (document.body.style.overflow = 'hidden')
-    : (document.body.style.overflow = 'auto')
+  if (typeof window !== 'undefined') {
+    isOpen
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'auto')
+  }
 
   return (
     <div
