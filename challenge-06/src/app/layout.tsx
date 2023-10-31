@@ -20,7 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${inter.className} max-w-[1440px] mx-auto`}>
+      <body
+        suppressHydrationWarning={true}
+        className={`${inter.className} max-w-[1440px] mx-auto`}
+      >
         <Header />
 
         {children}

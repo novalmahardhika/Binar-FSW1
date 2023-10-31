@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className='bg-indigo-50 grid md:grid-cols-2 grid-cols-1 '>
       <div className='max-w-xl flex flex-col space-y-4 justify-center mx-4 lg:ml-32 mt-[90px]  lg:mt-24 md:mb-4'>
-        <h1 className='text-3xl xl:text-4xl font-bold'>
+        <h1 className='text-2xl xl:text-4xl font-bold'>
           Sewa & Rental Mobil Terbaik di kawasan Tangerang
         </h1>
         <p className='text-sm max-w-[468px]'>
