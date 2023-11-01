@@ -44,7 +44,7 @@ export const WhyUs = () => {
   ]
 
   return (
-    <section className='lg:px-32 mt-[100px] p-4'>
+    <section className='lg:px-32 mt-[60px] md:mt-[100px] p-4'>
       <h2 className='title'>Why Us?</h2>
       <p className='text-sm mb-6 md:mb-[40px]'>
         Mengapa harus memilih Binar Car Rental?

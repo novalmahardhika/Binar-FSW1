@@ -31,7 +31,7 @@ export const Service = () => {
         />
       </div>
 
-      <div className='ml-6 md:max-w-[468px]  flex flex-col justify-center items-center'>
+      <div className='md:ml-6 md:max-w-[468px]  flex flex-col justify-center items-center'>
         <h2 className='title lg:mb-6 text-center md:text-start mt-6 md:mt-0'>
           Best Car Rental for any kind of trip in Tangerang!
         </h2>
