@@ -1,48 +1,44 @@
 import Image from 'next/image'
 import React, { ReactNode } from 'react'
 
-export const WhyUs = () => {
-  const items: { icon: ReactNode; title: string; text: string }[] = [
-    {
-      icon: (
-        <Image
-          src='/icon_complete.svg'
-          width={32}
-          height={32}
-          alt='ic-complete'
-        />
-      ),
-      title: 'Mobil Lengkap',
-      text: 'Tersedia banyak pilihan mobil, kondisi masih baru, bersih dan terawat',
-    },
-    {
-      icon: (
-        <Image src='/icon_price.svg' width={32} height={32} alt='ic-price' />
-      ),
-      title: 'Harga Murah',
-      text: 'Harga murah dan bersaing, bisa bandingkan harga kami dengan rental mobil lain',
-    },
-    {
-      icon: (
-        <Image src='/icon_24hrs.svg' width={32} height={32} alt='ic-24hr' />
-      ),
-      title: 'Layanan 24 Jam',
-      text: 'Siap melayani kebutuhan Anda selama 24 jam nonstop. Kami juga tersedia di akhir minggu',
-    },
-    {
-      icon: (
-        <Image
-          src='/icon_professional.svg'
-          width={32}
-          height={32}
-          alt='ic-profesional'
-        />
-      ),
-      title: 'Sopir Profesional',
-      text: 'Sopir yang profesional, berpengalaman, jujur, ramah dan selalu tepat waktu',
-    },
-  ]
+const items: { icon: ReactNode; title: string; text: string }[] = [
+  {
+    icon: (
+      <Image
+        src='/icon_complete.svg'
+        width={32}
+        height={32}
+        alt='ic-complete'
+      />
+    ),
+    title: 'Mobil Lengkap',
+    text: 'Tersedia banyak pilihan mobil, kondisi masih baru, bersih dan terawat',
+  },
+  {
+    icon: <Image src='/icon_price.svg' width={32} height={32} alt='ic-price' />,
+    title: 'Harga Murah',
+    text: 'Harga murah dan bersaing, bisa bandingkan harga kami dengan rental mobil lain',
+  },
+  {
+    icon: <Image src='/icon_24hrs.svg' width={32} height={32} alt='ic-24hr' />,
+    title: 'Layanan 24 Jam',
+    text: 'Siap melayani kebutuhan Anda selama 24 jam nonstop. Kami juga tersedia di akhir minggu',
+  },
+  {
+    icon: (
+      <Image
+        src='/icon_professional.svg'
+        width={32}
+        height={32}
+        alt='ic-profesional'
+      />
+    ),
+    title: 'Sopir Profesional',
+    text: 'Sopir yang profesional, berpengalaman, jujur, ramah dan selalu tepat waktu',
+  },
+]
 
+export default function whyUs() {
   return (
     <section className='lg:px-32 mt-[60px] md:mt-[100px] p-4'>
       <h2 className='title'>Why Us?</h2>

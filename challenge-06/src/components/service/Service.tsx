@@ -19,7 +19,7 @@ const list: { text: string }[] = [
   },
 ]
 
-export const Service = () => {
+export default function Service() {
   return (
     <section className=' grid md:grid-cols-2 grid-cols-1 px-4 lg:px-32 mt-[60px] lg:mt-[100px]'>
       <div className='flex justify-center items-end'>
