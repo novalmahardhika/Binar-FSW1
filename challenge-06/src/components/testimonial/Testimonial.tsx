@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Carousel } from './carousel'
+
+import { Carousel } from './Carousel'
 
 export const Testimonial = () => {
   return (
