@@ -40,7 +40,7 @@ const items: { icon: ReactNode; title: string; text: string }[] = [
 
 export default function whyUs() {
   return (
-    <section className='lg:px-32 mt-[60px] md:mt-[100px] p-4'>
+    <section className='lg:px-32 mt-[60px] md:mt-[100px] p-4' id='why-us'>
       <h2 className='title'>Why Us?</h2>
       <p className='text-sm mb-6 md:mb-[40px]'>
         Mengapa harus memilih Binar Car Rental?

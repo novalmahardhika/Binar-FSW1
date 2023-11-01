@@ -4,19 +4,19 @@ import { Button } from '../ui/button'
 
 const itemNav: { href: string; text: string }[] = [
   {
-    href: '/',
+    href: '#service',
     text: 'Our Services',
   },
   {
-    href: '/',
+    href: '#why-us',
     text: 'Why Us',
   },
   {
-    href: '/',
+    href: '#testimonial',
     text: 'Testimonial',
   },
   {
-    href: '/',
+    href: '#faq',
     text: 'FAQ',
   },
 ]
