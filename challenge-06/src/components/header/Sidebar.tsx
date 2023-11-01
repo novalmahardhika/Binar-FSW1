@@ -37,7 +37,7 @@ export default function Sidebar() {
   return (
     <div
       className={`h-screen fixed top-0 right-0 duration-100 bg-blue-800 md:hidden  ${
-        isOpen ? 'w-72' : 'w-0'
+        isOpen ? 'w-72 z-50' : 'w-0'
       }`}
     >
       <Hamburger onClick={() => setIsOpen(!isOpen)} isOpen={isOpen} />

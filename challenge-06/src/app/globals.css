@@ -75,6 +75,18 @@
   }
 }
 
+header {
+  z-index: 1;
+}
+
 .title {
   @apply font-bold text-xl lg:text-2xl mb-4;
+}
+
+.btn-prev {
+  @apply p-1 cursor-pointer;
+}
+
+.btn-next {
+  @apply p-1 cursor-pointer;
 }
