@@ -19,8 +19,8 @@ export const Carousel = () => {
       }}
       navigation={{
         enabled: true,
-        nextEl: '.btn-prev',
-        prevEl: '.btn-next',
+        nextEl: '.btn-next',
+        prevEl: '.btn-prev',
       }}
       modules={[Pagination, Navigation]}
       className='max-w-[832px] mt-10 relative'
