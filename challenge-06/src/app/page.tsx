@@ -1,3 +1,4 @@
+import { Banner } from '@/components/banner/Banner'
 import Hero from '@/components/hero/Hero'
 import { Service } from '@/components/service/Service'
 import { Testimonial } from '@/components/testimonial/Testimonial'
@@ -10,6 +11,7 @@ export default function Home() {
       <Service />
       <WhyUs />
       <Testimonial />
+      <Banner />
     </main>
   )
 }
