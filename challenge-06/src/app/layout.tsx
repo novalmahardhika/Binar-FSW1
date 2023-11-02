@@ -25,7 +25,6 @@ export default function RootLayout({
         className={`${inter.className} max-w-[1440px] mx-auto`}
       >
         <Header />
-
         {children}
         <Footer />
       </body>

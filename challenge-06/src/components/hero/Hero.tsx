@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
 import { Button } from '../ui/button'
+import Link from 'next/link'
 
 export default function Hero() {
   return (
     <section
-      className='bg-indigo-50 grid md:grid-cols-2 grid-cols-1 '
+      className='bg-indigo-50 grid md:grid-cols-2 grid-cols-1 z-10'
       id='hero'
     >
       <div className='max-w-xl flex flex-col space-y-4 justify-center mx-4 lg:ml-32 mt-[90px]  lg:mt-24 md:mb-4'>
@@ -17,10 +18,12 @@ export default function Hero() {
           terbaik dengan harga terjangkau. Selalu siap melayani kebutuhanmu
           untuk sewa mobil selama 24 jam.
         </p>
-        <Button className='max-w-[140px] bg-green-500'>Mulai Sewa Mobil</Button>
+        <Button className='max-w-[140px] bg-green-500'>
+          <Link href='/cars'>Mulai Sewa Mobil</Link>
+        </Button>
       </div>
 
-      <div className='flex items-end justify-end mt-6 md:mt-24 ml-4'>
+      <div className='flex items-end justify-end mt-6 md:mt-24 ml-4 '>
         <Image
           src='/assets/hero_img.png'
           width={704}
