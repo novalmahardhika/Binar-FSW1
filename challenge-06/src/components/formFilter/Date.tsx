@@ -22,7 +22,7 @@ export default function PickDate() {
           width={18}
           height={18}
           alt='ic-calendar'
-          className='mr-[9px]'
+          className='mr-[9px] '
         />
       </div>
 
