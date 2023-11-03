@@ -38,7 +38,7 @@ export default function Sidebar() {
     <>
       {/* sidebar */}
       <aside
-        className={`h-screen fixed top-0 right-0 duration-100 bg-blue-800 md:hidden z-50 ${
+        className={`h-screen fixed top-0 right-0 duration-100 bg-white md:hidden z-50 ${
           isOpen ? 'w-64 sm:w-72 ' : 'w-0'
         }`}
       >
