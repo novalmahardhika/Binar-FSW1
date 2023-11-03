@@ -35,34 +35,44 @@ export default function Sidebar() {
   }
 
   return (
-    <div
-      className={`h-screen fixed top-0 right-0 duration-100 bg-blue-800 md:hidden  ${
-        isOpen ? 'w-72 z-50' : 'w-0'
-      }`}
-    >
-      <Hamburger onClick={() => setIsOpen(!isOpen)} isOpen={isOpen} />
+    <>
+      {/* sidebar */}
+      <aside
+        className={`h-screen fixed top-0 right-0 duration-100 bg-blue-800 md:hidden z-50 ${
+          isOpen ? 'w-64 sm:w-72 ' : 'w-0'
+        }`}
+      >
+        <Hamburger onClick={() => setIsOpen(!isOpen)} isOpen={isOpen} />
 
-      <div className='mt-8 h-full ml-4'>
-        <Link href='/' className='font-bold'>
-          BCR
-        </Link>
+        <div className='mt-8 h-full ml-4'>
+          <Link href='/' className='font-bold'>
+            BCR
+          </Link>
 
-        <div className='flex flex-col mb-4'>
-          {itemNav.map((item, index) => (
-            <Link
-              style={{ transitionDelay: isOpen ? index * 150 + 'ms' : '0ms' }}
-              key={index}
-              href={item.href}
-              className={`${
-                isOpen ? 'opacity-100 duration-1000' : 'opacity-0'
-              } mt-4 `}
-            >
-              {item.text}
-            </Link>
-          ))}
-          <Button className='bg-green-500 w-20 mt-4 h-8'>Register</Button>
+          <div className='flex flex-col mb-4'>
+            {itemNav.map((item, index) => (
+              <Link
+                style={{ transitionDelay: isOpen ? index * 150 + 'ms' : '0ms' }}
+                key={index}
+                href={item.href}
+                className={`${
+                  isOpen ? 'opacity-100 duration-1000' : 'opacity-0'
+                } mt-4 `}
+              >
+                {item.text}
+              </Link>
+            ))}
+            <Button className='bg-green-500 w-20 mt-4 h-8'>Register</Button>
+          </div>
         </div>
-      </div>
-    </div>
+      </aside>
+
+      {/* modal */}
+      <div
+        className={`${
+          isOpen ? 'block' : 'hidden'
+        }  absolute bg-black/70 inset-0 -z-10  h-screen md:hidden`}
+      ></div>
+    </>
   )
 }

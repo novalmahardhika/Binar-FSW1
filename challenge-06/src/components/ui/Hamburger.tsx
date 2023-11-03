@@ -9,7 +9,7 @@ export default function Hamburger({ isOpen, onClick }: HamburgerType) {
   return (
     <div
       onClick={onClick}
-      className={`flex flex-col space-y-1.5 duration-50 md:hidden z-10 fixed mt-8 top-0 right-0 mr-4 ${
+      className={`flex flex-col space-y-1.5 duration-50 md:hidden z-50 fixed mt-8 top-0 right-0 mr-4 ${
         isOpen ? 'rotate-180' : ''
       }`}
     >
