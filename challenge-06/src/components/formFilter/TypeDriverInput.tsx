@@ -32,7 +32,7 @@ export default function TypeDriverInput() {
       <div
         className={`${
           isOpen ? ' flex' : ' hidden'
-        }  flex-col absolute duration-300 top-16  border w-full`}
+        }  flex-col absolute duration-300 top-16  border w-full z-10`}
       >
         <InputButton
           id='typeDriver'

@@ -1,13 +1,11 @@
-'use client'
-
 import { Calendar } from '@/components/ui/calendar'
 import { useEffect, useRef, useState } from 'react'
 import InputButton from '../ui/InputButton'
 import Image from 'next/image'
 
-export function PickDate() {
+export default function PickDate() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [date, setDate] = useState<Date | undefined>(new Date())
+  const [date, setDate] = useState<Date | undefined>(undefined)
 
   const value = date?.toDateString()
 
