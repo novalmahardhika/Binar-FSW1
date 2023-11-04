@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import InputButton from '../ui/InputButton'
 import Image from 'next/image'
+import { CarContext, useCarContext } from '@/context/CarProvider'
 
 export default function TypeDriverInput() {
   const [isOpen, setIsOpen] = useState<boolean>(false)

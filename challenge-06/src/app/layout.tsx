@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/header/Header'
 import Footer from '@/components/footer/Footer'
+import CarProvider from '@/context/CarProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,9 +25,11 @@ export default function RootLayout({
         suppressHydrationWarning={true}
         className={`${inter.className} max-w-[1440px] mx-auto`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <CarProvider>
+          <Header />
+          {children}
+          <Footer />
+        </CarProvider>
       </body>
     </html>
   )

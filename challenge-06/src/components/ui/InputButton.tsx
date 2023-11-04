@@ -1,11 +1,11 @@
-import React, { ChangeEvent, SyntheticEvent } from 'react'
+import React, { ChangeEvent, MouseEvent, SyntheticEvent } from 'react'
 
 type InputButtonType = {
   id: string
   className?: string
   value: string
   variantType?: string
-  onClick?: () => void
+  onClick?: (e: any | null) => void
 }
 
 export default function InputButton({

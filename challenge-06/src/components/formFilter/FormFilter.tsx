@@ -6,12 +6,36 @@ import PickDate from './Date'
 import TimeInput from './TimeInput'
 import Capacity from './Capacity'
 import { Button } from '../ui/button'
+import { useCarContext } from '@/context/CarProvider'
 
 export default function FormFilter() {
+  const { isValue, cars, setFilterCars, filterCars } = useCarContext()
   const [isModal, setIsModal] = useState<boolean>(false)
 
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const mergeDate = new Date(
+      `${isValue.date?.toISOString().slice(0, 10)} ${isValue.time}`
+    )
+    const pickDate = mergeDate.getTime()
+    const capacity = +isValue.capacity
+
+    const filter = cars?.filter(
+      (car) =>
+        car.available &&
+        new Date(car.availableAt).getTime() >= pickDate &&
+        car.capacity >= capacity
+    )
+
+    setFilterCars(filter)
+    console.log(filter)
+
+    // setIsValue({
+    //   typeDriver: 'Pilih Tipe Driver',
+    //   date: undefined,
+    //   time: 'Pilih Waktu',
+    //   capacity: '',
+    // })
 
     setIsModal(false)
   }

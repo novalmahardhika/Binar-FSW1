@@ -2,12 +2,12 @@ import { Calendar } from '@/components/ui/calendar'
 import { useEffect, useRef, useState } from 'react'
 import InputButton from '../ui/InputButton'
 import Image from 'next/image'
+import { useCarContext } from '@/context/CarProvider'
 
 export default function PickDate() {
+  const { isValue, setIsValue } = useCarContext()
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [date, setDate] = useState<Date | undefined>(undefined)
-
-  const value = date?.toDateString()
+  const value = isValue.date?.toLocaleString()
 
   return (
     <>
@@ -28,8 +28,8 @@ export default function PickDate() {
 
       <Calendar
         mode='single'
-        selected={date}
-        onSelect={setDate}
+        selected={isValue.date}
+        onSelect={(e) => setIsValue((prev) => ({ ...prev, date: e }))}
         className={`${
           isOpen ? '' : 'hidden'
         }  absolute rounded-md border shadow bg-white top-16  -right-[18px] md:-right-9 z-10 `}

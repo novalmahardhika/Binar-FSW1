@@ -1,12 +1,19 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { MouseEvent, useState } from 'react'
 import InputButton from '../ui/InputButton'
 import Image from 'next/image'
+import { useCarContext } from '@/context/CarProvider'
 
 const times: string[] = ['08:00', '09:00', '10:00', '11:00', '12:00']
 
 export default function TimeInput() {
+  const { isValue, setIsValue } = useCarContext()
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [isValue, setIsValue] = useState<string>('Pilih Waktu')
+
+  const onClickHandler = (e: MouseEvent<HTMLElement>) => {
+    const input = (e.target as HTMLInputElement).value
+
+    setIsValue((prev) => ({ ...prev, time: input }))
+  }
 
   return (
     <>
@@ -15,7 +22,7 @@ export default function TimeInput() {
         className='flex border rounded-[1px] cursor-pointer'
         onClick={() => setIsOpen(!isOpen)}
       >
-        <InputButton id='time' value={isValue} />
+        <InputButton id='time' value={isValue.time} />
         <Image
           src='/ic_clock.svg'
           width={18}
@@ -35,9 +42,7 @@ export default function TimeInput() {
               id='time'
               variantType='item'
               value={time}
-              onClick={() => {
-                setIsValue(time), setIsOpen(false)
-              }}
+              onClick={onClickHandler}
             />
           ))}
         </div>
