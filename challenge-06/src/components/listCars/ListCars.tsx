@@ -9,12 +9,10 @@ import IconCard from './IconCard'
 export default function ListCars() {
   const { filterCars, isValue } = useCarContext()
 
-  console.log(isValue.isEmpty)
-
   if (isValue.isEmpty)
     return (
-      <h1 className='text-4xl bg-red-200 max-w-[1440px] rounded-md mt-20 text-red-500 p-2 font-bold text-center'>
-        Cars is Empty, please take another filter !
+      <h1 className='text-3xl bg-red-200 max-w-[1440px] rounded-md mt-20 text-red-500 p-2 font-semibold text-center'>
+        Cars is Empty, please input another filter !
       </h1>
     )
 

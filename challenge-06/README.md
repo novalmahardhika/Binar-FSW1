@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Binar-FullStack Web Development 1
+
+Hello welcome to my repo,This repository about Challenge in Binar Academy. this repo is about chapter challenge 6, which is we should create a website using React/Next.js. this is an opportunity for me to learn skills more deeply, that's why I use some of the stacks below/
+
+## TechStack so far
+
+- [`Next js`](https://nextjs.org/)
+
+  > Next.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.
+
+- [`Tailwind CSS`](https://tailwindcss.com/)
+
+  > Tailwind CSS works by scanning all of your HTML files, JavaScript components, and any other templates for class names, generating the corresponding styles and then writing them to a static CSS file.
+
+- [`Swiper js`](https://swiperjs.com/)
+
+  > Swiper is the most modern free and open source mobile touch slider with hardware accelerated transitions and amazing native behavior. Use it on websites, web apps, and mobile native/hybrid apps.
+
+- [`Shadcn ui`](https://ui.shadcn.com/)
+
+  > Re-usable components built using Radix UI and Tailwind CSS. This is NOT a component library. It's a collection of re-usable components that you can copy and paste into your apps.
+
+## Tools
+
+- [`vsCode (Code Editor)`](https://code.visualstudio.com/)
+
+  > Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications.
+
+- [`GIT (Version Control)`](https://git-scm.com/)
+
+  > Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+
+- [`Typescript (TSX)`](https://www.typescriptlang.org/docs/handbook/jsx.html)
+
+  > TypeScript ships with three JSX modes: preserve, react, and react-native. These modes only affect the emit stage - type checking is unaffected. The preserve mode will keep the JSX as part of the output to be further consumed by another transform step (e.g. Babel).
 
 ## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. npm i
+2. npm run dev
+3. Open http://localhost:3000 with your browser to see the result.
+4. if the button cannot click/active, refresh page and wait next js to compiling.
+```
