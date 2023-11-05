@@ -12,7 +12,9 @@ export default function Banner() {
         tempor incididunt ut labore et dolore magna aliqua.{' '}
       </p>
 
-      <Button className='bg-green-600'>Mulai Sewa Mobil</Button>
+      <Button className='bg-green-500 hover:bg-green-600'>
+        Mulai Sewa Mobil
+      </Button>
     </section>
   )
 }

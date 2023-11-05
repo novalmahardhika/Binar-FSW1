@@ -1,3 +1,4 @@
+import { rp } from '@/lib/rupiahFormat'
 import React from 'react'
 
 type PropsType = {
@@ -13,7 +14,7 @@ export default function ContentCars({ car }: { car: PropsType }) {
       <p className='font-semibold'>
         {car.manufacture}/<span>{car.type}</span>
       </p>
-      <h6 className='text-base font-bold'>Rp.{car.rentPerDay}</h6>
+      <h6 className='text-base font-bold'>{rp(car.rentPerDay)}</h6>
       <p>{car.description}</p>
     </div>
   )

@@ -3,9 +3,17 @@ import InputButton from '../ui/InputButton'
 import Image from 'next/image'
 import { CarContext, useCarContext } from '@/context/CarProvider'
 
+const items = ['Dengan Sopir', 'Tanpa Sopir (Lepas Kunci)']
+
 export default function TypeDriverInput() {
+  const { isValue, setIsValue } = useCarContext()
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [isValue, setIsValue] = useState<string>('Pilih Tipe Driver')
+
+  const clickHandler = (e: any) => {
+    setIsValue((prev) => ({ ...prev, typeDriver: e.target.value }))
+
+    setIsOpen(false)
+  }
 
   return (
     <>
@@ -17,7 +25,10 @@ export default function TypeDriverInput() {
         className='flex border rounded-[1px] cursor-pointer'
         onClick={() => setIsOpen(!isOpen)}
       >
-        <InputButton id='typeDriver' value={isValue} />
+        <InputButton
+          id='typeDriver'
+          value={isValue.typeDriver || 'Pilih Tipe Driver'}
+        />
         <Image
           src='/ic_dropArrow.svg'
           width={18}
@@ -35,23 +46,15 @@ export default function TypeDriverInput() {
           isOpen ? ' flex' : ' hidden'
         }  flex-col absolute duration-300 top-16  border w-full z-10`}
       >
-        <InputButton
-          id='typeDriver'
-          value='Dengan Sopir'
-          variantType='item'
-          onClick={() => {
-            setIsValue('Dengan Sopir'), setIsOpen(false)
-          }}
-        />
-
-        <InputButton
-          id='typeDriver'
-          value='Tanpa Sopir (Lepas Kunci)'
-          variantType='item'
-          onClick={() => {
-            setIsValue('Tanpa Sopir (Lepas Kunci)'), setIsOpen(false)
-          }}
-        />
+        {items.map((item, index) => (
+          <InputButton
+            key={`typeDriver=${index}`}
+            id='typeDriver'
+            variantType='item'
+            value={item}
+            onClick={clickHandler}
+          />
+        ))}
       </div>
     </>
   )

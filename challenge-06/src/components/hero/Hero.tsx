@@ -18,7 +18,7 @@ export default function Hero() {
           terbaik dengan harga terjangkau. Selalu siap melayani kebutuhanmu
           untuk sewa mobil selama 24 jam.
         </p>
-        <Button className='max-w-[140px] bg-green-500  hover:bg-green-600'>
+        <Button className='max-w-[140px] bg-green-500 hover:bg-green-600'>
           <Link href='/cars'>Mulai Sewa Mobil</Link>
         </Button>
       </div>

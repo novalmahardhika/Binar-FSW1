@@ -14,6 +14,15 @@ export default function FormFilter() {
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    if (
+      isValue.typeDriver === 'Pilih Tipe Driver' ||
+      isValue.time === 'Pilih Waktu' ||
+      isValue.date === undefined
+    ) {
+      return
+    }
+
     const mergeDate = new Date(
       `${isValue.date?.toISOString().slice(0, 10)} ${isValue.time}`
     )

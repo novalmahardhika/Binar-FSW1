@@ -10,11 +10,11 @@ export default function ListCars() {
   const { filterCars } = useCarContext()
 
   return (
-    <div className='px-4 pt-20 md:px-[128px] mx-auto w-full  grid md:grid-cols-3 md:gap-4 '>
+    <div className='px-4 pt-[350px] sm:pt-[200px] md:pt-48 lg:pt-20 lg:px-[128px] mx-auto w-full  grid md:grid-cols-2 lg:grid-cols-3 gap-4 '>
       {filterCars?.map((car: any) => (
         <div
           key={car.id}
-          className='border bg-white p-6 text-sm flex flex-col space-y-4 justify-between form-shadow rounded-md'
+          className='border  bg-white p-6 text-sm flex flex-col space-y-4 justify-between form-shadow rounded-md'
         >
           {/* content */}
           <div>
