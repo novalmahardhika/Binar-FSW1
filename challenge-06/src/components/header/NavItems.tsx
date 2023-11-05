@@ -30,7 +30,9 @@ export default function NavItems() {
         </Link>
       ))}
 
-      <Button className='bg-green-500 w-20 h-8'>Register</Button>
+      <Button className='bg-green-500 hover:bg-green-600 w-20 h-8'>
+        Register
+      </Button>
     </div>
   )
 }

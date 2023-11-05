@@ -9,7 +9,7 @@ import { Button } from '../ui/button'
 import { useCarContext } from '@/context/CarProvider'
 
 export default function FormFilter() {
-  const { isValue, cars, setFilterCars, filterCars } = useCarContext()
+  const { isValue, cars, setFilterCars, setIsValue } = useCarContext()
   const [isModal, setIsModal] = useState<boolean>(false)
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
@@ -21,21 +21,21 @@ export default function FormFilter() {
     const capacity = +isValue.capacity
 
     const filter = cars?.filter(
-      (car) =>
+      (car: any) =>
         car.available &&
-        new Date(car.availableAt).getTime() >= pickDate &&
+        new Date(car.availableAt).getTime() <= pickDate &&
         car.capacity >= capacity
     )
 
     setFilterCars(filter)
-    console.log(filter)
 
-    // setIsValue({
-    //   typeDriver: 'Pilih Tipe Driver',
-    //   date: undefined,
-    //   time: 'Pilih Waktu',
-    //   capacity: '',
-    // })
+    setIsValue({
+      typeDriver: 'Pilih Tipe Driver',
+      date: undefined,
+      time: 'Pilih Waktu',
+      capacity: '',
+      isOpen: false,
+    })
 
     setIsModal(false)
   }
@@ -71,7 +71,9 @@ export default function FormFilter() {
 
         {/* button */}
         <div className='flex items-end col-span-2 sm:col-span-full  md:col-span-4 lg:col-span-1'>
-          <Button className='w-full'>Cari Mobil</Button>
+          <Button className='w-full bg-green-500 hover:bg-green-600'>
+            Cari Mobil
+          </Button>
         </div>
       </form>
 

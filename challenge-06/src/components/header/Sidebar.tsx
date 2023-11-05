@@ -62,7 +62,9 @@ export default function Sidebar() {
                 {item.text}
               </Link>
             ))}
-            <Button className='bg-green-500 w-20 mt-4 h-8'>Register</Button>
+            <Button className='bg-green-500 hover:bg-green-600 w-20 mt-4 h-8'>
+              Register
+            </Button>
           </div>
         </div>
       </aside>
