@@ -7,7 +7,16 @@ import ContentCars from './ContentCars'
 import IconCard from './IconCard'
 
 export default function ListCars() {
-  const { filterCars } = useCarContext()
+  const { filterCars, isValue } = useCarContext()
+
+  console.log(isValue.isEmpty)
+
+  if (isValue.isEmpty)
+    return (
+      <h1 className='text-4xl bg-red-200 max-w-[1440px] rounded-md mt-20 text-red-500 p-2 font-bold text-center'>
+        Cars is Empty, please take another filter !
+      </h1>
+    )
 
   return (
     <div className='px-4 pt-[350px] sm:pt-[200px] md:pt-48 lg:pt-20 lg:px-[128px] mx-auto w-full  grid md:grid-cols-2 lg:grid-cols-3 gap-4 '>

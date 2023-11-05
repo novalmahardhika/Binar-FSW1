@@ -31,14 +31,19 @@ type CarStateType = {
   time: string
   capacity: number | string
   isOpen: boolean
+  isEmpty?: boolean
+
+  // isEmpty: boolean
 }
 
 type CarTypeContext = {
   isValue: CarStateType
+  // isEmpty: boolean
   cars: CarType
   filterCars: CarType
   setFilterCars: Dispatch<SetStateAction<CarStateType>>
   setIsValue: Dispatch<SetStateAction<CarStateType>>
+  // setIsEmpty: Dispatch<SetStateAction<boolean>>
 }
 
 export const CarContext = createContext<CarTypeContext | null>(null)
@@ -50,9 +55,11 @@ export default function CarProvider({ children }: { children: ReactNode }) {
     time: 'Pilih Waktu',
     capacity: '',
     isOpen: false,
+    isEmpty: false,
   })
   const [cars, setCars] = useState<any>()
   const [filterCars, setFilterCars] = useState<any>()
+  // const [isEmpty, setIsEmpty] = useState<boolean>(false)
 
   useEffect(() => {
     fetch(
@@ -73,6 +80,8 @@ export default function CarProvider({ children }: { children: ReactNode }) {
         cars,
         filterCars,
         setFilterCars,
+        // isEmpty,
+        // setIsEmpty,
       }}
     >
       {children}

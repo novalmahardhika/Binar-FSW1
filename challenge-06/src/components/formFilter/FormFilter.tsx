@@ -20,6 +20,7 @@ export default function FormFilter() {
       isValue.time === 'Pilih Waktu' ||
       isValue.date === undefined
     ) {
+      setIsValue((prev) => ({ ...prev, isValid: true }))
       return
     }
 
@@ -32,9 +33,25 @@ export default function FormFilter() {
     const filter = cars?.filter(
       (car: any) =>
         car.available &&
-        new Date(car.availableAt).getTime() <= pickDate &&
+        new Date(car.availableAt).getTime() >= pickDate &&
         car.capacity >= capacity
     )
+
+    if (filter.length === 0) {
+      // setIsEmpty(true)
+      setIsValue({
+        typeDriver: 'Pilih Tipe Driver',
+        date: undefined,
+        time: 'Pilih Waktu',
+        capacity: '',
+        isOpen: false,
+        isEmpty: true,
+      })
+      setIsModal(false)
+      return
+    }
+
+    // console.log(isValue.isEmpty)
 
     setFilterCars(filter)
 
@@ -44,7 +61,9 @@ export default function FormFilter() {
       time: 'Pilih Waktu',
       capacity: '',
       isOpen: false,
+      // isEmpty: false,
     })
+    // setIsEmpty(false)
 
     setIsModal(false)
   }
