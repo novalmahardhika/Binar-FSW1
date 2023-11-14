@@ -1,0 +1,20 @@
+{
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    // I adapted this rules to a prettier extension in my vs code
+    "camelcase": "warn",
+    "no-unused-vars": "warn",
+    "no-extra-semi": "warn",
+    "quotes": ["warn", "single"],
+    "no-undef": "error",
+    "no-extra-boolean-cast": ["error", { "enforceForLogicalOperands": true }]
+  }
+}

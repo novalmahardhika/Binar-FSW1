@@ -1,10 +1,10 @@
-const ApplicationError = require("./ApplicationError");
+const ApplicationError = require('./ApplicationError')
 
 class NotFoundError extends ApplicationError {
   constructor(method, url) {
-    super("Not found!")
-    this.method = method;
-    this.url = url;
+    super('Not found!')
+    this.method = method
+    this.url = url
   }
 
   get details() {
@@ -15,4 +15,4 @@ class NotFoundError extends ApplicationError {
   }
 }
 
-module.exports = NotFoundError;
+module.exports = NotFoundError
