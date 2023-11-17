@@ -2,11 +2,13 @@ const ApplicationController = require('./ApplicationController')
 const {
   EmailNotRegisteredError,
   InsufficientAccessError,
-  RecordNotFoundError,
+  // RecordNotFoundError,
   WrongPasswordError,
-  EmailAlreadyTakenError,
+  // EmailAlreadyTakenError,
 } = require('../errors')
 const { JWT_SIGNATURE_KEY } = require('../../config/application')
+const EmailAlreadyTakenError = require('../errors/EmailAlreadyTakenError')
+const RecordNotFoundError = require('../errors/RecordNotFoundError')
 
 class AuthenticationController extends ApplicationController {
   constructor({ userModel, roleModel, bcrypt, jwt }) {
@@ -33,6 +35,7 @@ class AuthenticationController extends ApplicationController {
           throw new InsufficientAccessError(payload?.role?.name)
 
         req.user = payload
+
         next()
       } catch (err) {
         res.status(401).json({

@@ -2,7 +2,7 @@ const ApplicationError = require('./ApplicationError')
 
 class EmailAlreadyTakenError extends ApplicationError {
   constructor(email) {
-    super(`${email} is already taken !`)
+    super(`${email} is Already exist!`)
     this.email = email
   }
 
