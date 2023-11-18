@@ -15,10 +15,12 @@ class CarController extends ApplicationController {
     // const limit = req.query.pageSize
     const query = this.getListQueryFromRequest(req)
     const cars = await this.carModel.findAll(query)
+
     const carCount = await this.carModel.count({
       where: query.where,
       include: query.include,
     })
+
     const pagination = this.buildPaginationObject(req, carCount)
 
     res.status(200).json({
@@ -61,9 +63,10 @@ class CarController extends ApplicationController {
   handleRentCar = async (req, res, next) => {
     try {
       let { rentStartedAt, rentEndedAt } = req.body
+
       const car = await this.getCarFromRequest(req)
 
-      if (!rentEndedAt) rentEndedAt = this.dayjs(rentStartedAt).add(1, 'day')
+      rentEndedAt = this.dayjs(rentStartedAt).add(1, 'day')
 
       const activeRent = await this.userCarModel.findOne({
         where: {
@@ -102,15 +105,18 @@ class CarController extends ApplicationController {
 
       const car = this.getCarFromRequest(req)
 
-      await car.update({
-        name,
-        price,
-        size,
-        image,
-        isCurrentlyRented: false,
-      })
+      const newCar = await this.carModel.update(
+        {
+          name,
+          price,
+          size,
+          image,
+          isCurrentlyRented: false,
+        },
+        { where: { id: car.id }, returning: true }
+      )
 
-      res.status(200).json(car)
+      res.status(200).json(newCar)
     } catch (err) {
       res.status(422).json({
         error: {
@@ -122,7 +128,8 @@ class CarController extends ApplicationController {
   }
 
   handleDeleteCar = async (req, res) => {
-    await this.carModel.destroy(req.params.id)
+    await this.carModel.destroy({ where: { id: req.params.id } })
+
     res.status(204).end()
   }
 
@@ -132,8 +139,10 @@ class CarController extends ApplicationController {
 
   getListQueryFromRequest(req) {
     const { size, availableAt } = req.query
+
     const offset = this.getOffsetFromRequest(req)
-    const limit = req.query.pageSize || 10
+
+    const limit = req.query.pageSize
     const where = {}
     const include = {
       model: this.userCarModel,
@@ -141,7 +150,8 @@ class CarController extends ApplicationController {
       required: false,
     }
 
-    if (size) where.size = size
+    where.size = size
+
     if (availableAt) {
       include.where = {
         rentEndedAt: {

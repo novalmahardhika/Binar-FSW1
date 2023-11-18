@@ -53,7 +53,7 @@ describe('Application controllers', () => {
 
   describe('#handleError', () => {
     it('should return res.status(500), and res.json() with handleError instance', () => {
-      const mockErr = new ApplicationError()
+      const mockErr = new Error()
       const mockReq = {}
       const mockRes = {
         status: mock.mockReturnThis(),
