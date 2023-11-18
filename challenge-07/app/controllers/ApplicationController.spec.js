@@ -1,5 +1,5 @@
 const { NotFoundError } = require('../errors')
-const ApplicationError = require('../errors/ApplicationError')
+// const ApplicationError = require('../errors/ApplicationError')
 const ApplicationController = require('./ApplicationController')
 
 const applicationController = new ApplicationController()

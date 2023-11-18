@@ -1,4 +1,4 @@
-const { Op } = require('sequelize')
+// const { Op } = require('sequelize')
 const CarController = require('./CarController')
 const { CarAlreadyRentedError } = require('../errors')
 const dayjs = require('dayjs')
@@ -173,74 +173,6 @@ describe('CarController', () => {
   })
 
   describe('#handleRentCar', () => {
-    // const mockCreateData = {
-    //   userId: 1,
-    //   carId: 1,
-    //   rentStartedAt: '2023-11-17T06:53:25.103Z',
-    //   rentEndedAt: '2023-11-20T06:53:25.103',
-    // }
-    // const mockReq = {
-    //   user: {
-    //     id: 1,
-    //   },
-    //   body: {
-    //     rentStartedAt: '2023-11-17T06:53:25.103Z',
-    //     rentEndedAt: '2023-11-20T06:53:25.103',
-    //   },
-    //   params: {
-    //     id: 1,
-    //   },
-    // }
-    // const mockRes = {
-    //   status: jest.fn().mockReturnThis(),
-    //   json: jest.fn().mockReturnThis(),
-    // }
-    // const mockNext = jest.fn()
-    // it('should res.status 201 and return userCar', async () => {
-    //   const carController = new CarController({
-    //     carModel: {
-    //       findByPk: jest.fn().mockReturnValue({ id: 1, ...mockCar }),
-    //     },
-    //     userCarModel: {
-    //       findOne: jest.fn().mockReturnValue(false),
-    //       create: jest.fn().mockReturnValue(mockCreateData),
-    //     },
-    //     dayjs: dayjs,
-    //   })
-    //   await carController.handleRentCar(mockReq, mockRes, mockNext)
-    //   expect(mockRes.status).toHaveBeenCalledWith(201)
-    //   expect(mockRes.json).toHaveBeenCalledWith(mockCreateData)
-    // })
-    // it('should error status 422 and return error', async () => {
-    //   const carController = new CarController({
-    //     carModel: {
-    //       findByPk: jest.fn().mockReturnValue({ id: 1, ...mockCar }),
-    //     },
-    //     userCarModel: {
-    //       findOne: jest.fn().mockReturnValue(true),
-    //     },
-    //     dayjs: dayjs,
-    //   })
-    //   const err = new CarAlreadyRentedError({ id: 1, ...mockCar })
-    //   await carController.handleRentCar(mockReq, mockRes, mockNext)
-    //   expect(mockRes.status).toHaveBeenCalledWith(422)
-    //   expect(mockRes.json).toHaveBeenCalledWith(err)
-    // })
-    // it('should next error', async () => {
-    //   const err = new Error('Internal Server Error')
-    //   const carController = new CarController({
-    //     carModel: {
-    //       findByPk: jest.fn().mockReturnValue(Promise.reject(err)),
-    //     },
-    //     userCarModel: {
-    //       findOne: jest.fn().mockReturnValue(true),
-    //     },
-    //     dayjs: dayjs,
-    //   })
-    //   await carController.handleRentCar(mockReq, mockRes, mockNext)
-    //   expect(mockNext).toHaveBeenCalled()
-    // })
-
     const mockReq = {
       body: {
         rentStartedAt: '2022-11-20',
@@ -467,16 +399,16 @@ describe('CarController', () => {
         },
       },
       where: { size: 'small' },
-      limit: 10,
-      offset: 0,
+      limit: 20,
+      offset: 80,
     }
 
     it('should return query', () => {
       carController.getListQueryFromRequest(mockReq)
 
-      // expect(carController.getListQueryFromRequest(mockReq)).toEqual(
-      //   mockResultData
-      // )
+      expect(carController.getListQueryFromRequest(mockReq)).toEqual(
+        mockResultData
+      )
     })
   })
 })

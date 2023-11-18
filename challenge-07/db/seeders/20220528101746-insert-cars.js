@@ -38,7 +38,7 @@ const carnames = [
 const sizes = ['SMALL', 'MEDIUM', 'LARGE']
 
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface) {
     const cars = []
 
     sizes.forEach((size) => {
