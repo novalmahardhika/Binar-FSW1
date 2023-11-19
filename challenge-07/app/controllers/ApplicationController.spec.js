@@ -86,6 +86,16 @@ describe('Application controllers', () => {
 
       expect(offset).toBe(0)
     })
+
+    it('should return offset from req.query', () => {
+      const mockReq = {
+        query: {},
+      }
+
+      const offset = applicationController.getOffsetFromRequest(mockReq)
+
+      expect(offset).toEqual(0)
+    })
   })
 
   describe('#buildPaginationObject', () => {
@@ -110,6 +120,53 @@ describe('Application controllers', () => {
         page: page,
         pageCount: pageCount,
         pageSize: pageSize,
+        count: mockCount,
+      })
+    })
+
+    it('should return {page,pageCount,pageSize,count} from req.query and parameter count', () => {
+      const mockReq = {
+        query: {
+          page: 1,
+          pageSize: 10,
+        },
+      }
+
+      const { page, pageSize } = mockReq.query
+      const mockCount = 50
+      const pageCount = Math.ceil(mockCount / pageSize)
+
+      const appPagination = applicationController.buildPaginationObject(
+        mockReq,
+        mockCount
+      )
+
+      expect(appPagination).toMatchObject({
+        page: page,
+        pageCount: pageCount,
+        pageSize: pageSize,
+        count: mockCount,
+      })
+    })
+
+    it('should return {page,pageCount,pageSize,count} from req.query and parameter count', () => {
+      const mockReq = {
+        query: {},
+      }
+
+      const { page, pageSize } = mockReq.query
+      const mockCount = 50
+      const pageCount = Math.ceil(mockCount / 10)
+
+      const appPagination = applicationController.buildPaginationObject(
+        mockReq,
+        mockCount
+      )
+
+      expect(appPagination).toMatchObject({
+        page: 1,
+        pageCount: pageCount,
+        pageSize: 10,
         count: mockCount,
       })
     })

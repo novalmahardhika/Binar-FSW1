@@ -31,14 +31,14 @@ class ApplicationController {
   }
 
   getOffsetFromRequest(req) {
-    const { page, pageSize } = req.query
+    const { page = 1, pageSize = 10 } = req.query
 
     const offset = (page - 1) * pageSize
     return offset
   }
 
   buildPaginationObject(req, count) {
-    const { page, pageSize } = req.query
+    const { page = 1, pageSize = 10 } = req.query
     const pageCount = Math.ceil(count / pageSize)
     return {
       page,

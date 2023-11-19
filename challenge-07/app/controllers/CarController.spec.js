@@ -214,6 +214,38 @@ describe('CarController', () => {
     })
 
     it('should return res.status 201 and return userCar', async () => {
+      const mockReq = {
+        body: {
+          rentStartedAt: '2022-11-20',
+          rentEndedAt: '2022-11-28',
+        },
+
+        params: {
+          id: 1,
+        },
+
+        user: {
+          id: 1,
+        },
+      }
+      const carController = new CarController({
+        carModel: {
+          findByPk: jest.fn().mockReturnValue({ id: 1, ...mockCar }),
+        },
+        userCarModel: {
+          findOne: jest.fn().mockReturnValue(null),
+          create: jest.fn().mockReturnValue(mockUserCar),
+        },
+        dayjs: dayjs,
+      })
+
+      await carController.handleRentCar(mockReq, mockRes, mockNext)
+
+      expect(mockRes.status).toHaveBeenCalledWith(201)
+      expect(mockRes.json).toHaveBeenCalledWith(mockUserCar)
+    })
+
+    it('should return res.status 201 and return userCar', async () => {
       const carController = new CarController({
         carModel: {
           findByPk: jest.fn().mockReturnValue({ id: 1, ...mockCar }),
@@ -372,38 +404,75 @@ describe('CarController', () => {
       userCarModel: mockUserCar,
       dayjs: dayjs,
     })
-    const mockReq = {
-      query: {
-        size: 'small',
-        availableAt: '2023-11-15',
-        pageSize: 20,
-        page: 5,
-      },
-    }
-
-    const mockResultData = {
-      include: {
-        model: {
-          userId: 1,
-          carId: 1,
-          rentStartedAt: '2022-11-15',
-          rentEndedAt: '2022-11-15',
-        },
-        as: 'userCar',
-        required: false,
-        where: {
-          rentEndedAt: {
-            'function () {\n        return fn.apply(this, arguments);\n      }':
-              '2023-11-15',
-          },
-        },
-      },
-      where: { size: 'small' },
-      limit: 20,
-      offset: 80,
-    }
 
     it('should return query', () => {
+      const mockReq = {
+        query: {
+          size: 'small',
+          availableAt: '2023-11-15',
+          pageSize: 20,
+          page: 5,
+        },
+      }
+
+      const mockResultData = {
+        include: {
+          model: {
+            userId: 1,
+            carId: 1,
+            rentStartedAt: '2022-11-15',
+            rentEndedAt: '2022-11-15',
+          },
+          as: 'userCar',
+          required: false,
+          where: {
+            rentEndedAt: {
+              'function () {\n        return fn.apply(this, arguments);\n      }':
+                '2023-11-15',
+            },
+          },
+        },
+        where: { size: 'small' },
+        limit: 20,
+        offset: 80,
+      }
+      carController.getListQueryFromRequest(mockReq)
+
+      expect(carController.getListQueryFromRequest(mockReq)).toEqual(
+        mockResultData
+      )
+    })
+
+    it('should return query with no size', () => {
+      const mockReq = {
+        query: {
+          availableAt: '2023-11-15',
+          pageSize: 20,
+          page: 5,
+        },
+      }
+      const mockResultData = {
+        include: {
+          model: {
+            userId: 1,
+            carId: 1,
+            rentStartedAt: '2022-11-15',
+            rentEndedAt: '2022-11-15',
+          },
+          as: 'userCar',
+          required: false,
+          where: {
+            rentEndedAt: {
+              'function () {\n        return fn.apply(this, arguments);\n      }':
+                '2023-11-15',
+            },
+          },
+        },
+        where: {},
+        limit: 20,
+        offset: 80,
+      }
+
       carController.getListQueryFromRequest(mockReq)
 
       expect(carController.getListQueryFromRequest(mockReq)).toEqual(
