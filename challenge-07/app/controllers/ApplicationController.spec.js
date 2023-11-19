@@ -154,7 +154,6 @@ describe('Application controllers', () => {
         query: {},
       }
 
-      const { page, pageSize } = mockReq.query
       const mockCount = 50
       const pageCount = Math.ceil(mockCount / 10)
 

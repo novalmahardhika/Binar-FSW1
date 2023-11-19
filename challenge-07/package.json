@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r dotenv/config bin/www",
     "dev": "nodemon -r dotenv/config bin/www",
-    "lint": "npx eslint ./app",
+    "lint": "npx eslint ",
     "test": "jest --coverage",
     "db:create": "npx sequelize db:create",
     "db:drop": "npx sequelize db:drop",
